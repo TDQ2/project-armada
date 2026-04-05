@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://clnusjnr5hl7l"]
+[gd_scene load_steps=7 format=3 uid="uid://clnusjnr5hl7l"]
 
 [ext_resource type="Texture2D" uid="uid://bvqev2fahe5y4" path="res://textures/player_ships/flagship_ph.png" id="1_unktg"]
 [ext_resource type="PackedScene" uid="uid://c8q4gn3yxq5gk" path="res://scenes/components/hurtbox_component.tscn" id="2_dnybm"]
 [ext_resource type="PackedScene" uid="uid://dg8pictpm7ib6" path="res://scenes/components/health_component.tscn" id="3_fxxv8"]
+[ext_resource type="PackedScene" uid="uid://d1uhf4nymla82" path="res://scenes/components/hitbox_component.tscn" id="4_fxxv8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dnybm"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fxxv8"]
 radius = 8.0
 
 [node name="FlagshipPlaceholder" type="Node2D"]
@@ -22,4 +26,12 @@ shape = SubResource("CircleShape2D_dnybm")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_fxxv8")]
 
+[node name="HitboxComponent" parent="." instance=ExtResource("4_fxxv8")]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("CircleShape2D_fxxv8")
+
 [editable path="HurtboxComponent"]
+[editable path="HitboxComponent"]

@@ -1,23 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://e4p748fk44ul"]
+[gd_scene load_steps=6 format=3 uid="uid://e4p748fk44ul"]
 
 [ext_resource type="Texture2D" uid="uid://dkxlgjum3hsca" path="res://textures/weapons/cannonball_ph.png" id="1_56isn"]
-[ext_resource type="Script" uid="uid://bene43k3ss3gh" path="res://scenes/weapons/cannonball.gd" id="1_xqvtj"]
+[ext_resource type="Script" uid="uid://bene43k3ss3gh" path="res://scripts/weapons/cannonball.gd" id="1_xqvtj"]
+[ext_resource type="PackedScene" uid="uid://smpoxa131mk7" path="res://scenes/components/damage_component.tscn" id="3_bi4j3"]
+[ext_resource type="PackedScene" uid="uid://d1uhf4nymla82" path="res://scenes/components/hitbox_component.tscn" id="4_esydl"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xqvtj"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_esydl"]
 radius = 2.0
 
-[node name="Cannonball" type="Area2D"]
-collision_layer = 8
-collision_mask = 4
+[node name="Cannonball" type="Node2D"]
 script = ExtResource("1_xqvtj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_56isn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_xqvtj")
-
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="DamageComponent" parent="." instance=ExtResource("3_bi4j3")]
+
+[node name="HitboxComponent" parent="." instance=ExtResource("4_esydl")]
+free_on_hit = true
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("CircleShape2D_esydl")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+
+[editable path="HitboxComponent"]

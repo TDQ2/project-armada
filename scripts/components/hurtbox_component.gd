@@ -2,8 +2,12 @@ extends Area2D
 
 @export var healthComponent: HealthComponent
 
-func _on_area_entered(_area: Area2D) -> void:
+func _ready() -> void:
 	assert(healthComponent)
-	#print("enemy hit")
-	healthComponent.take_damage(1) #TODO: make this the damaage of the cannonball
+	assert($CollisionShape2D.shape)
+
+func _on_area_entered(area: Area2D) -> void:
+	var damage = area.get_parent().get_node_or_null("DamageComponent") as DamageComponent
+	if damage:
+		healthComponent.take_damage(damage.amount)
 	

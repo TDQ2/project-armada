@@ -38,7 +38,6 @@ func _patrol(delta: float) -> void:
 	assert(waypoints.size() > 0)
 	_steer_toward(waypoints[patrol_idx], delta)
 	if this_ship.global_position.distance_to(waypoints[patrol_idx]) <= dist_to_target:
-		print("reached waypoint ", patrol_idx, " switching to idle")
 		patrol_idx = (patrol_idx + 1) % waypoints.size()
 		_start_idle()
 		
