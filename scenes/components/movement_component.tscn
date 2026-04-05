@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwusff6gco0f8"]
+
+[ext_resource type="Script" uid="uid://dkclyq4jadses" path="res://scripts/components/movement_component.gd" id="1_ayfyp"]
+
+[node name="MovementComponent" type="Node"]
+script = ExtResource("1_ayfyp")
+
+[node name="IdleTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]

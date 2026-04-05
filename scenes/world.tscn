@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://chgy7aq3jnt0o"]
+
+[ext_resource type="Script" uid="uid://d3wvygjiib3b4" path="res://scripts/world.gd" id="1_k0juu"]
+[ext_resource type="Texture2D" uid="uid://tnxdvkc3toex" path="res://textures/ocean_background.png" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://bkfrfk61am68w" path="res://scenes/player/armada.tscn" id="2_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://fwqm2qrf8b7m" path="res://scenes/enemies/enemy_ship.tscn" id="3_4wyf3"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_k0juu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nnsk1")
+
+[node name="Ships" type="Node2D" parent="."]
+
+[node name="Armada" parent="Ships" instance=ExtResource("2_rwgxs")]
+speed = 100
+
+[node name="EnemyShip" parent="Ships" instance=ExtResource("3_4wyf3")]
+position = Vector2(-212, -107)
+
+[node name="EnemyShip3" parent="Ships" instance=ExtResource("3_4wyf3")]
+position = Vector2(-190, 41)
+
+[node name="EnemyShip4" parent="Ships" instance=ExtResource("3_4wyf3")]
+position = Vector2(165, 40)
+
+[node name="EnemyShip2" parent="Ships" instance=ExtResource("3_4wyf3")]
+position = Vector2(191, -108)
+
+[node name="Projectiles" type="Node2D" parent="."]

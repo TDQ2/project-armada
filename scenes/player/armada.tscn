@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkfrfk61am68w"]
+
+[ext_resource type="PackedScene" uid="uid://clnusjnr5hl7l" path="res://scenes/player/flagship_placeholder.tscn" id="1_47ne2"]
+[ext_resource type="Script" uid="uid://ciafbbj5cil2v" path="res://scripts/player/armada.gd" id="1_eqf4f"]
+[ext_resource type="PackedScene" uid="uid://rj8g5emnw0ft" path="res://scenes/player/gunship_placeholder.tscn" id="2_4mt6j"]
+
+[node name="Armada" type="Node2D"]
+script = ExtResource("1_eqf4f")
+
+[node name="Ships" type="Node2D" parent="."]
+
+[node name="FlagshipPlaceholder" parent="Ships" instance=ExtResource("1_47ne2")]
+
+[node name="GunshipPlaceholder" parent="Ships" instance=ExtResource("2_4mt6j")]
+position = Vector2(0, -32)
+
+[node name="GunshipPlaceholder2" parent="Ships" instance=ExtResource("2_4mt6j")]
+position = Vector2(-16, -16)
+
+[node name="GunshipPlaceholder3" parent="Ships" instance=ExtResource("2_4mt6j")]
+position = Vector2(16, -16)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -32)
+position_smoothing_enabled = true

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://rj8g5emnw0ft"]
+
+[ext_resource type="PackedScene" uid="uid://b1ng1pjygnelh" path="res://scenes/weapons/cannon.tscn" id="1_ea2gg"]
+[ext_resource type="Texture2D" uid="uid://b0kndjjewwqv" path="res://textures/player_ships/gunship_ph.png" id="1_kxk2p"]
+
+[node name="GunshipPlaceholder" type="Area2D"]
+collision_layer = 2
+collision_mask = 21
+
+[node name="Cannon" parent="." instance=ExtResource("1_ea2gg")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["enemies"]]
+texture = ExtResource("1_kxk2p")
