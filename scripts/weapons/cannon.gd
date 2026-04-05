@@ -1,14 +1,17 @@
 extends Node2D
 
-
-signal shoot(pos: Vector2, direction: Vector2)
+signal shoot(pos: Vector2, direction: Vector2, layer: int, mask: int)
 
 @export var cannon_range := 4
+@export var projectile_layer := -1
+@export var projectile_mask := -1
 
 var target: Area2D
 var can_shoot := true
 
 func _ready() -> void:
+	assert(projectile_layer != -1)
+	assert(projectile_mask != -1)
 	$DetectionRange/CollisionShape2D.shape.radius = cannon_range * 16
 
 func _process(_delta: float) -> void:
@@ -25,7 +28,7 @@ func _on_detection_range_area_exited(_area: Area2D) -> void:
 	target = null
 
 func _shoot() -> void:
-	emit_signal("shoot", global_position, (target.global_position - global_position).normalized())
+	emit_signal("shoot", global_position, (target.global_position - global_position).normalized(), projectile_layer, projectile_mask)
 	$ShootSound.play(0.25)
 	can_shoot = false
 	$CooldownTimer.start()

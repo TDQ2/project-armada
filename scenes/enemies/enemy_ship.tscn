@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://fwqm2qrf8b7m"]
+[gd_scene load_steps=9 format=3 uid="uid://fwqm2qrf8b7m"]
 
 [ext_resource type="Texture2D" uid="uid://cgoik4vfcn8ci" path="res://textures/enemy_ships/enemyship_ph.png" id="1_scyvl"]
 [ext_resource type="PackedScene" uid="uid://c8q4gn3yxq5gk" path="res://scenes/components/hurtbox_component.tscn" id="3_0wb5s"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c3sbhbwa4w2ji" path="res://scripts/components/detection_component.gd" id="3_awypu"]
 [ext_resource type="PackedScene" uid="uid://dg8pictpm7ib6" path="res://scenes/components/health_component.tscn" id="4_awypu"]
 [ext_resource type="PackedScene" uid="uid://bwusff6gco0f8" path="res://scenes/components/movement_component.tscn" id="4_o20jb"]
+[ext_resource type="PackedScene" uid="uid://336plj13jl4k" path="res://scenes/components/health_bar_component.tscn" id="4_vpu47"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_26yc4"]
 radius = 4.1231055
@@ -24,9 +25,14 @@ healthComponent = NodePath("../HealthComponent")
 shape = SubResource("CircleShape2D_26yc4")
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_awypu")]
+max_health = 30.0
+current_health = 30.0
+
+[node name="HealthBarComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_vpu47")]
+position = Vector2(-5, -10)
+health_component = NodePath("../HealthComponent")
 
 [node name="DetectionComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("3_26yc4")]
-collision_layer = 0
 collision_mask = 2
 script = ExtResource("3_awypu")
 movement_component = NodePath("../MovementComponent")

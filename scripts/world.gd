@@ -11,7 +11,8 @@ func _connect_cannons(node: Node) -> void:
 	for child in node.get_children():
 		_connect_cannons(child)
 
-func handle_cannon_fire(pos: Vector2, dir: Vector2) -> void:
+func handle_cannon_fire(pos: Vector2, dir: Vector2, layer: int, mask: int) -> void:
 	var cannonball = cannonball_scene.instantiate()
-	cannonball.setup(pos, dir)
+	cannonball.setup(pos, dir, layer, mask)
 	$Projectiles.add_child(cannonball)
+	
