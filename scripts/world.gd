@@ -12,17 +12,17 @@ func _connect_cannons(node: Node) -> void:
 	for child in node.get_children():
 		_connect_cannons(child)
 
-func handle_cannon_fire(source: Data.ProjectileSource, pos: Vector2, dir: Vector2) -> void:
+func handle_cannon_fire(source: Data.ProjectileSource, pos: Vector2, dir: Vector2, damage: float) -> void:
 	match source:
-		Data.ProjectileSource.PLAYER: _create_player_cannonball(pos, dir)
-		Data.ProjectileSource.ENEMY: _create_enemy_cannonball(pos, dir)
+		Data.ProjectileSource.PLAYER: _create_player_cannonball(pos, dir, damage)
+		Data.ProjectileSource.ENEMY: _create_enemy_cannonball(pos, dir, damage)
 
-func _create_player_cannonball(pos: Vector2, dir: Vector2) -> void:
+func _create_player_cannonball(pos: Vector2, dir: Vector2, damage: float) -> void:
 	var player_cannonball = player_cannonball_scene.instantiate()
-	player_cannonball.setup(pos, dir)
+	player_cannonball.setup(pos, dir, damage)
 	$Projectiles.add_child(player_cannonball)
 
-func _create_enemy_cannonball(pos: Vector2, dir: Vector2) -> void:
+func _create_enemy_cannonball(pos: Vector2, dir: Vector2, damage: float) -> void:
 	var enemy_cannonball = enemy_cannonball_scene.instantiate()
-	enemy_cannonball.setup(pos, dir)
+	enemy_cannonball.setup(pos, dir, damage)
 	$Projectiles.add_child(enemy_cannonball)

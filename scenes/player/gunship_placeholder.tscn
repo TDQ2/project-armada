@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://rj8g5emnw0ft"]
+[gd_scene load_steps=8 format=3 uid="uid://rj8g5emnw0ft"]
 
+[ext_resource type="PackedScene" uid="uid://dv12kaisiygdn" path="res://scenes/effects/small_ship_trail_particles.tscn" id="1_100fk"]
 [ext_resource type="PackedScene" uid="uid://b1ng1pjygnelh" path="res://scenes/weapons/cannon.tscn" id="1_ea2gg"]
 [ext_resource type="Texture2D" uid="uid://b0kndjjewwqv" path="res://textures/player_ships/gunship_ph.png" id="1_kxk2p"]
 [ext_resource type="PackedScene" uid="uid://c8q4gn3yxq5gk" path="res://scenes/components/hurtbox_component.tscn" id="4_eye42"]
@@ -10,6 +11,9 @@
 radius = 4.0
 
 [node name="GunshipPlaceholder" type="Node2D"]
+
+[node name="SmallShipTrailParticles" parent="." instance=ExtResource("1_100fk")]
+position = Vector2(0, 2)
 
 [node name="Cannon" parent="." instance=ExtResource("1_ea2gg")]
 source = 1

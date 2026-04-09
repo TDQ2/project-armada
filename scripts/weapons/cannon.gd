@@ -1,9 +1,10 @@
 extends Node2D
 
-signal shoot(target: Data.ProjectileSource, pos: Vector2, direction: Vector2)
+signal shoot(source: Data.ProjectileSource, pos: Vector2, direction: Vector2, damage)
 
 @export var cannon_range := 4
 @export var source: Data.ProjectileSource = Data.ProjectileSource.UNDEFINED #Must be set in the editor
+@export var damage := 20.0
 
 @onready var detection_component: DetectionComponent = $DetectionComponent
 
@@ -31,10 +32,14 @@ func _release_target(_area: Area2D) -> void:
 	target = null
 
 func _shoot() -> void:
-	emit_signal("shoot", source, global_position, (target.global_position - global_position).normalized())
+	_shoot_sw(source, global_position, (target.global_position - global_position).normalized(), damage)
 	$ShootSound.play(0.25)
 	can_shoot = false
 	$CooldownTimer.start()
+
+#shoot signal wrapper for type satefy
+func _shoot_sw(source_: Data.ProjectileSource, pos: Vector2, direction: Vector2, damage_) -> void: 
+	emit_signal("shoot", source_, pos, direction, damage_)
 
 func _on_cooldown_timer_timeout() -> void:
 	can_shoot = true
