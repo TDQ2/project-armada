@@ -3,9 +3,10 @@ extends Node2D
 var direction: Vector2
 @export var speed := 200
 
-func setup(pos: Vector2, dir: Vector2) -> void:
+func setup(pos: Vector2, dir: Vector2, damage: float) -> void:
 	position = pos
 	direction = dir
+	$DamageComponent.amount = damage
 	rotation = direction.angle()
 
 func _physics_process(delta: float) -> void:

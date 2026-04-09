@@ -6,6 +6,7 @@
 
 [node name="Armada" type="Node2D"]
 script = ExtResource("1_eqf4f")
+rotation_speed = 0.005
 
 [node name="Ships" type="Node2D" parent="."]
 

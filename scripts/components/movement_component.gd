@@ -37,6 +37,7 @@ func _physics_process(delta: float) -> void:
 		State.PURSUE: _pursue(delta)
 		State.RETURN: _return(delta)
 		State.IDLE: _idle(delta)
+	get_parent().rotation = direction.angle()
 
 # State functions
 func _patrol(delta: float) -> void:

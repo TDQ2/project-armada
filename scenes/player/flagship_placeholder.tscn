@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://clnusjnr5hl7l"]
+[gd_scene load_steps=7 format=3 uid="uid://clnusjnr5hl7l"]
 
+[ext_resource type="PackedScene" uid="uid://byl18wbj3ujrg" path="res://scenes/effects/large_ship_trail_particles.tscn" id="1_avvwv"]
 [ext_resource type="Texture2D" uid="uid://bvqev2fahe5y4" path="res://textures/player_ships/flagship_ph.png" id="1_unktg"]
 [ext_resource type="PackedScene" uid="uid://c8q4gn3yxq5gk" path="res://scenes/components/hurtbox_component.tscn" id="2_dnybm"]
 [ext_resource type="PackedScene" uid="uid://dg8pictpm7ib6" path="res://scenes/components/health_component.tscn" id="3_fxxv8"]
@@ -9,6 +10,9 @@
 radius = 8.0
 
 [node name="FlagshipPlaceholder" type="Node2D"]
+
+[node name="LargeShipTrailParticles" parent="." instance=ExtResource("1_avvwv")]
+position = Vector2(0, 4)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_unktg")
