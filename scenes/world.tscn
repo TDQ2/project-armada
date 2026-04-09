@@ -14,7 +14,6 @@ texture = ExtResource("1_nnsk1")
 [node name="Ships" type="Node2D" parent="."]
 
 [node name="Armada" parent="Ships" instance=ExtResource("2_rwgxs")]
-speed = 100
 
 [node name="EnemyShip" parent="Ships" instance=ExtResource("3_4wyf3")]
 position = Vector2(-212, -107)

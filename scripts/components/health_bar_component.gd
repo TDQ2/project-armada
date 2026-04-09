@@ -1,7 +1,7 @@
 extends Node2D
 class_name HealthBarComponent
 
-@export var visual_offset:Vector2
+var visual_offset:Vector2
 @export var health_component: HealthComponent
 @export var show_duration := 1.0
 

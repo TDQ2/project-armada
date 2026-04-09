@@ -1,6 +1,7 @@
 extends Node2D
 
-var cannonball_scene = preload("res://scenes/weapons/cannonball.tscn")
+var player_cannonball_scene = preload("res://scenes/player_projectiles/player_cannonball.tscn")
+var enemy_cannonball_scene = preload("res://scenes/enemy_projectiles/enemy_cannonball.tscn")
 
 func _ready() -> void:
 	_connect_cannons($Ships)
@@ -11,8 +12,17 @@ func _connect_cannons(node: Node) -> void:
 	for child in node.get_children():
 		_connect_cannons(child)
 
-func handle_cannon_fire(pos: Vector2, dir: Vector2, layer: int, mask: int) -> void:
-	var cannonball = cannonball_scene.instantiate()
-	cannonball.setup(pos, dir, layer, mask)
-	$Projectiles.add_child(cannonball)
-	
+func handle_cannon_fire(source: Data.ProjectileSource, pos: Vector2, dir: Vector2) -> void:
+	match source:
+		Data.ProjectileSource.PLAYER: _create_player_cannonball(pos, dir)
+		Data.ProjectileSource.ENEMY: _create_enemy_cannonball(pos, dir)
+
+func _create_player_cannonball(pos: Vector2, dir: Vector2) -> void:
+	var player_cannonball = player_cannonball_scene.instantiate()
+	player_cannonball.setup(pos, dir)
+	$Projectiles.add_child(player_cannonball)
+
+func _create_enemy_cannonball(pos: Vector2, dir: Vector2) -> void:
+	var enemy_cannonball = enemy_cannonball_scene.instantiate()
+	enemy_cannonball.setup(pos, dir)
+	$Projectiles.add_child(enemy_cannonball)
