@@ -15,6 +15,11 @@ run/main_scene="uid://chgy7aq3jnt0o"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Data="*res://scripts/globals/Data.gd"
+Utils="*res://scripts/globals/Utils.gd"
+
 [display]
 
 window/size/viewport_width=640
@@ -24,6 +29,7 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 enemies="enemy ships the player can target"
+player=""
 
 [input]
 

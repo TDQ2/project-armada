@@ -1,18 +1,22 @@
 extends Node2D
 
-signal shoot(pos: Vector2, direction: Vector2, layer: int, mask: int)
+signal shoot(target: Data.ProjectileSource, pos: Vector2, direction: Vector2)
 
 @export var cannon_range := 4
-@export var projectile_layer := -1
-@export var projectile_mask := -1
+@export var source: Data.ProjectileSource = Data.ProjectileSource.UNDEFINED #Must be set in the editor
+
+@onready var detection_component: DetectionComponent = $DetectionComponent
 
 var target: Area2D
 var can_shoot := true
 
 func _ready() -> void:
-	assert(projectile_layer != -1)
-	assert(projectile_mask != -1)
-	$DetectionRange/CollisionShape2D.shape.radius = cannon_range * 16
+	assert(source != Data.ProjectileSource.UNDEFINED, str(get_parent()) + " cannon is missing projectile source")
+	detection_component.detection_area_entered.connect(_acquire_target)
+	detection_component.detection_area_exited.connect(_release_target)
+	var detection_shape := CircleShape2D.new()
+	detection_shape.radius = cannon_range * 16
+	$DetectionComponent/CollisionShape2D.shape = detection_shape
 
 func _process(_delta: float) -> void:
 	if target:
@@ -20,15 +24,14 @@ func _process(_delta: float) -> void:
 		if can_shoot:
 			_shoot()
 
-func _on_detection_range_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemies"):
-		target = area
+func _acquire_target(area: Area2D) -> void:
+	target = area
 
-func _on_detection_range_area_exited(_area: Area2D) -> void:
+func _release_target(_area: Area2D) -> void:
 	target = null
 
 func _shoot() -> void:
-	emit_signal("shoot", global_position, (target.global_position - global_position).normalized(), projectile_layer, projectile_mask)
+	emit_signal("shoot", source, global_position, (target.global_position - global_position).normalized())
 	$ShootSound.play(0.25)
 	can_shoot = false
 	$CooldownTimer.start()
