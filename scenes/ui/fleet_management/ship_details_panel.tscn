@@ -1,0 +1,113 @@
+[gd_scene load_steps=4 format=3 uid="uid://or6lebaqfi6m"]
+
+[ext_resource type="Texture2D" uid="uid://c6v7ybln5kj7f" path="res://icon.svg" id="1_3ymfl"]
+[ext_resource type="PackedScene" uid="uid://cf177bl6she1u" path="res://scenes/ui/fleet_management/crew_button.tscn" id="2_lnsoe"]
+[ext_resource type="PackedScene" uid="uid://en0estbiy4fn" path="res://scenes/ui/fleet_management/weapon_button.tscn" id="3_hm4yo"]
+
+[node name="ShipDetailsPanel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Portrait" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_3ymfl")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ShipType" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Ship Type"
+horizontal_alignment = 1
+
+[node name="ShipAbilityText" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Default ship ability text"
+horizontal_alignment = 1
+
+[node name="CrewOutlineSHOULDBEGRID" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="CrewButtons" type="HBoxContainer" parent="VBoxContainer/CrewOutlineSHOULDBEGRID"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="CrewLabel" type="Label" parent="VBoxContainer/CrewOutlineSHOULDBEGRID/CrewButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Crew"
+
+[node name="Spacer" type="Control" parent="VBoxContainer/CrewOutlineSHOULDBEGRID/CrewButtons"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="CrewButton" parent="VBoxContainer/CrewOutlineSHOULDBEGRID/CrewButtons" instance=ExtResource("2_lnsoe")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+stretch_mode = 4
+
+[node name="CrewButton2" parent="VBoxContainer/CrewOutlineSHOULDBEGRID/CrewButtons" instance=ExtResource("2_lnsoe")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+stretch_mode = 4
+
+[node name="CrewButton3" parent="VBoxContainer/CrewOutlineSHOULDBEGRID/CrewButtons" instance=ExtResource("2_lnsoe")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+stretch_mode = 4
+
+[node name="CrewButton4" parent="VBoxContainer/CrewOutlineSHOULDBEGRID/CrewButtons" instance=ExtResource("2_lnsoe")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+stretch_mode = 4
+
+[node name="WeaponOutlineSHOULDBEGRID" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="WeaponButtons" type="HBoxContainer" parent="VBoxContainer/WeaponOutlineSHOULDBEGRID"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="WeaponLabel" type="Label" parent="VBoxContainer/WeaponOutlineSHOULDBEGRID/WeaponButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Weapons"
+
+[node name="Spacer" type="Control" parent="VBoxContainer/WeaponOutlineSHOULDBEGRID/WeaponButtons"]
+layout_mode = 2
+
+[node name="WeaponButton" parent="VBoxContainer/WeaponOutlineSHOULDBEGRID/WeaponButtons" instance=ExtResource("3_hm4yo")]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
+
+[node name="WeaponButton2" parent="VBoxContainer/WeaponOutlineSHOULDBEGRID/WeaponButtons" instance=ExtResource("3_hm4yo")]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
+
+[node name="WeaponButton3" parent="VBoxContainer/WeaponOutlineSHOULDBEGRID/WeaponButtons" instance=ExtResource("3_hm4yo")]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
+
+[node name="WeaponButton4" parent="VBoxContainer/WeaponOutlineSHOULDBEGRID/WeaponButtons" instance=ExtResource("3_hm4yo")]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4

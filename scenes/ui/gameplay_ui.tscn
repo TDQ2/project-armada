@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dptota7cno6we"]
+
+[ext_resource type="PackedScene" uid="uid://b5w1bkvhl2j0a" path="res://scenes/ui/top_nav_panel.tscn" id="1_ewtaj"]
+[ext_resource type="PackedScene" uid="uid://c0yb16mbfpmqf" path="res://scenes/ui/fleet_management/fleet_manager_ui.tscn" id="2_nk0qe"]
+
+[node name="GameplayUI" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TopNavPanel" parent="VBoxContainer" instance=ExtResource("1_ewtaj")]
+layout_mode = 2
+
+[node name="FleetManagerUI" parent="VBoxContainer" instance=ExtResource("2_nk0qe")]
+layout_mode = 2
+
+[editable path="VBoxContainer/TopNavPanel"]
+[editable path="VBoxContainer/FleetManagerUI"]
+[editable path="VBoxContainer/FleetManagerUI/HBoxContainer/ShipDetailsPanel"]
