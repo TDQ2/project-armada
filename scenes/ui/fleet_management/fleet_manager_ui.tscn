@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0yb16mbfpmqf"]
+
+[ext_resource type="PackedScene" uid="uid://wql6um4pisyk" path="res://scenes/ui/fleet_management/command_zone_panel.tscn" id="1_b6d8s"]
+[ext_resource type="PackedScene" uid="uid://or6lebaqfi6m" path="res://scenes/ui/fleet_management/ship_details_panel.tscn" id="2_e8av5"]
+[ext_resource type="PackedScene" uid="uid://y6n7xy8267q4" path="res://scenes/ui/fleet_management/inventory_panel.tscn" id="3_mabis"]
+
+[node name="FleetManagerUI" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="CommandZonePanel" parent="HBoxContainer" instance=ExtResource("1_b6d8s")]
+layout_mode = 2
+
+[node name="ShipDetailsPanel" parent="HBoxContainer" instance=ExtResource("2_e8av5")]
+layout_mode = 2
+
+[node name="InventoryPanel" parent="HBoxContainer" instance=ExtResource("3_mabis")]
+layout_mode = 2
