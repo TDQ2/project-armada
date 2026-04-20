@@ -1,20 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://dm5ini5cunq8g"]
+[gd_scene load_steps=5 format=3 uid="uid://dm5ini5cunq8g"]
 
-[ext_resource type="Texture2D" uid="uid://c6v7ybln5kj7f" path="res://icon.svg" id="1_wxsrg"]
+[ext_resource type="StyleBox" uid="uid://dvjby3q356kg6" path="res://scenes/ui/fleet_management/themes/basic_button_normal.tres" id="1_ghdc4"]
+[ext_resource type="StyleBox" uid="uid://dh4atnxlkt3ex" path="res://scenes/ui/fleet_management/themes/basic_button_pressed.tres" id="2_ra72d"]
+[ext_resource type="StyleBox" uid="uid://d20p6gkl8hrh1" path="res://scenes/ui/fleet_management/themes/basic_button_hover.tres" id="3_mo0xs"]
+[ext_resource type="StyleBox" uid="uid://dmgva3ah8vdrr" path="res://scenes/ui/fleet_management/themes/basic_button_disabled.tres" id="4_le5kj"]
 
-[node name="CommandZoneGridButton" type="TextureButton"]
+[node name="CommandZoneGridButton" type="Button"]
 custom_minimum_size = Vector2(28, 28)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("1_wxsrg")
-ignore_texture_size = true
-stretch_mode = 0
+theme_override_styles/normal = ExtResource("1_ghdc4")
+theme_override_styles/pressed = ExtResource("2_ra72d")
+theme_override_styles/hover = ExtResource("3_mo0xs")
+theme_override_styles/disabled = ExtResource("4_le5kj")

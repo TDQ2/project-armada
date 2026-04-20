@@ -14,3 +14,6 @@ func _init() -> void:
 
 func get_cell(row: int, col: int) -> CommandZoneCell:
 	return grid[row][col] as CommandZoneCell
+
+func set_cell(row: int, col: int, cell_data: CommandZoneCell) -> void:
+	grid[row][col] = cell_data
