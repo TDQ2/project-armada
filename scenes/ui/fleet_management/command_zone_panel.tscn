@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://wql6um4pisyk"]
 
-[ext_resource type="PackedScene" uid="uid://cayivnn1hvh4w" path="res://scenes/ui/fleet_management/command_zone_grid.tscn" id="1_ay513"]
+[ext_resource type="PackedScene" uid="uid://cayivnn1hvh4w" path="res://scenes/ui/fleet_management/command_zone_grid_ui.tscn" id="1_ay513"]
 
 [node name="CommandZonePanel" type="PanelContainer"]
 anchors_preset = 15

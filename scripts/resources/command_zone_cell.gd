@@ -1,5 +1,5 @@
 extends Resource
 class_name CommandZoneCell
 
-var enabled := false
+var disabled := true
 var ship: ShipData = null

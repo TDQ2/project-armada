@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://gbkx3aix8vai"]
+
+[ext_resource type="Script" uid="uid://bafjsm2ggfhd5" path="res://scripts/ui/inventory_grid_ui.gd" id="1_dty6n"]
+[ext_resource type="PackedScene" uid="uid://bdvlvcsh1j3pg" path="res://scenes/ui/fleet_management/inventory_grid_button.tscn" id="2_sq33j"]
+
+[node name="InventoryGridUI" type="GridContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -58.0
+offset_right = 34.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+columns = 3
+script = ExtResource("1_dty6n")
+
+[node name="InventoryGridButton" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2
+
+[node name="InventoryGridButton2" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2
+
+[node name="InventoryGridButton3" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2
+
+[node name="InventoryGridButton4" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2
+
+[node name="InventoryGridButton5" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2
+
+[node name="InventoryGridButton6" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2
+
+[node name="InventoryGridButton7" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2
+
+[node name="InventoryGridButton8" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2
+
+[node name="InventoryGridButton9" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2
+
+[node name="InventoryGridButton10" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2
+
+[node name="InventoryGridButton11" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2
+
+[node name="InventoryGridButton12" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2
+
+[node name="InventoryGridButton13" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2
+
+[node name="InventoryGridButton14" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2
+
+[node name="InventoryGridButton15" parent="." instance=ExtResource("2_sq33j")]
+layout_mode = 2

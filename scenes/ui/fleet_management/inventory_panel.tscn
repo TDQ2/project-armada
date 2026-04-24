@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://y6n7xy8267q4"]
 
-[ext_resource type="PackedScene" uid="uid://gbkx3aix8vai" path="res://scenes/ui/fleet_management/inventory_grid.tscn" id="1_5u77q"]
+[ext_resource type="PackedScene" uid="uid://gbkx3aix8vai" path="res://scenes/ui/fleet_management/inventory_grid_ui.tscn" id="1_5u77q"]
 
 [node name="InventoryPanel" type="PanelContainer"]
 anchors_preset = 15

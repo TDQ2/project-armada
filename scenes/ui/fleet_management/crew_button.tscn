@@ -22,3 +22,4 @@ theme_override_styles/normal = ExtResource("1_xe5e6")
 theme_override_styles/pressed = ExtResource("2_axon8")
 theme_override_styles/hover = ExtResource("3_ax35x")
 theme_override_styles/disabled = ExtResource("4_addnk")
+icon_alignment = 1
