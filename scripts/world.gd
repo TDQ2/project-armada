@@ -12,10 +12,10 @@ func _connect_cannons(node: Node) -> void:
 	for child in node.get_children():
 		_connect_cannons(child)
 
-func handle_cannon_fire(source: Constants.ProjectileSource, pos: Vector2, dir: Vector2, damage: float) -> void:
+func handle_cannon_fire(source: Data.ProjectileSource, pos: Vector2, dir: Vector2, damage: float) -> void:
 	match source:
-		Constants.ProjectileSource.PLAYER: _create_player_cannonball(pos, dir, damage)
-		Constants.ProjectileSource.ENEMY: _create_enemy_cannonball(pos, dir, damage)
+		Data.ProjectileSource.PLAYER: _create_player_cannonball(pos, dir, damage)
+		Data.ProjectileSource.ENEMY: _create_enemy_cannonball(pos, dir, damage)
 
 func _create_player_cannonball(pos: Vector2, dir: Vector2, damage: float) -> void:
 	var player_cannonball = player_cannonball_scene.instantiate()
