@@ -10,12 +10,27 @@ enum WeaponType {UNDEFINED, CANNON}
 func create_ship(ship_type: ShipType) -> ShipData:
 	match ship_type:
 		ShipType.FLAGSHIP1:
-			return ShipData.new(ship_type, "Flagship", true, [], [], preload("res://textures/player_ships/flagship_ph.png"))
+			return ShipData.new(
+				ship_type,
+				"Flagship", 
+				true, [], 
+				3, 
+				[create_weapon(WeaponType.CANNON)], 
+				3, 
+				preload("res://textures/player_ships/flagship_ph.png"))
 		ShipType.FRIGATE:
-			return ShipData.new(ship_type, "Frigate", false, [], [], preload("res://textures/player_ships/gunship_ph.png"))
+			return ShipData.new(
+				ship_type, 
+				"Frigate", 
+				false, 
+				[], 
+				2, 
+				[], 
+				2, 
+				preload("res://textures/player_ships/gunship_ph.png"))
 	
 	assert(false, "Attempted to create a ShipType which was not defined in the ship factory")
-	return ShipData.new(ShipType.UNDEFINED, "Undefined", false, [], [], null)
+	return ShipData.new(ShipType.UNDEFINED, "Undefined", false, [], 0, [], 0, null)
 
 func create_weapon(weapon_type: WeaponType) -> WeaponData:
 	match weapon_type:
