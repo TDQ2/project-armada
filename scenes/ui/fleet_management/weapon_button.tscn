@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://en0estbiy4fn"]
+[gd_scene load_steps=6 format=3 uid="uid://en0estbiy4fn"]
 
 [ext_resource type="StyleBox" uid="uid://dvjby3q356kg6" path="res://scenes/ui/fleet_management/themes/basic_button_normal.tres" id="1_vl3k1"]
 [ext_resource type="StyleBox" uid="uid://dh4atnxlkt3ex" path="res://scenes/ui/fleet_management/themes/basic_button_pressed.tres" id="2_uca28"]
 [ext_resource type="StyleBox" uid="uid://d20p6gkl8hrh1" path="res://scenes/ui/fleet_management/themes/basic_button_hover.tres" id="3_jh78s"]
 [ext_resource type="StyleBox" uid="uid://dmgva3ah8vdrr" path="res://scenes/ui/fleet_management/themes/basic_button_disabled.tres" id="4_af3dl"]
+[ext_resource type="Script" uid="uid://buiv0t2nb5om0" path="res://scenes/ui/fleet_management/weapon_button.gd" id="5_uca28"]
 
 [node name="WeaponButton" type="Button"]
 custom_minimum_size = Vector2(28, 28)
@@ -23,3 +24,4 @@ theme_override_styles/pressed = ExtResource("2_uca28")
 theme_override_styles/hover = ExtResource("3_jh78s")
 theme_override_styles/disabled = ExtResource("4_af3dl")
 icon_alignment = 1
+script = ExtResource("5_uca28")

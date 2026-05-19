@@ -1,7 +1,7 @@
 extends ItemData
 class_name WeaponData
 
-var weapon_type: Data.WeaponType
+@export var weapon_type: Data.WeaponType
 
 func _init(weapon_type_: Data.WeaponType, name_: String, ui_icon_: Texture2D) -> void:
 	weapon_type = weapon_type_

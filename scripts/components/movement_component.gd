@@ -13,8 +13,8 @@ class_name MovementComponent
 @onready var this_ship: Node2D = get_parent()
 
 #state management
-enum State {PATROL, PURSUE, RETURN, IDLE}
-var state: State
+enum MoveState {PATROL, PURSUE, RETURN, IDLE}
+var moveState: MoveState
 
 #direction and targets
 var direction := Vector2.RIGHT
@@ -32,11 +32,11 @@ func _ready() -> void:
 	detection_component.detection_area_exited.connect(_being_disengage)
 
 func _physics_process(delta: float) -> void:
-	match state:
-		State.PATROL: _patrol(delta)
-		State.PURSUE: _pursue(delta)
-		State.RETURN: _return(delta)
-		State.IDLE: _idle(delta)
+	match moveState:
+		MoveState.PATROL: _patrol(delta)
+		MoveState.PURSUE: _pursue(delta)
+		MoveState.RETURN: _return(delta)
+		MoveState.IDLE: _idle(delta)
 	get_parent().rotation = direction.angle()
 
 # State functions
@@ -67,17 +67,17 @@ func _steer_toward(global_pos: Vector2, delta: float) -> void:
 
 func _start_idle() -> void:
 	$IdleTimer.start(idle_time)
-	state = State.IDLE
+	moveState = MoveState.IDLE
 
 # State transitions
 func _being_pursue(area: Area2D) -> void:
 	pursue_target = area
-	state = State.PURSUE
+	moveState = MoveState.PURSUE
 
 func _being_disengage(_area: Area2D) -> void:
 	pursue_target = null
-	state = State.RETURN
+	moveState = MoveState.RETURN
 
 func _on_idle_timer_timeout() -> void:
-	if state == State.IDLE:
-		state = State.PATROL
+	if moveState == MoveState.IDLE:
+		moveState = MoveState.PATROL

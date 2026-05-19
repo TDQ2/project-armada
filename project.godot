@@ -17,9 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+State="*res://scripts/globals/State.gd"
 Data="*res://scripts/globals/Data.gd"
 Utils="*res://scripts/globals/Utils.gd"
-Run="*res://scripts/globals/Run.gd"
+Commands="*res://scripts/globals/Commands.gd"
+Events="*res://scripts/globals/Events.gd"
 
 [display]
 

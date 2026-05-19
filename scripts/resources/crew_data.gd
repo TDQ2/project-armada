@@ -1,7 +1,7 @@
 extends ItemData
 class_name CrewData
 
-var crew_type: Data.CrewType
+@export var crew_type: Data.CrewType
 
 func _init(name_: String, ui_icon_: Texture2D, crew_type_: Data.CrewType) -> void:
 	name = name_
