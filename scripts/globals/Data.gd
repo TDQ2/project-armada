@@ -4,8 +4,7 @@ enum ProjectileSource {UNDEFINED, PLAYER, ENEMY}
 enum ShipType {UNDEFINED, FLAGSHIP1, FRIGATE}
 enum CrewType {UNDEFINED, CAPTAIN}
 enum WeaponType {UNDEFINED, CANNON}
-
-
+enum ItemType {SHIP, CREW, WEAPON}
 
 func create_ship(ship_type: ShipType) -> ShipData:
 	match ship_type:

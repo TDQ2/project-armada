@@ -1,13 +1,12 @@
 extends GridContainer
 
-@onready var inventory := Run.inventory
-
 func _ready() -> void:
-	inventory.inventory_grid_changed.connect(_refresh_inventory)
-	inventory.set_item(2, Data.create_weapon(Data.WeaponType.CANNON))
+	Events.inventory_changed.connect(_refresh_inventory)
+	
+	# test data
+	Commands.add_item_to_inventory(2, Data.create_weapon(Data.WeaponType.CANNON))
 
-func _refresh_inventory() -> void:
-	print("inventory refreshed")
+func _refresh_inventory(inventory: Inventory) -> void:
 	for i in inventory.items.size():
 		var backend_item := inventory.get_item(i) as ItemData
 		var ui_item = get_child(i) as Button

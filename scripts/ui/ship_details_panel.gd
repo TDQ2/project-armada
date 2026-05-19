@@ -1,6 +1,5 @@
 extends PanelContainer
 
-@onready var command_zone = Run.command_zone
 var crew_buttons:Array[Button]
 var weapon_buttons:Array[Button]
 
@@ -9,7 +8,7 @@ func _ready() -> void:
 	weapon_buttons.assign($ShipDetailsContainer/GridContainer/WeaponButtons.get_children())
 	
 	#signals
-	Run.command_zone.cell_selected.connect(_update_ship_details)
+	Events.cz_cell_selected.connect(_update_ship_details)
 
 
 func _update_ship_details(ship_data: ShipData) -> void:
@@ -20,3 +19,5 @@ func _update_ship_details(ship_data: ShipData) -> void:
 		weapon_buttons[i].disabled = i >= ship_data.weapon_slots.size()
 		if !weapon_buttons[i].disabled and ship_data.weapon_slots[i]:
 			weapon_buttons[i].icon = ship_data.weapon_slots[i].ui_icon
+		else:
+			weapon_buttons[i].icon = null

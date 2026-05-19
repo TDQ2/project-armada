@@ -1,12 +1,12 @@
 extends Resource
 class_name ShipData
 
-var ship_type: Data.ShipType
-var name: String
-var is_flagship := false
-var crew_slots: Array[CrewData]
-var weapon_slots: Array[WeaponData]
-var ui_icon: Texture2D
+@export var ship_type: Data.ShipType
+@export var name: String
+@export var is_flagship := false
+@export var crew_slots: Array[CrewData]
+@export var weapon_slots: Array[WeaponData]
+@export var ui_icon: Texture2D
 
 func _init(
 	ship_type_: Data.ShipType, 
