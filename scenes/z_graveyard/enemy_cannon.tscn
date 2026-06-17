@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkmbdd0bqwv38"]
+
+[ext_resource type="Script" uid="uid://b0kpkbxx5x56" path="res://scripts/z_graveyard/cannon.gd" id="1_1xbta"]
+[ext_resource type="Texture2D" uid="uid://cd6xo5r8dqkid" path="res://textures/weapons/cannon_ph.png" id="2_pssss"]
+[ext_resource type="AudioStream" uid="uid://exnqpkq0bxcf" path="res://audio/weapons/758072__quassorr__cannon-boom.wav" id="3_3ydkn"]
+[ext_resource type="PackedScene" uid="uid://dvi0t2ejicoky" path="res://scenes/components/detection_component.tscn" id="4_he8if"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0vwnl"]
+radius = 80.0
+
+[node name="EnemyCannon" type="Node2D"]
+script = ExtResource("1_1xbta")
+source = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pssss")
+offset = Vector2(1, 0)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3ydkn")
+
+[node name="DetectionComponent" parent="." instance=ExtResource("4_he8if")]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionComponent"]
+shape = SubResource("CircleShape2D_0vwnl")
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

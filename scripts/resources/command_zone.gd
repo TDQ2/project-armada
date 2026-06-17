@@ -14,21 +14,21 @@ func _init() -> void:
 			row.append(CommandZoneCell.new())
 		grid.append(row)
 
-func get_cell(row: int, col: int) -> CommandZoneCell:
-	return grid[row][col] as CommandZoneCell
+func get_cell(coords: Coords) -> CommandZoneCell:
+	return grid[coords.row][coords.col] as CommandZoneCell
 
-func set_cell(row: int, col: int, cell_data: CommandZoneCell) -> void:
-	grid[row][col] = cell_data
+func set_cell(coords: Coords, cell_data: CommandZoneCell) -> void:
+	grid[coords.row][coords.col] = cell_data
 
-func set_cell_ship_data(row: int, col: int, ship_data: ShipData) -> void:
-	var cell = grid[row][col] as CommandZoneCell
+func set_cell_ship_data(coords: Coords, ship_data: ShipData) -> void:
+	var cell = grid[coords.row][coords.col] as CommandZoneCell
 	cell.disabled = false
 	cell.ship = ship_data
 
-func enable_cell(row: int, col: int) -> void:
-	var cell = grid[row][col] as CommandZoneCell
+func enable_cell(coords: Coords) -> void:
+	var cell = grid[coords.row][coords.col] as CommandZoneCell
 	cell.disabled = false
 
-func disable_cell(row: int, col: int) -> void:
-	var cell = grid[row][col] as CommandZoneCell
+func disable_cell(coords: Coords) -> void:
+	var cell = grid[coords.row][coords.col] as CommandZoneCell
 	cell.disabled = true

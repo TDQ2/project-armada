@@ -28,10 +28,10 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	if data["type"] == Data.ItemType.SHIP:
-		print("cannot drop ship")
+		#print("cannot drop ship")
 		return false
 	
-	print("valid drop")
+	#print("valid drop")
 	return true
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:

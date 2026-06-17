@@ -3,8 +3,25 @@ extends Node
 enum ProjectileSource {UNDEFINED, PLAYER, ENEMY}
 enum ShipType {UNDEFINED, FLAGSHIP1, FRIGATE}
 enum CrewType {UNDEFINED, CAPTAIN}
-enum WeaponType {UNDEFINED, CANNON}
+enum WeaponType {UNDEFINED, STARTER_CANNON}
+enum ProjectileType {UNDEFINED, PLAYER_CANNONBALL}
 enum ItemType {SHIP, CREW, WEAPON}
+
+const SHIP_SPACING := 28
+const WEAPON_UNIT_RANGE := 16
+
+var world_ships: Dictionary[ShipType, PackedScene] = {
+	ShipType.FLAGSHIP1: preload("res://scenes/player_ships/flagship_1.tscn"),
+	ShipType.FRIGATE: preload("res://scenes/player_ships/frigate.tscn")
+}
+
+var world_weapons: Dictionary[WeaponType, PackedScene] = {
+	WeaponType.STARTER_CANNON: preload("res://scenes/player_weapons/Children/starter_cannon.tscn")
+}
+
+var world_projectiles: Dictionary[ProjectileType, PackedScene] = {
+	ProjectileType.PLAYER_CANNONBALL: preload("res://scenes/player_projectiles/player_cannonball.tscn")
+}
 
 func create_ship(ship_type: ShipType) -> ShipData:
 	match ship_type:
@@ -14,7 +31,7 @@ func create_ship(ship_type: ShipType) -> ShipData:
 				"Flagship", 
 				true, [], 
 				3, 
-				[create_weapon(WeaponType.CANNON)], 
+				[create_weapon(WeaponType.STARTER_CANNON)], 
 				3, 
 				preload("res://textures/player_ships/flagship_ph.png"))
 		ShipType.FRIGATE:
@@ -24,7 +41,7 @@ func create_ship(ship_type: ShipType) -> ShipData:
 				false, 
 				[], 
 				2, 
-				[], 
+				[create_weapon(WeaponType.STARTER_CANNON)], 
 				2, 
 				preload("res://textures/player_ships/gunship_ph.png"))
 	
@@ -33,8 +50,8 @@ func create_ship(ship_type: ShipType) -> ShipData:
 
 func create_weapon(weapon_type: WeaponType) -> WeaponData:
 	match weapon_type:
-		WeaponType.CANNON:
-			return WeaponData.new(WeaponType.CANNON, "Cannon", preload("res://textures/weapons/cannon_ph.png"))
+		WeaponType.STARTER_CANNON:
+			return WeaponData.new(WeaponType.STARTER_CANNON, 4, 15.0, 6.0, "Cannon", preload("res://textures/weapons/cannon_ph.png"))
 	
 	assert(false, "Attempted to create a ShipType which was not defined in the ship factory")
-	return WeaponData.new(WeaponType.UNDEFINED, "", null)
+	return WeaponData.new(WeaponType.UNDEFINED, 0, 0.0, 0.0, "", null)

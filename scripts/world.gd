@@ -1,10 +1,13 @@
 extends Node2D
 
-var player_cannonball_scene = preload("res://scenes/player_projectiles/player_cannonball.tscn")
-var enemy_cannonball_scene = preload("res://scenes/enemy_projectiles/enemy_cannonball.tscn")
-
 func _ready() -> void:
-	_connect_cannons($Ships)
+	#_connect_cannons($Ships)
+	WorldEvents.weapon_fired.connect(_handle_weapon_fired)
+	
+
+func _handle_weapon_fired(pos: Vector2, direction: Vector2, damage: float) -> void:
+	print("player_weapon_fired in world")
+	var projectile_scene := Data.world_projectiles[]
 
 func _connect_cannons(node: Node) -> void:
 	if node.has_signal("shoot"):

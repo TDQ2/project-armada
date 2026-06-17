@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://hrcblmpamhek"]
+
+[ext_resource type="PackedScene" uid="uid://chh3a4qtsc2qc" path="res://scenes/player_weapons/base/player_weapon_base.tscn" id="1_hscbr"]
+[ext_resource type="AudioStream" uid="uid://exnqpkq0bxcf" path="res://audio/weapons/758072__quassorr__cannon-boom.wav" id="2_tn01a"]
+
+[node name="StarterCannon" instance=ExtResource("1_hscbr")]
+
+[node name="ShootSound" parent="." index="2"]
+stream = ExtResource("2_tn01a")
