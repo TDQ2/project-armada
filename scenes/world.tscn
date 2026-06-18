@@ -93,3 +93,5 @@ texture = ExtResource("5_71j4m")
 
 [node name="GameplayUI" parent="CanvasLayer" instance=ExtResource("6_qfnet")]
 visible = false
+
+[editable path="Armada"]

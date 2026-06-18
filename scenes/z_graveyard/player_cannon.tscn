@@ -18,6 +18,7 @@ offset = Vector2(1, 0)
 
 [node name="CooldownTimer" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_xkono")

@@ -13,6 +13,7 @@ var can_shoot := true
 func _ready() -> void:
 	detection_component.detection_area_entered.connect(_acquire_target)
 	detection_component.detection_area_exited.connect(_release_target)
+	cooldown_timer.timeout.connect(_on_cooldown_timer_timeout)
 
 func _process(_delta: float) -> void:
 	if target:
@@ -21,11 +22,18 @@ func _process(_delta: float) -> void:
 			_shoot()
 
 func _shoot() -> void:
-	print("shooting")
-	WorldEvents.emit_player_weapon_fired(global_position, (target.global_position - global_position).normalized(), weapon_data.damage)
+	print("shooting" + str(self))
+	WorldEvents.emit_player_weapon_fired(
+		weapon_data.player_projectile_type, 
+		global_position, 
+		(target.global_position - global_position).normalized(), 
+		weapon_data.damage)
 	$ShootSound.play(0.25)
 	can_shoot = false
 	$CooldownTimer.start()
+
+func _on_cooldown_timer_timeout() -> void:
+	can_shoot = true
 
 func set_weapon_data(weapon_data_: WeaponData) -> void:
 	weapon_data = weapon_data_
