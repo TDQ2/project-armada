@@ -1,10 +1,10 @@
 extends GridContainer
 
 func _ready() -> void:
-	Events.inventory_changed.connect(_refresh_inventory)
+	CommandEvents.inventory_changed.connect(_refresh_inventory)
 	
 	# test data
-	Commands.add_item_to_inventory(2, Data.create_weapon(Data.WeaponType.CANNON))
+	Commands.add_item_to_inventory(2, Data.create_weapon(Data.WeaponType.STARTER_CANNON))
 
 func _refresh_inventory(inventory: Inventory) -> void:
 	for i in inventory.items.size():

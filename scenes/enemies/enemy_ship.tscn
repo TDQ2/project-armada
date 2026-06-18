@@ -1,13 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://fwqm2qrf8b7m"]
+[gd_scene load_steps=9 format=3 uid="uid://fwqm2qrf8b7m"]
 
 [ext_resource type="Texture2D" uid="uid://cgoik4vfcn8ci" path="res://textures/enemy_ships/enemyship_ph.png" id="1_scyvl"]
-[ext_resource type="PackedScene" uid="uid://dv12kaisiygdn" path="res://scenes/effects/small_ship_trail_particles.tscn" id="2_j1gvb"]
 [ext_resource type="PackedScene" uid="uid://c8q4gn3yxq5gk" path="res://scenes/components/hurtbox_component.tscn" id="3_0wb5s"]
 [ext_resource type="PackedScene" uid="uid://dvi0t2ejicoky" path="res://scenes/components/detection_component.tscn" id="3_26yc4"]
 [ext_resource type="PackedScene" uid="uid://dg8pictpm7ib6" path="res://scenes/components/health_component.tscn" id="4_awypu"]
 [ext_resource type="PackedScene" uid="uid://bwusff6gco0f8" path="res://scenes/components/movement_component.tscn" id="4_o20jb"]
 [ext_resource type="PackedScene" uid="uid://336plj13jl4k" path="res://scenes/components/health_bar_component.tscn" id="4_vpu47"]
-[ext_resource type="PackedScene" uid="uid://b1ng1pjygnelh" path="res://scenes/weapons/cannon.tscn" id="8_j1gvb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_awypu"]
 radius = 4.1231055
@@ -16,17 +14,6 @@ radius = 4.1231055
 radius = 100.0
 
 [node name="EnemyShip" type="Node2D" groups=["enemies"]]
-
-[node name="Cannon" parent="." instance=ExtResource("8_j1gvb")]
-source = 2
-damage = 40.0
-
-[node name="DetectionComponent" parent="Cannon" index="3"]
-collision_mask = 2
-
-[node name="SmallShipTrailParticles" parent="Cannon" instance=ExtResource("2_j1gvb")]
-position = Vector2(-2, 0)
-rotation = 1.5707964
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_scyvl")
@@ -39,8 +26,6 @@ healthComponent = NodePath("../HealthComponent")
 shape = SubResource("CircleShape2D_awypu")
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_awypu")]
-max_health = 30.0
-current_health = 30.0
 
 [node name="HealthBarComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_vpu47")]
 position = Vector2(-5, -10)
@@ -71,5 +56,4 @@ position = Vector2(-76, 46)
 [node name="Marker2D4" type="Marker2D" parent="Waypoints"]
 position = Vector2(-81, -90)
 
-[editable path="Cannon"]
 [editable path="HurtboxComponent"]

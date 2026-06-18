@@ -8,7 +8,7 @@ func _ready() -> void:
 	weapon_buttons.assign($ShipDetailsContainer/GridContainer/WeaponButtons.get_children())
 	
 	#signals
-	Events.cz_cell_selected.connect(_update_ship_details)
+	CommandEvents.cz_cell_selected.connect(_update_ship_details)
 
 
 func _update_ship_details(ship_data: ShipData) -> void:
