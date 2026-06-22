@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://rj8g5emnw0ft"]
 
 [ext_resource type="Script" uid="uid://dlgdgmilly2gf" path="res://scripts/player/frigate_placeholder.gd" id="1_6cbdc"]
-[ext_resource type="PackedScene" uid="uid://dv12kaisiygdn" path="res://scenes/effects/small_ship_trail_particles.tscn" id="1_100fk"]
+[ext_resource type="PackedScene" uid="uid://dv12kaisiygdn" path="res://scenes/visual_effects/small_ship_trail_particles.tscn" id="1_100fk"]
 [ext_resource type="Texture2D" uid="uid://b0kndjjewwqv" path="res://textures/player_ships/gunship_ph.png" id="1_kxk2p"]
 [ext_resource type="PackedScene" uid="uid://c8q4gn3yxq5gk" path="res://scenes/components/hurtbox_component.tscn" id="4_eye42"]
 [ext_resource type="PackedScene" uid="uid://336plj13jl4k" path="res://scenes/components/health_bar_component.tscn" id="5_100fk"]

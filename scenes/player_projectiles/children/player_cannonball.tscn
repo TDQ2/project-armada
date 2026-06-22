@@ -8,7 +8,4 @@
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_i4y4l")
 
-[node name="HitboxComponent" parent="." index="3" node_paths=PackedStringArray("damage_component")]
-damage_component = NodePath("../DamageComponent")
-
 [editable path="HitboxComponent"]

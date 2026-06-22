@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbwo0vjcvnpsn"]
+
+[ext_resource type="Script" uid="uid://huqgj8bn8i1v" path="res://scripts/status_effects/base/status_effect_base.gd" id="1_cxhct"]
+
+[node name="StatusEffectBase" type="Node2D"]
+script = ExtResource("1_cxhct")
+
+[node name="ExpirationTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

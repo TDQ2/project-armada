@@ -9,7 +9,7 @@ func sync(weapons: Array[WeaponData]) -> void:
 			_add_weapon(weapon)
 
 func _add_weapon(weapon_data: WeaponData) -> void:
-	print("adding weapon data with type " + str(weapon_data.weapon_type))
+	#print("adding weapon data with type " + str(weapon_data.weapon_type))
 	if runtime_weapons.has(weapon_data):
 		print("already has weapon " + str(weapon_data))
 		return

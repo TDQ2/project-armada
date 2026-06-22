@@ -32,7 +32,7 @@ func _release_target(_area: Area2D) -> void:
 	target = null
 
 func _shoot() -> void:
-	print("shooting")
+	#print("shooting")
 	#_shoot_sw(source, global_position, (target.global_position - global_position).normalized(), damage)
 	$ShootSound.play(0.25)
 	can_shoot = false

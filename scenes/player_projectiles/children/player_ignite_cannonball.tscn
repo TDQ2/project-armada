@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3eabtkry41bd"]
+
+[ext_resource type="PackedScene" uid="uid://d01mexy7i4l8n" path="res://scenes/player_projectiles/base/player_projectile_base.tscn" id="1_3fabs"]
+[ext_resource type="Texture2D" uid="uid://erngupl21e8k" path="res://textures/weapons/ignite_cannonball_ph.png" id="2_uvm0w"]
+
+[node name="Player_ignite_cannonball" instance=ExtResource("1_3fabs")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_uvm0w")
+
+[editable path="HitboxComponent"]

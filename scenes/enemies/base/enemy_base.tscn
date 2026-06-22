@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://cbiev4w28vl4s"]
+
+[ext_resource type="Script" uid="uid://cyllj1dh7ndpp" path="res://scripts/enemies/base/base_enemy.gd" id="1_d2rjt"]
+[ext_resource type="PackedScene" uid="uid://c8q4gn3yxq5gk" path="res://scenes/components/hurtbox_component.tscn" id="2_u4hpe"]
+[ext_resource type="PackedScene" uid="uid://dg8pictpm7ib6" path="res://scenes/components/health_component.tscn" id="3_nck0n"]
+[ext_resource type="PackedScene" uid="uid://336plj13jl4k" path="res://scenes/components/health_bar_component.tscn" id="4_f7vtg"]
+[ext_resource type="PackedScene" uid="uid://bwusff6gco0f8" path="res://scenes/components/movement_component.tscn" id="5_fj01u"]
+[ext_resource type="PackedScene" uid="uid://dvi0t2ejicoky" path="res://scenes/components/detection_component.tscn" id="6_6nv2p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_saudc"]
+resource_local_to_scene = true
+radius = 4.1231055
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v35a0"]
+resource_local_to_scene = true
+radius = 100.0
+
+[node name="EnemyBase" type="Node2D"]
+script = ExtResource("1_d2rjt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="HurtboxComponent" parent="." groups=["enemies"] instance=ExtResource("2_u4hpe")]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_saudc")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_nck0n")]
+
+[node name="HealthBarComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_f7vtg")]
+position = Vector2(-5, -10)
+health_component = NodePath("../HealthComponent")
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("detection_component", "waypoints_container") instance=ExtResource("5_fj01u")]
+speed = 20
+detection_component = NodePath("../DetectionComponent")
+waypoints_container = NodePath("../Waypoints")
+
+[node name="DetectionComponent" parent="." instance=ExtResource("6_6nv2p")]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionComponent"]
+shape = SubResource("CircleShape2D_v35a0")
+
+[node name="Waypoints" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Waypoints"]
+position = Vector2(70, -76)
+
+[node name="Marker2D2" type="Marker2D" parent="Waypoints"]
+position = Vector2(68, 34)
+
+[node name="Marker2D3" type="Marker2D" parent="Waypoints"]
+position = Vector2(-76, 46)
+
+[node name="Marker2D4" type="Marker2D" parent="Waypoints"]
+position = Vector2(-81, -90)
+
+[node name="StatusEffects" type="Node2D" parent="."]
+
+[editable path="HurtboxComponent"]

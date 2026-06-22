@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl6irb55sxmau"]
+
+[ext_resource type="Script" uid="uid://61fg6hg0pu7x" path="res://scripts/components/on_hit_component.gd" id="1_lo0ms"]
+
+[node name="OnHitComponent" type="Node"]
+script = ExtResource("1_lo0ms")
