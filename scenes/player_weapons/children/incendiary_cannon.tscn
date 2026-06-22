@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://wl56t8b1pgob"]
+
+[ext_resource type="PackedScene" uid="uid://chh3a4qtsc2qc" path="res://scenes/player_weapons/base/player_weapon_base.tscn" id="1_bsm80"]
+[ext_resource type="AudioStream" uid="uid://exnqpkq0bxcf" path="res://audio/weapons/758072__quassorr__cannon-boom.wav" id="2_m07ds"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ikdi"]
+resource_local_to_scene = true
+
+[node name="IncendiaryCannon" instance=ExtResource("1_bsm80")]
+
+[node name="CollisionShape2D" parent="DetectionComponent" index="0"]
+shape = SubResource("CircleShape2D_2ikdi")
+
+[node name="ShootSound" parent="." index="2"]
+stream = ExtResource("2_m07ds")

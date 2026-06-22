@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://x54f8asmr356"]
+
+[ext_resource type="PackedScene" uid="uid://dbwo0vjcvnpsn" path="res://scenes/status_effects/base/status_effect_base.tscn" id="1_3dj8c"]
+[ext_resource type="Script" uid="uid://b1wltg6f5x0c3" path="res://scenes/status_effects/children/ignite_status_effect.gd" id="2_wbes5"]
+
+[node name="IgniteStatusEffect" instance=ExtResource("1_3dj8c")]
+script = ExtResource("2_wbes5")
+tick_duration = 1.0
+percent_health_damage = 2
+expiration_time = 10.0
+
+[node name="TickTimer" type="Timer" parent="." index="0"]
+autostart = true

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://btd3amqgbrh2"]
+
+[ext_resource type="PackedScene" uid="uid://cbiev4w28vl4s" path="res://scenes/enemies/base/enemy_base.tscn" id="1_3ot26"]
+[ext_resource type="Texture2D" uid="uid://cgoik4vfcn8ci" path="res://textures/enemy_ships/enemyship_ph.png" id="2_c5nkn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6lnsl"]
+resource_local_to_scene = true
+radius = 4.1231055
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1eqf6"]
+resource_local_to_scene = true
+radius = 100.0
+
+[node name="BasicPirateShip" instance=ExtResource("1_3ot26")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_c5nkn")
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("CircleShape2D_6lnsl")
+
+[node name="CollisionShape2D" parent="DetectionComponent" index="0"]
+shape = SubResource("CircleShape2D_1eqf6")
+
+[editable path="HurtboxComponent"]
