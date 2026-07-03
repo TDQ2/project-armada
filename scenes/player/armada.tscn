@@ -1,13 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkfrfk61am68w"]
+[gd_scene load_steps=3 format=3 uid="uid://bkfrfk61am68w"]
 
 [ext_resource type="Script" uid="uid://ciafbbj5cil2v" path="res://scripts/player/armada.gd" id="1_eqf4f"]
+[ext_resource type="PackedScene" uid="uid://dyc3im5mp0o76" path="res://scenes/control/click_target.tscn" id="2_4mt6j"]
 
 [node name="Armada" type="Node2D"]
 script = ExtResource("1_eqf4f")
-rotation_speed = 0.005
 
 [node name="Ships" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -32)
 position_smoothing_enabled = true
+
+[node name="ClickTarget" parent="." instance=ExtResource("2_4mt6j")]
+top_level = true
