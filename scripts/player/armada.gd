@@ -1,28 +1,37 @@
 extends Node2D
 
 @export var speed := 50
-@export var rotation_speed := 0.01 # radians per second
+@export var max_rotation_speed := 0.01 # radians per frame
 
 var direction := Vector2.UP
+var target_position: Vector2
 
 var runtime_ship_map: Dictionary[ShipData, ShipBase]
+
+@onready var click_target: ClickTarget = $ClickTarget
 
 func _ready() -> void:
 	CommandEvents.command_zone_changed.connect(_handle_command_zone_update)
 	_handle_command_zone_update(State.run_state.command_zone)
 	CommandEvents.ship_updated.connect(_handle_ship_update)
+	click_target.position_targeted.connect(_handle_position_targeted)
 
 func _physics_process(delta: float) -> void:
 	_handle_movement(delta)
 
 func _handle_movement(delta: float) -> void:
-	if Input.is_action_pressed("left"):
-		direction = direction.rotated(-rotation_speed)
-	elif Input.is_action_pressed("right"):
-		direction = direction.rotated(rotation_speed)
-	var velocity := direction * speed
-	position += velocity * delta
-	rotation = velocity.angle() + PI / 2
+	if target_position:
+		var target_angle := direction.angle_to(target_position - global_position)
+		var angle_sign: int = 1 if target_angle > 0 else -1
+		direction = direction.rotated(angle_sign * minf(max_rotation_speed, absf(target_angle)))
+		var velocity := direction * speed
+		position += velocity * delta
+		rotation = velocity.angle() + PI / 2
+		if abs((target_position - global_position).length()) < 3:
+			target_position = Vector2.ZERO
+
+func _handle_position_targeted(pos: Vector2) -> void:
+	target_position = pos
 
 func _handle_command_zone_update(command_zone: CommandZone) -> void:
 	var current_ships: Dictionary[ShipData, ShipBase] = {}

@@ -17,7 +17,7 @@ var world_ships: Dictionary[ShipType, PackedScene] = {
 }
 
 var world_weapons: Dictionary[WeaponType, PackedScene] = {
-	WeaponType.STARTER_CANNON: preload("res://scenes/player_weapons/Children/starter_cannon.tscn"),
+	WeaponType.STARTER_CANNON: preload("res://scenes/player_weapons/children/starter_cannon.tscn"),
 	WeaponType.STANDARD_CANNON: preload("res://scenes/player_weapons/children/standard_cannon.tscn"),
 	WeaponType.INCENDIARY_CANNON: preload("res://scenes/player_weapons/children/incendiary_cannon.tscn")
 }
@@ -54,7 +54,7 @@ func create_ship(ship_type: ShipType) -> ShipData:
 				2, 
 				preload("res://textures/player_ships/gunship_ph.png"))
 	
-	assert(false, "Attempted to create a ShipType which was not defaaaaaaaaaaained in the ship factory")
+	assert(false, "Attempted to create a ShipType which was not defined in the ship factory")
 	return ShipData.new(ShipType.UNDEFINED, "Undefined", false, [], 0, [], 0, null)
 
 func create_weapon(weapon_type: WeaponType) -> WeaponData:

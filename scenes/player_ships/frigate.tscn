@@ -18,9 +18,8 @@ position = Vector2(0, 2)
 [node name="Sprite2D" type="Sprite2D" parent="." index="2" groups=["enemies"]]
 texture = ExtResource("3_mvpm5")
 
-[node name="HurtboxComponent" parent="." index="3" node_paths=PackedStringArray("healthComponent") groups=["player"] instance=ExtResource("4_lyeta")]
+[node name="HurtboxComponent" parent="." index="3" groups=["player"] instance=ExtResource("4_lyeta")]
 collision_layer = 2
-healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
 shape = SubResource("CircleShape2D_m613j")
