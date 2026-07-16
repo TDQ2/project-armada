@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://d3wvygjiib3b4" path="res://scripts/world.gd" id="1_bq33v"]
 [ext_resource type="PackedScene" uid="uid://d1rrvhm1dajkq" path="res://scenes/world/water_tiles.tscn" id="2_j2gmx"]
-[ext_resource type="Texture2D" uid="uid://tnxdvkc3toex" path="res://textures/ocean_background.png" id="3_1yooq"]
+[ext_resource type="Texture2D" uid="uid://tnxdvkc3toex" path="res://textures/temp/ocean_background.png" id="3_1yooq"]
 [ext_resource type="PackedScene" uid="uid://btd3amqgbrh2" path="res://scenes/enemies/children/basic_pirate_ship.tscn" id="4_gb53w"]
 [ext_resource type="PackedScene" uid="uid://bkfrfk61am68w" path="res://scenes/player/armada.tscn" id="5_5qq27"]
-[ext_resource type="Texture2D" uid="uid://nl0atipur1bs" path="res://textures/spike.png" id="6_dlabj"]
+[ext_resource type="Texture2D" uid="uid://nl0atipur1bs" path="res://textures/temp/spike.png" id="6_dlabj"]
 [ext_resource type="PackedScene" uid="uid://dptota7cno6we" path="res://scenes/ui/gameplay_ui.tscn" id="7_srmg5"]
 
 [node name="World" type="Node2D"]
@@ -22,20 +22,87 @@ texture = ExtResource("3_1yooq")
 [node name="BasicPirateShip" parent="Ships" instance=ExtResource("4_gb53w")]
 position = Vector2(-142, -104)
 
+[node name="BasicPirateShip5" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(-283, -229)
+
+[node name="BasicPirateShip15" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(-452, -697)
+
+[node name="BasicPirateShip14" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(-807, -437)
+
+[node name="BasicPirateShip26" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(-943, -749)
+
+[node name="BasicPirateShip25" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(-1312, -478)
+
+[node name="BasicPirateShip6" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(422, -395)
+
+[node name="BasicPirateShip23" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(352, -763)
+
+[node name="BasicPirateShip7" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(-16, -523)
+
+[node name="BasicPirateShip24" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(839, -732)
+
 [node name="BasicPirateShip2" parent="Ships" instance=ExtResource("4_gb53w")]
 position = Vector2(185, -103)
 
 [node name="BasicPirateShip3" parent="Ships" instance=ExtResource("4_gb53w")]
 position = Vector2(-191, 69)
 
+[node name="BasicPirateShip9" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(-697, 162)
+
+[node name="BasicPirateShip17" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(-1116, 355)
+
+[node name="BasicPirateShip16" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(-1001, -56)
+
 [node name="BasicPirateShip4" parent="Ships" instance=ExtResource("4_gb53w")]
 position = Vector2(113, 59)
+
+[node name="BasicPirateShip13" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(853, -314)
+
+[node name="BasicPirateShip22" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(565, -53)
+
+[node name="BasicPirateShip12" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(564, 366)
+
+[node name="BasicPirateShip20" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(408, 654)
+
+[node name="BasicPirateShip11" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(-468, 531)
+
+[node name="BasicPirateShip18" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(-832, 625)
+
+[node name="BasicPirateShip10" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(103, 483)
+
+[node name="BasicPirateShip19" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(-137, 690)
+
+[node name="BasicPirateShip8" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(878, 175)
+
+[node name="BasicPirateShip21" parent="Ships" instance=ExtResource("4_gb53w")]
+position = Vector2(958, 621)
 
 [node name="Armada" parent="." instance=ExtResource("5_5qq27")]
 
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Terrain" type="Node2D" parent="."]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Terrain"]
 position = Vector2(-68, -97)

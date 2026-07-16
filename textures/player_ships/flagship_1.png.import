@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnlf0u1ry8hy1"
-path="res://.godot/imported/ocean-checkered.png-51e3bbe198533fe474520f7ea4d347bd.ctex"
+uid="uid://chg2t2yuw00qp"
+path="res://.godot/imported/flagship_1.png-e76b4d974461c1678a9bb5993d67e5f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ocean-checkered.png"
-dest_files=["res://.godot/imported/ocean-checkered.png-51e3bbe198533fe474520f7ea4d347bd.ctex"]
+source_file="res://textures/player_ships/flagship_1.png"
+dest_files=["res://.godot/imported/flagship_1.png-e76b4d974461c1678a9bb5993d67e5f4.ctex"]
 
 [params]
 

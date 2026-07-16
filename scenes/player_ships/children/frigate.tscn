@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://brpd35rgylrf0"]
+
+[ext_resource type="PackedScene" uid="uid://dwdc5ep3iatxj" path="res://scenes/player_ships/base/ship_base.tscn" id="1_th87o"]
+[ext_resource type="PackedScene" uid="uid://dv12kaisiygdn" path="res://scenes/visual_effects/small_ship_trail_particles.tscn" id="2_ys70g"]
+[ext_resource type="Texture2D" uid="uid://dsvbsmalpp113" path="res://textures/player_ships/frigate_1.png" id="7_mvpm5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m613j"]
+radius = 8.0
+
+[node name="Frigate" instance=ExtResource("1_th87o")]
+
+[node name="Sprite2D" parent="ActorAnimationComponent" index="0"]
+texture = ExtResource("7_mvpm5")
+
+[node name="SmallShipTrailParticles" parent="." index="2" instance=ExtResource("2_ys70g")]
+position = Vector2(0, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("CircleShape2D_m613j")
+
+[node name="HealthBarComponent" parent="." index="5"]
+position = Vector2(-5, 11)
+
+[editable path="ActorAnimationComponent"]
+[editable path="HurtboxComponent"]

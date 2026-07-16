@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3lq8y5bsrrqp"]
+
+[ext_resource type="Script" uid="uid://dj6ipi10ny4ay" path="res://scripts/enemy_weapon_base.gd" id="1_qydl8"]
+[ext_resource type="Script" uid="uid://c3sbhbwa4w2ji" path="res://scripts/components/detection_component.gd" id="2_u0a4k"]
+[ext_resource type="PackedScene" uid="uid://bl6irb55sxmau" path="res://scenes/components/on_hit_component.tscn" id="3_826n7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_juyiq"]
+resource_local_to_scene = true
+
+[node name="EnemyWeaponBase" type="Node2D"]
+script = ExtResource("1_qydl8")
+
+[node name="DetectionComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_u0a4k")
+metadata/_custom_type_script = "uid://c3sbhbwa4w2ji"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionComponent"]
+shape = SubResource("CircleShape2D_juyiq")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="OnHitComponent" parent="." instance=ExtResource("3_826n7")]

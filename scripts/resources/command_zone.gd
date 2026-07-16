@@ -32,3 +32,13 @@ func enable_cell(coords: Coords) -> void:
 func disable_cell(coords: Coords) -> void:
 	var cell = grid[coords.row][coords.col] as CommandZoneCell
 	cell.disabled = true
+
+func get_flagship() -> ShipData:
+	for i in range(num_rows):
+		for j in range(num_cols):
+			var commandZoneCell := grid[i][j] as CommandZoneCell
+			if commandZoneCell.ship != null and commandZoneCell.ship.is_flagship:
+				return commandZoneCell.ship
+	assert(false, "get_flagship failed to find flagship")
+	return
+	

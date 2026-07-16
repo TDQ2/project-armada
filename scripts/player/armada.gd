@@ -23,7 +23,7 @@ func _handle_movement(delta: float) -> void:
 	if target_position:
 		var target_angle := direction.angle_to(target_position - global_position)
 		var angle_sign: int = 1 if target_angle > 0 else -1
-		direction = direction.rotated(angle_sign * minf(max_rotation_speed, absf(target_angle)))
+		direction = direction.rotated(angle_sign * minf(max_rotation_speed, absf(target_angle))).normalized()
 		var velocity := direction * speed
 		position += velocity * delta
 		rotation = velocity.angle() + PI / 2
@@ -62,6 +62,7 @@ func _add_ship(ship_data: ShipData, pos: Vector2) -> void:
 	$Ships.add_child(new_ship)
 	new_ship.sync()
 	new_ship.position = pos
+	new_ship.setup(self)
 	runtime_ship_map[ship_data] = new_ship
 
 func _calculate_ship_position(ship_coords: Coords, flagship_coords: Coords) -> Vector2:

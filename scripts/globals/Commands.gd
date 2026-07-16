@@ -16,6 +16,10 @@ func select_cell(coords: Coords) -> void:
 	if command_zone_cell.ship:
 		CommandEvents.cz_cell_selected.emit(command_zone_cell.ship)
 
+func select_flagship() -> void:
+	var flagship := command_zone.get_flagship()
+	CommandEvents.cz_cell_selected.emit(flagship)
+
 # Write Commands
 func enable_cz_cell(coords: Coords) -> void:
 	command_zone.enable_cell(coords)

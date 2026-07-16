@@ -13,6 +13,9 @@ func _ready() -> void:
 	Commands.add_ship_to_cz(Coords.new(3, 3), Data.create_ship(Data.ShipType.FRIGATE))
 	Commands.enable_cz_cell(Coords.new(1, 2))
 	Commands.enable_cz_cell(Coords.new(3, 2))
+	Commands.enable_cz_cell(Coords.new(4, 2))
+	Commands.enable_cz_cell(Coords.new(4, 3))
+	Commands.enable_cz_cell(Coords.new(4, 4))
 
 func _refresh_grid(command_zone: CommandZone) -> void:
 	#print("refresh cz grid")

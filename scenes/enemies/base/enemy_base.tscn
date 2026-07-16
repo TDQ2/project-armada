@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbiev4w28vl4s"]
+[gd_scene load_steps=10 format=3 uid="uid://cbiev4w28vl4s"]
 
 [ext_resource type="Script" uid="uid://cyllj1dh7ndpp" path="res://scripts/enemies/base/base_enemy.gd" id="1_d2rjt"]
 [ext_resource type="PackedScene" uid="uid://c8q4gn3yxq5gk" path="res://scenes/components/hurtbox_component.tscn" id="2_u4hpe"]
@@ -6,10 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://336plj13jl4k" path="res://scenes/components/health_bar_component.tscn" id="4_f7vtg"]
 [ext_resource type="PackedScene" uid="uid://bwusff6gco0f8" path="res://scenes/components/movement_component.tscn" id="5_fj01u"]
 [ext_resource type="PackedScene" uid="uid://dvi0t2ejicoky" path="res://scenes/components/detection_component.tscn" id="6_6nv2p"]
+[ext_resource type="PackedScene" uid="uid://c02uefy2f436n" path="res://scenes/components/actor_animation_component.tscn" id="7_nck0n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_saudc"]
 resource_local_to_scene = true
-radius = 4.1231055
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v35a0"]
 resource_local_to_scene = true
@@ -18,7 +19,8 @@ radius = 100.0
 [node name="EnemyBase" type="Node2D"]
 script = ExtResource("1_d2rjt")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="ActorAnimationComponent" parent="." node_paths=PackedStringArray("direction_provider") instance=ExtResource("7_nck0n")]
+direction_provider = NodePath("../MovementComponent")
 
 [node name="HurtboxComponent" parent="." groups=["enemies"] instance=ExtResource("2_u4hpe")]
 collision_layer = 4
@@ -59,4 +61,7 @@ position = Vector2(-81, -90)
 
 [node name="StatusEffects" type="Node2D" parent="."]
 
+[node name="Weapons" type="Node2D" parent="."]
+
+[editable path="ActorAnimationComponent"]
 [editable path="HurtboxComponent"]

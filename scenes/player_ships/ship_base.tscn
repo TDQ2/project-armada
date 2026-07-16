@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwdc5ep3iatxj"]
-
-[ext_resource type="Script" uid="uid://cwsy14iwejb87" path="res://scripts/player/ship_base.gd" id="1_y14mj"]
-[ext_resource type="PackedScene" uid="uid://bkrxiim66o7on" path="res://scenes/components/weapons_component.tscn" id="2_wrk4y"]
-
-[node name="ShipBase" type="Node2D"]
-script = ExtResource("1_y14mj")
-
-[node name="WeaponsComponent" parent="." instance=ExtResource("2_wrk4y")]
