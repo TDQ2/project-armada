@@ -5,15 +5,16 @@ enum ShipType {UNDEFINED, FLAGSHIP1, FRIGATE}
 enum CrewType {UNDEFINED, CAPTAIN}
 enum WeaponType {UNDEFINED, STARTER_CANNON, STANDARD_CANNON, INCENDIARY_CANNON}
 enum PlayerProjectileType {UNDEFINED, PLAYER_CANNONBALL, IGNITE_CANNONBALL}
+enum EnemyProjectileType {UNDEFINED, ENEMY_CANNONBALL}
 enum ItemType {SHIP, CREW, WEAPON}
 enum StatusEffectType {IGNITE}
 
-const SHIP_SPACING := 28
+const SHIP_SPACING := 32
 const WEAPON_UNIT_RANGE := 16
 
 var world_ships: Dictionary[ShipType, PackedScene] = {
-	ShipType.FLAGSHIP1: preload("res://scenes/player_ships/flagship_1.tscn"),
-	ShipType.FRIGATE: preload("res://scenes/player_ships/frigate.tscn")
+	ShipType.FLAGSHIP1: preload("res://scenes/player_ships/children/flagship_1.tscn"),
+	ShipType.FRIGATE: preload("res://scenes/player_ships/children/frigate.tscn")
 }
 
 var world_weapons: Dictionary[WeaponType, PackedScene] = {
@@ -25,6 +26,10 @@ var world_weapons: Dictionary[WeaponType, PackedScene] = {
 var world_player_projectiles: Dictionary[PlayerProjectileType, PackedScene] = {
 	PlayerProjectileType.PLAYER_CANNONBALL: preload("res://scenes/player_projectiles/children/player_cannonball.tscn"),
 	PlayerProjectileType.IGNITE_CANNONBALL: preload("res://scenes/player_projectiles/children/player_ignite_cannonball.tscn")
+}
+
+var world_enemy_projectiles: Dictionary[EnemyProjectileType, PackedScene] = {
+	EnemyProjectileType.ENEMY_CANNONBALL: preload("res://scenes/enemy_projectiles/children/enemy_cannonball.tscn")
 }
 
 var world_status_effects: Dictionary[StatusEffectType, PackedScene] = {

@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwdc5ep3iatxj"]
+
+[ext_resource type="Script" uid="uid://cwsy14iwejb87" path="res://scripts/player/ship_base.gd" id="1_8wcck"]
+[ext_resource type="PackedScene" uid="uid://bkrxiim66o7on" path="res://scenes/components/weapons_component.tscn" id="2_3xxhp"]
+[ext_resource type="PackedScene" uid="uid://c02uefy2f436n" path="res://scenes/components/actor_animation_component.tscn" id="3_13ouu"]
+[ext_resource type="PackedScene" uid="uid://c8q4gn3yxq5gk" path="res://scenes/components/hurtbox_component.tscn" id="4_71uka"]
+[ext_resource type="PackedScene" uid="uid://dg8pictpm7ib6" path="res://scenes/components/health_component.tscn" id="5_hit03"]
+[ext_resource type="PackedScene" uid="uid://336plj13jl4k" path="res://scenes/components/health_bar_component.tscn" id="6_utkv4"]
+
+[node name="ShipBase" type="Node2D"]
+script = ExtResource("1_8wcck")
+
+[node name="WeaponsComponent" parent="." instance=ExtResource("2_3xxhp")]
+
+[node name="ActorAnimationComponent" parent="." instance=ExtResource("3_13ouu")]
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("4_71uka")]
+collision_layer = 2
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_hit03")]
+
+[node name="HealthBarComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_utkv4")]
+health_component = NodePath("../HealthComponent")

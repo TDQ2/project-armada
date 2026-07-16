@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://chwojsljplyjd"]
+
+[ext_resource type="Script" uid="uid://c7ef3v8t4vvnp" path="res://scripts/enemy_projectiles/enemy_projectile_base.gd" id="1_jteig"]
+[ext_resource type="PackedScene" uid="uid://d1uhf4nymla82" path="res://scenes/components/hitbox_component.tscn" id="2_fo1b5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s8oq6"]
+radius = 2.0
+
+[node name="EnemyProjectileBase" type="Node2D"]
+script = ExtResource("1_jteig")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="HitboxComponent" parent="." instance=ExtResource("2_fo1b5")]
+collision_mask = 2
+free_on_hit = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_s8oq6")
+
+[editable path="HitboxComponent"]

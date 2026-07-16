@@ -1,13 +1,11 @@
 extends Node2D
 class_name EnemyBase
 
-@onready var sprite: Sprite2D = $Sprite2D
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox: HurtboxComponent = $HurtboxComponent
 @onready var status_effects_container: Node2D = $StatusEffects # Array of StatusEffectBase
 
 func _ready() -> void:
-	assert(sprite.texture != null, str(self) + " sprite is missing a texture")
 	hurtbox.was_hit.connect(_handle_was_hit)
 
 func _handle_was_hit(on_hit: OnHitComponent) -> void:

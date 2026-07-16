@@ -1,24 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dv12kaisiygdn"]
-
-[sub_resource type="Curve" id="Curve_yps3e"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+[gd_scene load_steps=2 format=3 uid="uid://dv12kaisiygdn"]
 
 [sub_resource type="Gradient" id="Gradient_jjjox"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.004672897, 0.21291208, 0.9917582)
+colors = PackedColorArray(0.42305577, 0.64464945, 0.80106854, 1, 0.68831384, 0.7621997, 0.72742987, 1, 1.0084189, 1.1141235, 1.0643802, 1)
 
 [node name="SmallShipTrailParticles" type="CPUParticles2D"]
-amount = 50
-lifetime = 0.75
+z_index = -9
+amount = 60
+lifetime = 0.3
 emission_shape = 3
-emission_rect_extents = Vector2(2, 2)
+emission_rect_extents = Vector2(4, 2)
 direction = Vector2(0, 1)
+spread = 0.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 5.0
 initial_velocity_max = 30.0
-orbit_velocity_min = -0.5
-orbit_velocity_max = 0.5
-scale_amount_min = 2.0
-scale_amount_max = 2.0
-scale_amount_curve = SubResource("Curve_yps3e")
 color_ramp = SubResource("Gradient_jjjox")

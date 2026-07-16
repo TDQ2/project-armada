@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkqf3fl2uhoe0"]
+
+[ext_resource type="Texture2D" uid="uid://i6k3706bamf3" path="res://textures/temp/temp_map_background.png" id="1_xavi5"]
+
+[node name="MapUI" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+texture = ExtResource("1_xavi5")

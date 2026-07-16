@@ -12,6 +12,7 @@ func _ready() -> void:
 
 
 func _update_ship_details(ship_data: ShipData) -> void:
+	print("updating selected to ship=",str(ship_data.name))
 	$ShipDetailsContainer/ShipName.text = ship_data.name
 	for i in range(crew_buttons.size()):
 		crew_buttons[i].disabled = i >= ship_data.crew_slots.size()

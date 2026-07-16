@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tnxdvkc3toex"
-path="res://.godot/imported/ocean_background.png-7a97c53a0eeefb0dccc40594c3c01450.ctex"
+uid="uid://nl0atipur1bs"
+path="res://.godot/imported/spike.png-40923d58972376bd0f0f0985f013c493.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ocean_background.png"
-dest_files=["res://.godot/imported/ocean_background.png-7a97c53a0eeefb0dccc40594c3c01450.ctex"]
+source_file="res://textures/temp/spike.png"
+dest_files=["res://.godot/imported/spike.png-40923d58972376bd0f0f0985f013c493.ctex"]
 
 [params]
 
