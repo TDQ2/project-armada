@@ -166,3 +166,7 @@ texture = ExtResource("6_dlabj")
 visible = false
 
 [editable path="Armada"]
+[editable path="CanvasLayer/GameplayUI"]
+[editable path="CanvasLayer/GameplayUI/VBoxContainer/TopNavPanel"]
+[editable path="CanvasLayer/GameplayUI/VBoxContainer/FleetManagerUI"]
+[editable path="CanvasLayer/GameplayUI/VBoxContainer/FleetManagerUI/HBoxContainer/ShipDetailsPanel"]

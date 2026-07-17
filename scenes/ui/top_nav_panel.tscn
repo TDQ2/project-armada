@@ -1,9 +1,12 @@
-[gd_scene format=3 uid="uid://b5w1bkvhl2j0a"]
+[gd_scene load_steps=2 format=3 uid="uid://b5w1bkvhl2j0a"]
+
+[ext_resource type="Script" uid="uid://f08paq6grpvq" path="res://scenes/ui/top_nav_panel.gd" id="1_cjuig"]
 
 [node name="TopNavPanel" type="PanelContainer"]
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
+script = ExtResource("1_cjuig")
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

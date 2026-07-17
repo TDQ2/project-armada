@@ -1,10 +1,13 @@
 extends Node2D
 
 @onready var projectiles_container := $Projectiles
+@onready var map_ui: MapUI = $CanvasLayer/GameplayUI/VBoxContainer/MapUI
+@onready var armada: Node2D = $Armada
 
 func _ready() -> void:
 	WorldEvents.player_weapon_fired.connect(_handle_player_weapon_fired)
 	WorldEvents.enemy_weapon_fired.connect(_handle_enemy_weapon_fired)
+	map_ui.setup(armada)
 
 func _handle_player_weapon_fired(player_projectile_type: Data.PlayerProjectileType, pos: Vector2, direction: Vector2, on_hit: OnHitComponent) -> void:
 	#print("player_weapon_fired in world")
