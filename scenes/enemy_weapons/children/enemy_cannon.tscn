@@ -20,4 +20,4 @@ wait_time = 5.0
 stream = ExtResource("2_401ao")
 
 [node name="OnHitComponent" parent="." index="3"]
-damage = 10.0
+damage = 30.0

@@ -25,3 +25,4 @@ one_shot = true
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="OnHitComponent" parent="." instance=ExtResource("3_826n7")]
+damage = 10.0
