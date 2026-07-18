@@ -18,6 +18,3 @@ wait_time = 5.0
 
 [node name="ShootSound" parent="." index="2"]
 stream = ExtResource("2_401ao")
-
-[node name="OnHitComponent" parent="." index="3"]
-damage = 30.0
