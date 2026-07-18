@@ -8,7 +8,7 @@ class_name EnemyBase
 func _ready() -> void:
 	hurtbox.was_hit.connect(_handle_was_hit)
 
-func _handle_was_hit(on_hit: OnHitComponent) -> void:
+func _handle_was_hit(on_hit: OnHitData) -> void:
 	#print("enemy was hit for damage = " + str(on_hit.damage))
 	health_component.take_damage(on_hit.damage)
 	_apply_status_effects(on_hit.status_effects)

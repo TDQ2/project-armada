@@ -16,6 +16,6 @@ func setup(direction_provider: Node2D) -> void:
 func sync() -> void:
 	weapons_component.sync(ship_data.weapon_slots)
 
-func _handle_was_hit(on_hit: OnHitComponent) -> void:
+func _handle_was_hit(on_hit: OnHitData) -> void:
 	#print("enemy was hit for damage = " + str(on_hit.damage))
 	health_component.take_damage(on_hit.damage)

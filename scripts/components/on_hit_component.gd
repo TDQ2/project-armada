@@ -3,7 +3,10 @@ class_name OnHitComponent
 
 @export var damage: float
 @export var status_effects: Array[Data.StatusEffectType]
+var on_hit_data: OnHitData
 
-func setup(damage_: float, status_effects_: Array[Data.StatusEffectType]) -> void:
-	damage = damage_
-	status_effects = status_effects_
+func _ready() -> void:
+	on_hit_data = OnHitData.new(damage, status_effects)
+
+func setup(on_hit_data_: OnHitData) -> void:
+	on_hit_data = on_hit_data_

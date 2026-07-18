@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://e4p748fk44ul"]
 
-[ext_resource type="Script" uid="uid://bene43k3ss3gh" path="res://scripts/player_weapons/cannonball.gd" id="1_5c55c"]
+[ext_resource type="Script" uid="uid://bene43k3ss3gh" path="res://scripts/player_weapons/children/cannonball.gd" id="1_5c55c"]
 [ext_resource type="Texture2D" uid="uid://dkxlgjum3hsca" path="res://textures/weapons/cannonball_ph.png" id="2_jvdro"]
 [ext_resource type="PackedScene" uid="uid://smpoxa131mk7" path="res://scenes/components/damage_component.tscn" id="3_3pfff"]
 [ext_resource type="PackedScene" uid="uid://d1uhf4nymla82" path="res://scenes/components/hitbox_component.tscn" id="4_p5idq"]

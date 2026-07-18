@@ -9,7 +9,7 @@ var can_shoot := true
 @onready var detection_component: DetectionComponent = $DetectionComponent
 @onready var cooldown_timer: Timer = $CooldownTimer
 @onready var detection_area: CollisionShape2D = $DetectionComponent/CollisionShape2D
-@onready var on_hit_component: OnHitComponent = $OnHitComponent
+var on_hit_data: OnHitData
 
 func _ready() -> void:
 	detection_component.detection_area_entered.connect(_acquire_target)
@@ -28,7 +28,7 @@ func _shoot() -> void:
 		weapon_data.player_projectile_type, 
 		global_position, 
 		(target.global_position - global_position).normalized(), 
-		on_hit_component)
+		on_hit_data.duplicate())
 	$ShootSound.play(0.25)
 	can_shoot = false
 	$CooldownTimer.start()
@@ -49,9 +49,8 @@ func _set_cooldown(duration_: float) -> void:
 	cooldown_timer.wait_time = duration_
 
 func _set_on_hit_component(weapon_data_: WeaponData) -> void:
-	#print("setting on hit. damage = " + str(weapon_data_.damage))
-	on_hit_component.damage = weapon_data_.damage
-	on_hit_component.status_effects = weapon_data_.status_effects
+	print("setting on hit. damage = " + str(weapon_data_.damage))
+	on_hit_data = OnHitData.new(weapon_data_.damage, weapon_data_.status_effects)
 
 func _acquire_target(area: Area2D) -> void:
 	target = area

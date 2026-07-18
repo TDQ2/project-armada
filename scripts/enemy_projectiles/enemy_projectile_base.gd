@@ -10,7 +10,7 @@ var direction: Vector2
 func _ready() -> void:
 	assert(sprite.texture != null, str(self) + "sprite for projectile base is missing texture")
 
-func setup(pos: Vector2, dir: Vector2, on_hit: OnHitComponent) -> void:
+func setup(pos: Vector2, dir: Vector2, on_hit: OnHitData) -> void:
 	#print("Projectile setup with damage = " + str(on_hit.damage))
 	position = pos
 	direction = dir
