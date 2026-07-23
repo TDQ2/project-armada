@@ -49,7 +49,7 @@ func _set_cooldown(duration_: float) -> void:
 	cooldown_timer.wait_time = duration_
 
 func _set_on_hit_component(weapon_data_: WeaponData) -> void:
-	print("setting on hit. damage = " + str(weapon_data_.damage))
+	#print("setting on hit. damage = " + str(weapon_data_.damage))
 	on_hit_data = OnHitData.new(weapon_data_.damage, weapon_data_.status_effects)
 
 func _acquire_target(area: Area2D) -> void:

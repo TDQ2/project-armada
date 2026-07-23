@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpuai5ayl6yws"]
+
+[ext_resource type="Script" uid="uid://cnd0r4evuin7c" path="res://scripts/poi/base/point_of_interest_base.gd" id="1_7dlc0"]
+
+[node name="PointOfInterestBase" type="Node2D"]
+script = ExtResource("1_7dlc0")
+
+[node name="UnclearedSprite" type="Sprite2D" parent="."]
+
+[node name="ClearedSprite" type="Sprite2D" parent="."]
+
+[node name="PoiUi" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="CollisionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2

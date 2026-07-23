@@ -27,6 +27,6 @@ func _handle_expiration_timer_timeout() -> void:
 	call_deferred("queue_free")
 
 func reapply() -> void:
-	print("reapplying status effect")
+	#print("reapplying status effect")
 	expiration_timer.start(expiration_time)
 	

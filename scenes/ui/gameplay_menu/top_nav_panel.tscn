@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b5w1bkvhl2j0a"]
 
-[ext_resource type="Script" uid="uid://f08paq6grpvq" path="res://scenes/ui/top_nav_panel.gd" id="1_cjuig"]
+[ext_resource type="Script" uid="uid://f08paq6grpvq" path="res://scripts/ui/gameplay_menu/top_nav_panel.gd" id="1_cjuig"]
 
 [node name="TopNavPanel" type="PanelContainer"]
 anchors_preset = 10

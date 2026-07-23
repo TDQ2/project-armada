@@ -13,4 +13,5 @@ offset = Vector2(0, -32)
 position_smoothing_enabled = true
 
 [node name="ClickTarget" parent="." instance=ExtResource("2_4mt6j")]
+visible = false
 top_level = true

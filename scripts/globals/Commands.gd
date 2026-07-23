@@ -6,6 +6,7 @@ extends Node
 
 @onready var command_zone: CommandZone = State.run_state.command_zone
 @onready var inventory: Inventory = State.run_state.inventory
+@onready var points_of_interest: PointsOfInterest = State.run_state.points_of_interest
 
 # Read Commands
 func select_cell(coords: Coords) -> void:
@@ -17,7 +18,9 @@ func select_cell(coords: Coords) -> void:
 		CommandEvents.cz_cell_selected.emit(command_zone_cell.ship)
 
 func select_flagship() -> void:
+	print("selecting flagship")
 	var flagship := command_zone.get_flagship()
+	State.run_state.selected_cz_coords = State.run_state.flagship_coords
 	CommandEvents.cz_cell_selected.emit(flagship)
 
 # Write Commands
@@ -47,8 +50,12 @@ func add_weapon_to_ship(inv_idx: int, weapon_slot_idx: int) -> void:
 	CommandEvents.emit_cz_cell_selected(selected_cz_cell.ship)
 	CommandEvents.emit_ship_updated(selected_cz_cell.ship)
 
-func add_item_to_inventory(idx: int, item_data: ItemData) -> void:
+func add_item_to_inventory_at_idx(idx: int, item_data: ItemData) -> void:
 	inventory.set_item(idx, item_data)
+	CommandEvents.emit_inventory_changed(inventory)
+
+func add_item_to_inventory(item_data: ItemData) -> void:
+	inventory.add_item(item_data)
 	CommandEvents.emit_inventory_changed(inventory)
 
 func swap_inventory_cells(idx1: int, idx2: int) -> void:
@@ -57,3 +64,12 @@ func swap_inventory_cells(idx1: int, idx2: int) -> void:
 	inventory.set_item(idx1, item2)
 	inventory.set_item(idx2, item1)
 	CommandEvents.emit_inventory_changed(inventory)
+
+func add_poi(poi_data: PoiData) -> void:
+	points_of_interest.add_poi(poi_data)
+	CommandEvents.emit_poi_added(poi_data)
+
+func clear_poi(poi_data: PoiData) -> void:
+	poi_data.cleared = true #TODO, does this need to interface with RunState instead of direct access here?
+	CommandEvents.emit_poi_cleared(poi_data)
+	

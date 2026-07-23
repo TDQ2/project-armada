@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://gbkx3aix8vai"]
 
-[ext_resource type="Script" uid="uid://bafjsm2ggfhd5" path="res://scripts/ui/inventory_grid_ui.gd" id="1_dty6n"]
+[ext_resource type="Script" uid="uid://bafjsm2ggfhd5" path="res://scripts/ui/fleet_management/inventory_grid_ui.gd" id="1_dty6n"]
 [ext_resource type="PackedScene" uid="uid://bdvlvcsh1j3pg" path="res://scenes/ui/fleet_management/inventory_grid_button.tscn" id="2_sq33j"]
 
 [node name="InventoryGridUI" type="GridContainer"]
