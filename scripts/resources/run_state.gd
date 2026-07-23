@@ -3,6 +3,7 @@ class_name RunState
 
 @export var command_zone: CommandZone
 @export var inventory: Inventory
+@export var points_of_interest: PointsOfInterest
 
 #Hardcoded for now, in the future, this should be determined in game setup
 @export_storage var flagship_coords: Coords = Coords.new(2, 2) 

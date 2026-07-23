@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcrsqfxm8jhni"]
+
+[ext_resource type="Texture2D" uid="uid://cd6xo5r8dqkid" path="res://textures/weapons/cannon_ph.png" id="1_ecf6v"]
+[ext_resource type="Script" uid="uid://dxje5jig7ojux" path="res://scripts/ui/poi/treasure_ui.gd" id="1_f8v2i"]
+[ext_resource type="Texture2D" uid="uid://ddne6sf8mhmva" path="res://textures/poi/open_treasure.png" id="2_f8v2i"]
+
+[node name="TreasureUI" type="PanelContainer"]
+custom_minimum_size = Vector2(300, 300)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f8v2i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="RewardBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Spacer" type="Control" parent="VBoxContainer/RewardBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/RewardBoxContainer2"]
+custom_minimum_size = Vector2(36, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+texture = ExtResource("1_ecf6v")
+expand_mode = 5
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/RewardBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TreasureBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Spacer" type="Control" parent="VBoxContainer/TreasureBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TreasureBoxContainer"]
+custom_minimum_size = Vector2(36, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+texture = ExtResource("2_f8v2i")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/TreasureBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="DoneButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Done"

@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://dh4atnxlkt3ex" path="res://scenes/ui/fleet_management/themes/basic_button_pressed.tres" id="2_gckd5"]
 [ext_resource type="StyleBox" uid="uid://d20p6gkl8hrh1" path="res://scenes/ui/fleet_management/themes/basic_button_hover.tres" id="3_dr0la"]
 [ext_resource type="StyleBox" uid="uid://dmgva3ah8vdrr" path="res://scenes/ui/fleet_management/themes/basic_button_disabled.tres" id="4_2l4f5"]
-[ext_resource type="Script" uid="uid://bt78weoy7s5dj" path="res://scripts/ui/inventory_grid_button.gd" id="5_gckd5"]
+[ext_resource type="Script" uid="uid://bt78weoy7s5dj" path="res://scripts/ui/fleet_management/inventory_grid_button.gd" id="5_gckd5"]
 
 [node name="InventoryGridButton" type="Button"]
 custom_minimum_size = Vector2(28, 28)

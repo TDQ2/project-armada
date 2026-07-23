@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkgjbtwtwdayw"]
+
+[ext_resource type="PackedScene" uid="uid://cpuai5ayl6yws" path="res://scenes/points_of_interest/base/point_of_interest_base.tscn" id="1_kmctf"]
+[ext_resource type="Texture2D" uid="uid://dmcjr7vy3q5op" path="res://textures/poi/treasure.png" id="2_42x7t"]
+[ext_resource type="Script" uid="uid://2hjsuw6inteq" path="res://scripts/poi/children/treasure_poi.gd" id="2_qto56"]
+[ext_resource type="PackedScene" uid="uid://dcrsqfxm8jhni" path="res://scenes/ui/poi/treasure_ui.tscn" id="3_qto56"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qto56"]
+radius = 11.045361
+
+[node name="TreasurePOI" instance=ExtResource("1_kmctf")]
+script = ExtResource("2_qto56")
+
+[node name="UnclearedSprite" parent="." index="0"]
+texture = ExtResource("2_42x7t")
+hframes = 3
+
+[node name="PoiUi" parent="." index="2"]
+visible = false
+
+[node name="TreasureUI" parent="PoiUi" index="0" instance=ExtResource("3_qto56")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" index="0"]
+shape = SubResource("CircleShape2D_qto56")

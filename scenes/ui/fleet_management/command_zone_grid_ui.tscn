@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cayivnn1hvh4w"]
 
-[ext_resource type="Script" uid="uid://bsi0hlmpo4btw" path="res://scripts/ui/command_zone_grid_ui.gd" id="1_2nhcx"]
+[ext_resource type="Script" uid="uid://bsi0hlmpo4btw" path="res://scripts/ui/fleet_management/command_zone_grid_ui.gd" id="1_2nhcx"]
 [ext_resource type="PackedScene" uid="uid://dm5ini5cunq8g" path="res://scenes/ui/fleet_management/command_zone_grid_button.tscn" id="2_km2tr"]
 
 [node name="CommandZoneGridUI" type="GridContainer"]

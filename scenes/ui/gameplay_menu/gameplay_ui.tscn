@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dptota7cno6we"]
 
-[ext_resource type="PackedScene" uid="uid://b5w1bkvhl2j0a" path="res://scenes/ui/top_nav_panel.tscn" id="1_ewtaj"]
-[ext_resource type="Script" uid="uid://dk5tgevv2ryu6" path="res://scripts/ui/gameplay_ui.gd" id="1_soafi"]
+[ext_resource type="PackedScene" uid="uid://b5w1bkvhl2j0a" path="res://scenes/ui/gameplay_menu/top_nav_panel.tscn" id="1_ewtaj"]
+[ext_resource type="Script" uid="uid://dk5tgevv2ryu6" path="res://scripts/ui/gameplay_menu/gameplay_ui.gd" id="1_soafi"]
 [ext_resource type="PackedScene" uid="uid://c0yb16mbfpmqf" path="res://scenes/ui/fleet_management/fleet_manager_ui.tscn" id="2_nk0qe"]
 [ext_resource type="PackedScene" uid="uid://dkqf3fl2uhoe0" path="res://scenes/ui/map/map_ui.tscn" id="4_gwdo8"]
 

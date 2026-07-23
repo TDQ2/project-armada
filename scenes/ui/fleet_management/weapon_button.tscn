@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://dh4atnxlkt3ex" path="res://scenes/ui/fleet_management/themes/basic_button_pressed.tres" id="2_uca28"]
 [ext_resource type="StyleBox" uid="uid://d20p6gkl8hrh1" path="res://scenes/ui/fleet_management/themes/basic_button_hover.tres" id="3_jh78s"]
 [ext_resource type="StyleBox" uid="uid://dmgva3ah8vdrr" path="res://scenes/ui/fleet_management/themes/basic_button_disabled.tres" id="4_af3dl"]
-[ext_resource type="Script" uid="uid://buiv0t2nb5om0" path="res://scripts/ui/weapon_button.gd" id="5_uca28"]
+[ext_resource type="Script" uid="uid://buiv0t2nb5om0" path="res://scripts/ui/fleet_management/weapon_button.gd" id="5_uca28"]
 
 [node name="WeaponButton" type="Button"]
 custom_minimum_size = Vector2(28, 28)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://or6lebaqfi6m"]
 
 [ext_resource type="Texture2D" uid="uid://c6v7ybln5kj7f" path="res://icon.svg" id="1_3ymfl"]
-[ext_resource type="Script" uid="uid://beaoyahf714ny" path="res://scripts/ui/ship_details_panel.gd" id="1_wpat0"]
+[ext_resource type="Script" uid="uid://beaoyahf714ny" path="res://scripts/ui/fleet_management/ship_details_panel.gd" id="1_wpat0"]
 [ext_resource type="PackedScene" uid="uid://cf177bl6she1u" path="res://scenes/ui/fleet_management/crew_button.tscn" id="2_lnsoe"]
 [ext_resource type="PackedScene" uid="uid://en0estbiy4fn" path="res://scenes/ui/fleet_management/weapon_button.tscn" id="3_hm4yo"]
 

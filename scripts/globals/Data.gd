@@ -8,6 +8,7 @@ enum PlayerProjectileType {UNDEFINED, PLAYER_CANNONBALL, IGNITE_CANNONBALL}
 enum EnemyProjectileType {UNDEFINED, ENEMY_CANNONBALL}
 enum ItemType {SHIP, CREW, WEAPON}
 enum StatusEffectType {IGNITE}
+enum PoiType {UNDEFINED, TREASURE}
 
 const SHIP_SPACING := 32
 const WEAPON_UNIT_RANGE := 16
@@ -34,6 +35,14 @@ var world_enemy_projectiles: Dictionary[EnemyProjectileType, PackedScene] = {
 
 var world_status_effects: Dictionary[StatusEffectType, PackedScene] = {
 	StatusEffectType.IGNITE: preload("res://scenes/status_effects/children/ignite_status_effect.tscn")
+}
+
+var world_pois: Dictionary[PoiType, PackedScene] = {
+	PoiType.TREASURE: preload("res://scenes/points_of_interest/children/treasure_poi.tscn")
+}
+
+var map_poi_icons: Dictionary[PoiType, Texture] = {
+	PoiType.TREASURE: preload("res://textures/icons/treasure_icon.png")
 }
 
 func create_ship(ship_type: ShipType) -> ShipData:
@@ -73,3 +82,11 @@ func create_weapon(weapon_type: WeaponType) -> WeaponData:
 	
 	assert(false, "Attempted to create a ShipType which was not defined in the ship factory")
 	return WeaponData.new(WeaponType.UNDEFINED, PlayerProjectileType.UNDEFINED, 0, 0.0, 0.0, [], "", null)
+
+func create_poi(poi_type: PoiType, position: Vector2 = Vector2(0,0)) -> PoiData:
+	match poi_type:
+		PoiType.TREASURE:
+			return PoiData.new(position, poi_type)
+	
+	assert(false, "Attempted to create a PoiType which was not defined in the ship factory")
+	return 
