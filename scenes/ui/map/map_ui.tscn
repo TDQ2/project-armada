@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkqf3fl2uhoe0"]
+[gd_scene load_steps=5 format=3 uid="uid://dkqf3fl2uhoe0"]
 
 [ext_resource type="Script" uid="uid://d1x1ttbg4da5l" path="res://scripts/ui/map/map_ui.gd" id="1_0u83b"]
 [ext_resource type="Texture2D" uid="uid://i6k3706bamf3" path="res://textures/temp/temp_map_background.png" id="1_xavi5"]
 [ext_resource type="Texture2D" uid="uid://b73fw0hll0bqp" path="res://textures/icons/ship_map_icon.png" id="2_s82v8"]
-[ext_resource type="Texture2D" uid="uid://nl0atipur1bs" path="res://textures/temp/spike.png" id="3_di66v"]
 [ext_resource type="Texture2D" uid="uid://dkxlgjum3hsca" path="res://textures/weapons/cannonball_ph.png" id="5_idcp2"]
 
 [node name="MapUI" type="PanelContainer"]
@@ -34,26 +33,6 @@ texture = ExtResource("1_xavi5")
 
 [node name="PlayerIcon" type="Sprite2D" parent="SubViewportContainer/SubViewport/Icons"]
 texture = ExtResource("2_s82v8")
-
-[node name="tempRefIcon" type="Sprite2D" parent="SubViewportContainer/SubViewport/Icons"]
-position = Vector2(24, 28)
-texture = ExtResource("3_di66v")
-
-[node name="tempRefIcon2" type="Sprite2D" parent="SubViewportContainer/SubViewport/Icons"]
-position = Vector2(-54, -17)
-texture = ExtResource("3_di66v")
-
-[node name="tempRefIcon3" type="Sprite2D" parent="SubViewportContainer/SubViewport/Icons"]
-position = Vector2(-96, 83)
-texture = ExtResource("3_di66v")
-
-[node name="tempRefIcon4" type="Sprite2D" parent="SubViewportContainer/SubViewport/Icons"]
-position = Vector2(64, -113)
-texture = ExtResource("3_di66v")
-
-[node name="tempRefIcon5" type="Sprite2D" parent="SubViewportContainer/SubViewport/Icons"]
-position = Vector2(120, 119)
-texture = ExtResource("3_di66v")
 
 [node name="tempCenter" type="Sprite2D" parent="SubViewportContainer/SubViewport/Icons"]
 texture = ExtResource("5_idcp2")

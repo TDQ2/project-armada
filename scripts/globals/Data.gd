@@ -13,6 +13,8 @@ enum PoiType {UNDEFINED, TREASURE}
 const SHIP_SPACING := 32
 const WEAPON_UNIT_RANGE := 16
 
+const COMMON_WEAPONS: Array[WeaponType] = [WeaponType.STANDARD_CANNON, WeaponType.INCENDIARY_CANNON]
+
 var world_ships: Dictionary[ShipType, PackedScene] = {
 	ShipType.FLAGSHIP1: preload("res://scenes/player_ships/children/flagship_1.tscn"),
 	ShipType.FRIGATE: preload("res://scenes/player_ships/children/frigate.tscn")
@@ -86,7 +88,7 @@ func create_weapon(weapon_type: WeaponType) -> WeaponData:
 func create_poi(poi_type: PoiType, position: Vector2 = Vector2(0,0)) -> PoiData:
 	match poi_type:
 		PoiType.TREASURE:
-			return PoiData.new(position, poi_type)
+			return PoiData.new(position, poi_type, [], [], [create_weapon(COMMON_WEAPONS.pick_random())])
 	
 	assert(false, "Attempted to create a PoiType which was not defined in the ship factory")
 	return 

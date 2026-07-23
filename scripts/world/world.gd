@@ -11,6 +11,7 @@ func _ready() -> void:
 	WorldEvents.player_weapon_fired.connect(_handle_player_weapon_fired)
 	WorldEvents.enemy_weapon_fired.connect(_handle_enemy_weapon_fired)
 	CommandEvents.poi_added.connect(_handle_poi_added)
+	CommandEvents.poi_cleared.connect(_handle_poi_cleared)
 	#var poi_datas = _create_pois()
 	map_ui.setup(armada)
 	_create_pois()
@@ -18,8 +19,14 @@ func _ready() -> void:
 
 func _create_pois() -> void:
 	#TODO eventually place random POI generation here
-	var poi_data := Data.create_poi(Data.PoiType.TREASURE, Vector2(200, -550))
-	Commands.add_poi(poi_data)
+	var poi_data0 := Data.create_poi(Data.PoiType.TREASURE, Vector2(200, -550))
+	var poi_data1 := Data.create_poi(Data.PoiType.TREASURE, Vector2(-300, -750))
+	var poi_data2 := Data.create_poi(Data.PoiType.TREASURE, Vector2(300, 500))
+	var poi_data3 := Data.create_poi(Data.PoiType.TREASURE, Vector2(-300, 500))
+	Commands.add_poi(poi_data0)
+	Commands.add_poi(poi_data1)
+	Commands.add_poi(poi_data2)
+	Commands.add_poi(poi_data3)
 
 func _handle_player_weapon_fired(player_projectile_type: Data.PlayerProjectileType, pos: Vector2, direction: Vector2, on_hit: OnHitData) -> void:
 	#print("player_weapon_fired in world")
@@ -36,8 +43,17 @@ func _handle_enemy_weapon_fired(player_projectile_type: Data.EnemyProjectileType
 	projectile.setup(pos, direction, on_hit)
 
 func _handle_poi_added(poi_data: PoiData) -> void:
+	print("poi added to world")
+	if poi_data.cleared:
+		return
 	var poi_scene := Data.world_pois[poi_data.type]
 	var poi: PoiBase = poi_scene.instantiate()
 	poi_container.add_child(poi)
 	poi.setup(poi_data)
 	poi_data_to_world[poi_data] = poi
+
+func _handle_poi_cleared(poi_data: PoiData) -> void:
+	print("poi cleared from 	world")
+	var world_poi = poi_data_to_world[poi_data]
+	poi_data_to_world.erase(poi_data)
+	world_poi.queue_free()

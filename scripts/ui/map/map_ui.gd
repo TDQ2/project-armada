@@ -11,7 +11,8 @@ var _map_vertical_scale := 8.0
 @onready var icons_container: Node2D = $SubViewportContainer/SubViewport/Icons
 
 func _ready() -> void:
-	CommandEvents.poi_added.connect(_handle_add_poi)
+	CommandEvents.poi_added.connect(_handle_poi_added)
+	CommandEvents.poi_cleared.connect(_handle_poi_cleared)
 
 func setup(player_world_node_: Node2D) -> void:
 	player_world_node = player_world_node_
@@ -20,9 +21,16 @@ func _process(_delta: float) -> void:
 	if player_world_node != null:
 		player_icon.global_position = Vector2(player_world_node.global_position.x / _map_horizontal_scale, player_world_node.global_position.y / _map_vertical_scale)
 
-func _handle_add_poi(poi_data: PoiData) -> void:
+func _handle_poi_added(poi_data: PoiData) -> void:
+	if poi_data.cleared:
+		return
 	var map_icon := Sprite2D.new()
 	icons_container.add_child(map_icon)
 	map_icon.texture = Data.map_poi_icons[poi_data.type]
 	map_icon.position = Vector2(poi_data.position.x / _map_horizontal_scale, poi_data.position.y / _map_vertical_scale)
 	poi_data_to_icon[poi_data] = map_icon
+
+func _handle_poi_cleared(poi_data: PoiData) -> void:
+	var poi_icon = poi_data_to_icon[poi_data]
+	poi_data_to_icon.erase(poi_data)
+	poi_icon.queue_free()

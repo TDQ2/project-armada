@@ -8,7 +8,6 @@ var isPlayerNear: bool = false
 @onready var collisionArea: Area2D = $CollisionArea
 
 func _ready() -> void:
-	print("running poi base ready")
 	poiUi.hide()
 	collisionArea.area_entered.connect(_show_ui)
 

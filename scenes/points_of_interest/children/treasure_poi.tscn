@@ -15,10 +15,9 @@ script = ExtResource("2_qto56")
 texture = ExtResource("2_42x7t")
 hframes = 3
 
-[node name="PoiUi" parent="." index="2"]
-visible = false
-
 [node name="TreasureUI" parent="PoiUi" index="0" instance=ExtResource("3_qto56")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" index="0"]
 shape = SubResource("CircleShape2D_qto56")
+
+[editable path="PoiUi/TreasureUI"]

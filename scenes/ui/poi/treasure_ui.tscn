@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcrsqfxm8jhni"]
+[gd_scene load_steps=3 format=3 uid="uid://dcrsqfxm8jhni"]
 
 [ext_resource type="Texture2D" uid="uid://cd6xo5r8dqkid" path="res://textures/weapons/cannon_ph.png" id="1_ecf6v"]
-[ext_resource type="Script" uid="uid://dxje5jig7ojux" path="res://scripts/ui/poi/treasure_ui.gd" id="1_f8v2i"]
 [ext_resource type="Texture2D" uid="uid://ddne6sf8mhmva" path="res://textures/poi/open_treasure.png" id="2_f8v2i"]
 
 [node name="TreasureUI" type="PanelContainer"]
@@ -11,9 +10,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_f8v2i")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -26,7 +28,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/RewardBoxContainer2"]
+[node name="RewardTextureRect" type="TextureRect" parent="VBoxContainer/RewardBoxContainer2"]
 custom_minimum_size = Vector2(36, 100)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -46,7 +48,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TreasureBoxContainer"]
+[node name="TreasureTextureRect" type="TextureRect" parent="VBoxContainer/TreasureBoxContainer"]
 custom_minimum_size = Vector2(36, 100)
 layout_mode = 2
 size_flags_horizontal = 3
