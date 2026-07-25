@@ -1,6 +1,8 @@
 extends Node2D
 class_name WeaponBase
 
+signal fired(weapon_data: WeaponData)
+
 var weapon_data: WeaponData
 
 var target: Area2D
@@ -29,6 +31,7 @@ func _shoot() -> void:
 		global_position, 
 		(target.global_position - global_position).normalized(), 
 		on_hit_data.duplicate())
+	fired.emit(weapon_data)
 	$ShootSound.play(0.25)
 	can_shoot = false
 	$CooldownTimer.start()
