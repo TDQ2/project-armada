@@ -26,6 +26,9 @@ position = Vector2(-5, 11)
 [node name="CollisionShape2D" parent="DetectionComponent" index="0"]
 shape = SubResource("CircleShape2D_1eqf6")
 
+[node name="StatusEffectsComponent" parent="." index="7"]
+position = Vector2(0, -16)
+
 [node name="EnemyCannon" parent="Weapons" index="0" instance=ExtResource("3_c5nkn")]
 
 [editable path="ActorAnimationComponent"]
