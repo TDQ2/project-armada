@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbiev4w28vl4s"]
+[gd_scene load_steps=11 format=3 uid="uid://cbiev4w28vl4s"]
 
 [ext_resource type="Script" uid="uid://cyllj1dh7ndpp" path="res://scripts/enemies/base/base_enemy.gd" id="1_d2rjt"]
 [ext_resource type="PackedScene" uid="uid://c8q4gn3yxq5gk" path="res://scenes/components/hurtbox_component.tscn" id="2_u4hpe"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bwusff6gco0f8" path="res://scenes/components/movement_component.tscn" id="5_fj01u"]
 [ext_resource type="PackedScene" uid="uid://dvi0t2ejicoky" path="res://scenes/components/detection_component.tscn" id="6_6nv2p"]
 [ext_resource type="PackedScene" uid="uid://c02uefy2f436n" path="res://scenes/components/actor_animation_component.tscn" id="7_nck0n"]
+[ext_resource type="PackedScene" uid="uid://dbk7a4a3lswut" path="res://scenes/components/status_effects_component.tscn" id="8_nck0n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_saudc"]
 resource_local_to_scene = true
@@ -59,7 +60,7 @@ position = Vector2(-76, 46)
 [node name="Marker2D4" type="Marker2D" parent="Waypoints"]
 position = Vector2(-81, -90)
 
-[node name="StatusEffects" type="Node2D" parent="."]
+[node name="StatusEffectsComponent" parent="." instance=ExtResource("8_nck0n")]
 
 [node name="Weapons" type="Node2D" parent="."]
 
