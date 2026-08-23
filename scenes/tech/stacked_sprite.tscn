@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddxgo3kbh4lb"]
+
+[ext_resource type="Script" uid="uid://bn0dk6agone8j" path="res://scripts/stacked_sprite.gd" id="2_0j5gq"]
+
+[node name="StackedSprite" type="Sprite2D"]
+self_modulate = Color(1, 1, 1, 0)
+vframes = 20
+script = ExtResource("2_0j5gq")
+show_sprites = true
