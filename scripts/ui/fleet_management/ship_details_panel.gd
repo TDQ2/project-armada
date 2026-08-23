@@ -3,6 +3,8 @@ extends PanelContainer
 var crew_buttons:Array[Button]
 var weapon_buttons:Array[Button]
 
+@onready var portraitRect: TextureRect = $ShipDetailsContainer/Portrait
+
 func _ready() -> void:
 	crew_buttons.assign($ShipDetailsContainer/GridContainer/CrewButtons.get_children())
 	weapon_buttons.assign($ShipDetailsContainer/GridContainer/WeaponButtons.get_children())
@@ -13,6 +15,7 @@ func _ready() -> void:
 
 func _update_ship_details(ship_data: ShipData) -> void:
 	print("updating selected to ship=",str(ship_data.name))
+	portraitRect.texture = ship_data.portrait
 	$ShipDetailsContainer/ShipName.text = ship_data.name
 	for i in range(crew_buttons.size()):
 		crew_buttons[i].disabled = i >= ship_data.crew_slots.size()
