@@ -11,7 +11,8 @@ radius = 8.0
 
 [node name="StackedSprite" parent="." index="0"]
 texture = ExtResource("2_g16ln")
-vframes = 22
+vframes = 16
+is_rotating_sprites = false
 
 [node name="SmallShipTrailParticles" parent="." index="2" instance=ExtResource("2_ys70g")]
 position = Vector2(0, 12)

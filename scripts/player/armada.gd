@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var speed := 50
-@export var max_rotation_speed := 0.01 # radians per frame
+@export var max_rotation_speed := 0.003 # radians per frame
 
 var direction := Vector2.UP
 var target_position: Vector2
@@ -32,6 +32,8 @@ func _handle_movement(delta: float) -> void:
 
 func _handle_position_targeted(pos: Vector2) -> void:
 	target_position = pos
+	for ship: ShipBase in $Ships.get_children():
+		ship.set_target_dest(pos)
 
 func _handle_command_zone_update(command_zone: CommandZone) -> void:
 	var current_ships: Dictionary[ShipData, ShipBase] = {}
