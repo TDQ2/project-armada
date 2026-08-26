@@ -12,6 +12,8 @@
 script = ExtResource("1_8wcck")
 
 [node name="StackedSprite" parent="." instance=ExtResource("8_utkv4")]
+is_show_sprites = true
+is_rotating_sprites = null
 
 [node name="WeaponsComponent" parent="." instance=ExtResource("2_3xxhp")]
 
