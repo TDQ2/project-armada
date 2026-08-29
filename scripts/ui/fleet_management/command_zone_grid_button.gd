@@ -1,7 +1,7 @@
 extends Button
 class_name CommandZoneButton
 
-@export var coords: Coords #set by command zone grid ui on start
+@export var coords: Coord #set by command zone grid ui on start
 
 func _ready() -> void:
 	custom_minimum_size = Vector2(Data.SHIP_SPACING, Data.SHIP_SPACING)

@@ -40,10 +40,10 @@ func _handle_command_zone_update(command_zone: CommandZone) -> void:
 	for world_ship: ShipBase in $Ships.get_children():
 		current_ships[world_ship.ship_data] = world_ship
 	
-	var updated_positions: Dictionary[ShipData, Coords] = {}
+	var updated_positions: Dictionary[ShipData, Coord] = {}
 	for row in command_zone.grid.size():
 		for col in command_zone.grid[row].size():
-			var coords := Coords.new(row, col)
+			var coords := Coord.new(row, col)
 			var cell := command_zone.get_cell(coords)
 			if cell.ship:
 				updated_positions[cell.ship] = coords
@@ -67,7 +67,7 @@ func _add_ship(ship_data: ShipData, pos: Vector2) -> void:
 	new_ship.setup(self)
 	runtime_ship_map[ship_data] = new_ship
 
-func _calculate_ship_position(ship_coords: Coords, flagship_coords: Coords) -> Vector2:
+func _calculate_ship_position(ship_coords: Coord, flagship_coords: Coord) -> Vector2:
 	 # (x, y) = col, row
 	var coords_vector := Vector2(ship_coords.col - flagship_coords.col, ship_coords.row - flagship_coords.row)
 	var armada_local_vector := coords_vector * Data.SHIP_SPACING
