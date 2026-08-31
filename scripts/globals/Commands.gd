@@ -24,13 +24,14 @@ func select_flagship() -> void:
 	CommandEvents.cz_cell_selected.emit(flagship)
 
 # Write Commands
-func enable_cz_cell(coords: Coord) -> void:
-	command_zone.enable_cell(coords)
+func enable_cz_cell(coord: Coord) -> void:
+	command_zone.enable_cell(coord)
 	CommandEvents.emit_command_zone_changed(command_zone)
 
-func add_ship_to_cz(coords: Coord, ship: ShipData) -> void:
+func add_ship_to_cz(coord: Coord, ship: ShipData) -> void:
 	# TODO: add validations
-	command_zone.set_cell_ship_data(coords, ship)
+	command_zone.set_cell_ship_data(coord, ship)
+	CommandEvents.emit_ship_added(coord, ship)
 	CommandEvents.emit_command_zone_changed(command_zone)
 
 func swap_cz_cells(coords1: Coord, coords2: Coord) ->void:

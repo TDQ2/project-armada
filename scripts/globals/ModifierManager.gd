@@ -14,8 +14,8 @@ func _handle_command_zone_changed(command_zone_: CommandZone) -> void:
 func _clear_modifiers() -> void:
 	for i in command_zone.grid.size():
 		for j in command_zone.grid[i].size():
-			var coords = Coord.new(i, j)
-			var cell := command_zone.get_cell(coords) as CommandZoneCell
+			var coord = Coord.new(i, j)
+			var cell := command_zone.get_cell(coord) as CommandZoneCell
 			if cell.ship != null:
 				_clear_weapon_modifiers(cell.ship)
 				# TODO: implement clearning ship and crew modifiers when available
@@ -28,10 +28,10 @@ func _clear_weapon_modifiers(ship: ShipData) -> void:
 func _apply_all_auras() -> void:
 	for i in command_zone.grid.size():
 		for j in command_zone.grid[i].size():
-			var coords = Coord.new(i, j)
-			var cell := command_zone.get_cell(coords) as CommandZoneCell
+			var coord = Coord.new(i, j)
+			var cell := command_zone.get_cell(coord) as CommandZoneCell
 			if cell.ship != null and !cell.ship.auras.is_empty():
-				_apply_auras_from_ship(cell.ship, coords)
+				_apply_auras_from_ship(cell.ship, coord)
 
 func _apply_auras_from_ship(provider_ship: ShipData, coord: Coord) -> void:
 	for aura: Aura in provider_ship.auras:
@@ -79,7 +79,7 @@ func _apply_weapon_aura_modifier(
 func _emit_ship_updates() -> void:
 	for i in command_zone.grid.size():
 		for j in command_zone.grid[i].size():
-			var coords = Coord.new(i, j)
-			var cell := command_zone.get_cell(coords) as CommandZoneCell
+			var coord = Coord.new(i, j)
+			var cell := command_zone.get_cell(coord) as CommandZoneCell
 			if cell.ship != null:
 				CommandEvents.emit_ship_updated(cell.ship)

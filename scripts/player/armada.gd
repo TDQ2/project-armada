@@ -11,10 +11,22 @@ var runtime_ship_map: Dictionary[ShipData, ShipBase]
 @onready var click_target: ClickTarget = $ClickTarget
 
 func _ready() -> void:
+	CommandEvents.ship_added.connect(_handle_ship_added)
 	CommandEvents.command_zone_changed.connect(_handle_command_zone_update)
-	_handle_command_zone_update(State.run_state.command_zone)
+	_populate_ships()
 	CommandEvents.ship_updated.connect(_handle_ship_update)
 	click_target.position_targeted.connect(_handle_position_targeted)
+
+# Safety measure for on ready if ships have not been populated before handle update
+func _populate_ships() -> void:
+	var command_zone := State.run_state.command_zone
+	for i in command_zone.grid.size():
+		for j in command_zone.grid[i].size():
+			var coord = Coord.new(i, j)
+			var cell := command_zone.get_cell(coord) as CommandZoneCell
+			if cell.ship != null and cell.ship not in runtime_ship_map:
+				var new_pos := _calculate_ship_position(coord, State.run_state.flagship_coords)
+				_add_ship(cell.ship, new_pos)
 
 func _physics_process(delta: float) -> void:
 	_handle_movement(delta)
@@ -35,6 +47,10 @@ func _handle_position_targeted(pos: Vector2) -> void:
 	for ship: ShipBase in $Ships.get_children():
 		ship.set_target_dest(pos)
 
+func _handle_ship_added(coord: Coord, ship: ShipData) -> void:
+	var new_pos := _calculate_ship_position(coord, State.run_state.flagship_coords)
+	_add_ship(ship, new_pos)
+
 func _handle_command_zone_update(command_zone: CommandZone) -> void:
 	var current_ships: Dictionary[ShipData, ShipBase] = {}
 	for world_ship: ShipBase in $Ships.get_children():
@@ -50,12 +66,17 @@ func _handle_command_zone_update(command_zone: CommandZone) -> void:
 	
 	for ship_data: ShipData in updated_positions.keys():
 		var new_pos := _calculate_ship_position(updated_positions[ship_data], State.run_state.flagship_coords)
-		if ship_data in current_ships:
-			current_ships[ship_data].position = new_pos
-		else:
-			_add_ship(ship_data, new_pos)
+		assert(ship_data in current_ships, "Attempting to change position for ship that armada is unaware of")
+		current_ships[ship_data].position = new_pos
 	
 	# TODO: handle removing a ship
+
+
+func _calculate_ship_position(ship_coords: Coord, flagship_coords: Coord) -> Vector2:
+	 # (x, y) = col, row
+	var coords_vector := Vector2(ship_coords.col - flagship_coords.col, ship_coords.row - flagship_coords.row)
+	var armada_local_vector := coords_vector * Data.SHIP_SPACING
+	return armada_local_vector
 
 func _add_ship(ship_data: ShipData, pos: Vector2) -> void:
 	var new_ship_scene := Data.world_ships[ship_data.ship_type]
@@ -67,11 +88,6 @@ func _add_ship(ship_data: ShipData, pos: Vector2) -> void:
 	new_ship.setup(self)
 	runtime_ship_map[ship_data] = new_ship
 
-func _calculate_ship_position(ship_coords: Coord, flagship_coords: Coord) -> Vector2:
-	 # (x, y) = col, row
-	var coords_vector := Vector2(ship_coords.col - flagship_coords.col, ship_coords.row - flagship_coords.row)
-	var armada_local_vector := coords_vector * Data.SHIP_SPACING
-	return armada_local_vector
 
 func _handle_ship_update(ship_data: ShipData) -> void:
 	assert(runtime_ship_map[ship_data])

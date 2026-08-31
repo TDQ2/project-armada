@@ -4,6 +4,7 @@ extends Node
 
 signal cz_cell_selected(ship: ShipData)
 signal command_zone_changed(command_zone: CommandZone)
+signal ship_added(coord: Coord, ship: ShipData)
 signal inventory_changed(inventory: Inventory)
 signal ship_updated(ship_data: ShipData)
 signal poi_added(poi_data: PoiData)
@@ -14,6 +15,9 @@ func emit_cz_cell_selected(ship: ShipData) -> void:
 
 func emit_command_zone_changed(command_zone: CommandZone) -> void:
 	command_zone_changed.emit(command_zone)
+
+func emit_ship_added(coord: Coord, ship: ShipData) -> void:
+	ship_added.emit(coord, ship)
 
 func emit_inventory_changed(inventory: Inventory) -> void:
 	inventory_changed.emit(inventory)
