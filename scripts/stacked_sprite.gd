@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 
 func render_sprites() -> void:
 	clear_sprites()
-	print("rendering")
+	#print("rendering")
 	for i in range(vframes):
 		var next_sprite := Sprite2D.new()
 		next_sprite.texture = texture
@@ -43,7 +43,7 @@ func render_sprites() -> void:
 		add_child(next_sprite)
 
 func clear_sprites() -> void:
-	print("clearing")
+	#print("clearing")
 	for sprite in get_children():
 		sprite.queue_free()
 

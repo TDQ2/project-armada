@@ -10,6 +10,12 @@ enum ItemType {SHIP, CREW, WEAPON}
 enum StatusEffectType {IGNITE}
 enum PoiType {UNDEFINED, TREASURE}
 
+enum ModifierOperation {UNDEFINED, ADD, MULT}
+enum StatAttribute {UNDERFINED, DAMAGE, RANGE, COOLDOWN}
+enum AuraShape {UNDEFINED, ADJACENT, FRONT_BACK, SIDE_SIDE}
+
+const VALID_WEAPON_ATTRIBUTES: Array[StatAttribute] = [StatAttribute.DAMAGE, StatAttribute.RANGE, StatAttribute.COOLDOWN]
+
 const SHIP_SPACING := 32
 const WEAPON_UNIT_RANGE := 16
 
@@ -59,7 +65,8 @@ func create_ship(ship_type: ShipType) -> ShipData:
 				[create_weapon(WeaponType.STARTER_CANNON), create_weapon(WeaponType.STANDARD_CANNON)], 
 				3, 
 				preload("res://textures/player_ships/flagship_ph.png"),
-				preload("res://textures/temp_portraits/flagship_temp_portrait.png"))
+				preload("res://textures/temp_portraits/flagship_temp_portrait.png"),
+				[])
 				
 		ShipType.FRIGATE:
 			return ShipData.new(
@@ -71,10 +78,11 @@ func create_ship(ship_type: ShipType) -> ShipData:
 				[create_weapon(WeaponType.INCENDIARY_CANNON)], 
 				2, 
 				preload("res://textures/player_ships/gunship_ph.png"),
-				preload("res://textures/temp_portraits/frigate_temp_portrait.png"))
+				preload("res://textures/temp_portraits/frigate_temp_portrait.png"),
+				[])
 	
 	assert(false, "Attempted to create a ShipType which was not defined in the ship factory")
-	return ShipData.new(ShipType.UNDEFINED, "Undefined", false, [], 0, [], 0, null, null)
+	return ShipData.new(ShipType.UNDEFINED, "Undefined", false, [], 0, [], 0, null, null, [])
 
 func create_weapon(weapon_type: WeaponType) -> WeaponData:
 	match weapon_type:

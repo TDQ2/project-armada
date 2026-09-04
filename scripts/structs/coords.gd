@@ -1,5 +1,5 @@
 extends Resource
-class_name Coords
+class_name Coord
 
 @export var row: int
 @export var col: int

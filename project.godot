@@ -23,6 +23,7 @@ Utils="*res://scripts/globals/Utils.gd"
 Commands="*res://scripts/globals/Commands.gd"
 CommandEvents="*res://scripts/globals/CommandEvents.gd"
 WorldEvents="*res://scripts/globals/WorldEvents.gd"
+ModifierManager="*res://scripts/globals/ModifierManager.gd"
 
 [display]
 

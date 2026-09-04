@@ -9,7 +9,7 @@ extends Node
 @onready var points_of_interest: PointsOfInterest = State.run_state.points_of_interest
 
 # Read Commands
-func select_cell(coords: Coords) -> void:
+func select_cell(coords: Coord) -> void:
 	var command_zone_cell := command_zone.get_cell(coords)
 	if !command_zone_cell.ship:
 		return
@@ -24,16 +24,17 @@ func select_flagship() -> void:
 	CommandEvents.cz_cell_selected.emit(flagship)
 
 # Write Commands
-func enable_cz_cell(coords: Coords) -> void:
-	command_zone.enable_cell(coords)
+func enable_cz_cell(coord: Coord) -> void:
+	command_zone.enable_cell(coord)
 	CommandEvents.emit_command_zone_changed(command_zone)
 
-func add_ship_to_cz(coords: Coords, ship: ShipData) -> void:
+func add_ship_to_cz(coord: Coord, ship: ShipData) -> void:
 	# TODO: add validations
-	command_zone.set_cell_ship_data(coords, ship)
+	command_zone.set_cell_ship_data(coord, ship)
+	CommandEvents.emit_ship_added(coord, ship)
 	CommandEvents.emit_command_zone_changed(command_zone)
 
-func swap_cz_cells(coords1: Coords, coords2: Coords) ->void:
+func swap_cz_cells(coords1: Coord, coords2: Coord) ->void:
 	var cell1 = command_zone.get_cell(coords1)
 	var cell2 = command_zone.get_cell(coords2)
 	command_zone.set_cell(coords1, cell2)
