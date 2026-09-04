@@ -7,7 +7,7 @@ class_name WeaponData
 @export var damage: float
 @export var cooldown_duration: float
 @export var status_effects: Array[Data.StatusEffectType]
-var granted_modifiers: Array[WeaponModifier]
+var granted_modifiers: Array[StatModifier]
 
 func _init(
 	weapon_type_: Data.WeaponType, 

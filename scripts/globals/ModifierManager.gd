@@ -70,7 +70,7 @@ func _get_adjacent_ships(aura_coord: Coord) -> Array[ShipData]:
 
 func _apply_weapon_aura_modifier(
 	targeted_ships: Array[ShipData], 
-	weapon_modifiers: Array[WeaponModifier]) -> void:
+	weapon_modifiers: Array[StatModifier]) -> void:
 		for ship in targeted_ships:
 			for weapon_data: WeaponData in ship.weapon_slots:
 				if weapon_data != null:

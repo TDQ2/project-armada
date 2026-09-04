@@ -10,9 +10,11 @@ enum ItemType {SHIP, CREW, WEAPON}
 enum StatusEffectType {IGNITE}
 enum PoiType {UNDEFINED, TREASURE}
 
-enum ModifierOperations {UNDEFINED, ADD, MULT}
-enum WeaponAttribute {UNDERFINED, DAMAGE, RANGE, COOLDOWN}
+enum ModifierOperation {UNDEFINED, ADD, MULT}
+enum StatAttribute {UNDERFINED, DAMAGE, RANGE, COOLDOWN}
 enum AuraShape {UNDEFINED, ADJACENT, FRONT_BACK, SIDE_SIDE}
+
+const VALID_WEAPON_ATTRIBUTES: Array[StatAttribute] = [StatAttribute.DAMAGE, StatAttribute.RANGE, StatAttribute.COOLDOWN]
 
 const SHIP_SPACING := 32
 const WEAPON_UNIT_RANGE := 16

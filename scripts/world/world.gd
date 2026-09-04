@@ -43,7 +43,7 @@ func _handle_enemy_weapon_fired(player_projectile_type: Data.EnemyProjectileType
 	projectile.setup(pos, direction, on_hit)
 
 func _handle_poi_added(poi_data: PoiData) -> void:
-	print("poi added to world")
+	#print("poi added to world")
 	if poi_data.cleared:
 		return
 	var poi_scene := Data.world_pois[poi_data.type]

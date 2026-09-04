@@ -41,19 +41,34 @@ func _on_cooldown_timer_timeout() -> void:
 
 func set_weapon_data(weapon_data_: WeaponData) -> void:
 	weapon_data = weapon_data_
-	_update_range(weapon_data.fire_range * Data.WEAPON_UNIT_RANGE)
-	_set_cooldown(weapon_data.cooldown_duration)
-	_set_on_hit_component(weapon_data_)
+	refresh()
 
-func _update_range(range_: int) -> void:
-	detection_area.shape.radius = range_
+func refresh() -> void:
+	_update_range()
+	_set_cooldown()
+	_set_on_hit_component()
 
-func _set_cooldown(duration_: float) -> void:
-	cooldown_timer.wait_time = duration_
+func _update_range() -> void:
+	var range_modifiers = weapon_data.granted_modifiers.filter(
+		func(modifier: StatModifier): return modifier.attribute == Data.StatAttribute.RANGE
+	)
+	var all_in_range: float = Utils.compute_modified_stat(weapon_data.fire_range, range_modifiers)
+	detection_area.shape.radius = all_in_range * Data.WEAPON_UNIT_RANGE
 
-func _set_on_hit_component(weapon_data_: WeaponData) -> void:
+func _set_cooldown() -> void:
+	var cooldown_modifiers = weapon_data.granted_modifiers.filter(
+		func(modifier: StatModifier): return modifier.attribute == Data.StatAttribute.COOLDOWN
+	)
+	var all_in_cooldown: float = Utils.compute_modified_stat(weapon_data.cooldown_duration, cooldown_modifiers)
+	cooldown_timer.wait_time = all_in_cooldown
+
+func _set_on_hit_component() -> void:
 	#print("setting on hit. damage = " + str(weapon_data_.damage))
-	on_hit_data = OnHitData.new(weapon_data_.damage, weapon_data_.status_effects)
+	var damage_modifiers = weapon_data.granted_modifiers.filter(
+		func(modifier: StatModifier): return modifier.attribute == Data.StatAttribute.DAMAGE
+	)
+	var all_in_damage: float = Utils.compute_modified_stat(weapon_data.damage, damage_modifiers)
+	on_hit_data = OnHitData.new(all_in_damage, weapon_data.status_effects)
 
 func _acquire_target(area: Area2D) -> void:
 	target = area
