@@ -11,13 +11,14 @@ radius = 17.029387
 
 [node name="StackedSprite" parent="." index="0"]
 texture = ExtResource("2_1b0bn")
-rotate_sprites = true
+vframes = 20
+is_rotating_sprites = false
 
 [node name="HurtboxComponent" parent="." index="2"]
 position = Vector2(0, -7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
-position = Vector2(0, -2)
+position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_s1r70")
 
 [node name="HealthBarComponent" parent="." index="4"]

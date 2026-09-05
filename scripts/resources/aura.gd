@@ -1,14 +1,17 @@
 extends Resource
-class_name Aura
+class_name AuraData
 
+var aura_type: Data.AuraType
 var shape: Data.AuraShape
 var weapon_modifiers: Array[StatModifier]
 # add crew and ship modifiers and validators later here
 
 func _init(
+	aura_type_: Data.AuraType,
 	shape_: Data.AuraShape,
 	weapon_modifiers_: Array[StatModifier]
 ) -> void:
+	aura_type = aura_type_
 	shape = shape_
 	assert(validate_weapon_modifiers(weapon_modifiers_), "Attempting to create aura with invalid weapon modifiers")
 	weapon_modifiers = weapon_modifiers_

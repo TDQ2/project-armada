@@ -34,12 +34,12 @@ func _apply_all_auras() -> void:
 				_apply_auras_from_ship(cell.ship, coord)
 
 func _apply_auras_from_ship(provider_ship: ShipData, coord: Coord) -> void:
-	for aura: Aura in provider_ship.auras:
+	for aura: AuraData in provider_ship.auras:
 		var targeted_ships: Array[ShipData] = _get_aura_targeted_ships(aura, coord)
 		if !aura.weapon_modifiers.is_empty():
 			_apply_weapon_aura_modifier(targeted_ships, aura.weapon_modifiers)
 
-func _get_aura_targeted_ships(aura: Aura, coord: Coord) -> Array[ShipData]:
+func _get_aura_targeted_ships(aura: AuraData, coord: Coord) -> Array[ShipData]:
 	var targeted_ships: Array[ShipData] = []
 	match aura.shape:
 		Data.AuraShape.ADJACENT:

@@ -1,7 +1,7 @@
 extends Node
 
 enum ProjectileSource {UNDEFINED, PLAYER, ENEMY}
-enum ShipType {UNDEFINED, FLAGSHIP1, FRIGATE}
+enum ShipType {UNDEFINED, FLAGSHIP1, FRIGATE, LOOKOUT}
 enum CrewType {UNDEFINED, CAPTAIN}
 enum WeaponType {UNDEFINED, STARTER_CANNON, STANDARD_CANNON, INCENDIARY_CANNON}
 enum PlayerProjectileType {UNDEFINED, PLAYER_CANNONBALL, IGNITE_CANNONBALL}
@@ -14,6 +14,8 @@ enum ModifierOperation {UNDEFINED, ADD, MULT}
 enum StatAttribute {UNDERFINED, DAMAGE, RANGE, COOLDOWN}
 enum AuraShape {UNDEFINED, ADJACENT, FRONT_BACK, SIDE_SIDE}
 
+enum AuraType {UNDEFINED, LOOKOUT_RANGE}
+
 const VALID_WEAPON_ATTRIBUTES: Array[StatAttribute] = [StatAttribute.DAMAGE, StatAttribute.RANGE, StatAttribute.COOLDOWN]
 
 const SHIP_SPACING := 32
@@ -23,7 +25,8 @@ const COMMON_WEAPONS: Array[WeaponType] = [WeaponType.STANDARD_CANNON, WeaponTyp
 
 var world_ships: Dictionary[ShipType, PackedScene] = {
 	ShipType.FLAGSHIP1: preload("res://scenes/player_ships/children/flagship_1.tscn"),
-	ShipType.FRIGATE: preload("res://scenes/player_ships/children/frigate.tscn")
+	ShipType.FRIGATE: preload("res://scenes/player_ships/children/frigate.tscn"),
+	ShipType.LOOKOUT: preload("res://scenes/player_ships/children/lookout_ship.tscn")
 }
 
 var world_weapons: Dictionary[WeaponType, PackedScene] = {
@@ -80,6 +83,19 @@ func create_ship(ship_type: ShipType) -> ShipData:
 				preload("res://textures/player_ships/gunship_ph.png"),
 				preload("res://textures/temp_portraits/frigate_temp_portrait.png"),
 				[])
+		ShipType.LOOKOUT:
+			return ShipData.new(
+				ship_type,
+				"Lookout",
+				false,
+				[],
+				1,
+				[],
+				1,
+				preload("res://textures/player_ships/gunship_ph.png"),
+				preload("res://textures/temp_portraits/lookout_temp_portrait.png"),
+				[create_aura(AuraType.LOOKOUT_RANGE)]
+			)
 	
 	assert(false, "Attempted to create a ShipType which was not defined in the ship factory")
 	return ShipData.new(ShipType.UNDEFINED, "Undefined", false, [], 0, [], 0, null, null, [])
@@ -93,8 +109,16 @@ func create_weapon(weapon_type: WeaponType) -> WeaponData:
 		WeaponType.INCENDIARY_CANNON:
 			return WeaponData.new(WeaponType.INCENDIARY_CANNON, PlayerProjectileType.IGNITE_CANNONBALL, 6, 15.0, 2.0, [Data.StatusEffectType.IGNITE], "Incendiary Cannon", preload("res://textures/weapons/incendiary_cannon_ph.png"))
 	
-	assert(false, "Attempted to create a ShipType which was not defined in the ship factory")
+	assert(false, "Attempted to create a ShipType which was not defined in the weapon factory")
 	return WeaponData.new(WeaponType.UNDEFINED, PlayerProjectileType.UNDEFINED, 0, 0.0, 0.0, [], "", null)
+
+func create_aura(aura_type: AuraType) -> AuraData:
+	match aura_type:
+		AuraType.LOOKOUT_RANGE:
+			return AuraData.new(aura_type, AuraShape.ADJACENT, [StatModifier.new(Data.StatAttribute.RANGE, Data.ModifierOperation.ADD, 2)])
+	
+	assert(false, "Attempted to create a Aura type which was not defined in the aura factory")
+	return AuraData.new(aura_type, AuraShape.UNDEFINED, [])
 
 func create_poi(poi_type: PoiType, position: Vector2 = Vector2(0,0)) -> PoiData:
 	match poi_type:

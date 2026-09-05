@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dv12kaisiygdn" path="res://scenes/visual_effects/small_ship_trail_particles.tscn" id="2_ys70g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m613j"]
-radius = 8.0
+radius = 11.0
 
 [node name="Frigate" instance=ExtResource("1_th87o")]
 

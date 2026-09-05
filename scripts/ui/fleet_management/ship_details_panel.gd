@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _update_ship_details(ship_data: ShipData) -> void:
-	print("updating selected to ship=",str(ship_data.name))
+	#print("updating selected to ship=",str(ship_data.name))
 	portraitRect.texture = ship_data.portrait
 	$ShipDetailsContainer/ShipName.text = ship_data.name
 	for i in range(crew_buttons.size()):
