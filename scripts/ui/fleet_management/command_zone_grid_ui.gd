@@ -10,7 +10,7 @@ func _ready() -> void:
 	# This is dev data for testing
 	Commands.add_ship_to_cz(Coord.new(2, 2), Data.create_ship(Data.ShipType.FLAGSHIP1))
 	Commands.add_ship_to_cz(Coord.new(1, 1), Data.create_ship(Data.ShipType.FRIGATE))
-	Commands.add_ship_to_cz(Coord.new(3, 3), Data.create_ship(Data.ShipType.FRIGATE))
+	Commands.add_ship_to_cz(Coord.new(3, 3), Data.create_ship(Data.ShipType.LOOKOUT))
 	Commands.enable_cz_cell(Coord.new(1, 2))
 	Commands.enable_cz_cell(Coord.new(3, 2))
 	Commands.enable_cz_cell(Coord.new(4, 2))

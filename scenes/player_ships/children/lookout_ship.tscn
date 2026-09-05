@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://baoo0g82nuy15"]
+
+[ext_resource type="PackedScene" uid="uid://dwdc5ep3iatxj" path="res://scenes/player_ships/base/ship_base.tscn" id="1_gyo10"]
+[ext_resource type="Texture2D" uid="uid://25hpfbl7i6tb" path="res://textures/player_ships/lookout_0_idle_0_stack.png" id="2_8p8u5"]
+[ext_resource type="PackedScene" uid="uid://dv12kaisiygdn" path="res://scenes/visual_effects/small_ship_trail_particles.tscn" id="3_8p8u5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oiddy"]
+radius = 13.0
+
+[node name="LookoutShip" instance=ExtResource("1_gyo10")]
+
+[node name="StackedSprite" parent="." index="0"]
+texture = ExtResource("2_8p8u5")
+vframes = 19
+is_rotating_sprites = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("CircleShape2D_oiddy")
+
+[node name="HealthBarComponent" parent="." index="4"]
+position = Vector2(-10, 13)
+
+[node name="WeaponFiredComponent" parent="." index="5"]
+position = Vector2(0, -24)
+
+[node name="SmallShipTrailParticles" parent="." index="6" instance=ExtResource("3_8p8u5")]
+position = Vector2(0, 11)
+
+[editable path="HurtboxComponent"]

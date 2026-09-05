@@ -8,7 +8,7 @@ class_name ShipData
 @export var weapon_slots: Array[WeaponData]
 @export var ui_icon: Texture2D
 @export var portrait: Texture2D
-@export var auras: Array[Aura]
+@export var auras: Array[AuraData]
 
 func _init(
 	ship_type_: Data.ShipType, 
@@ -20,7 +20,7 @@ func _init(
 	weapon_count: int, 
 	ui_icon_: Texture2D,
 	portrait_: Texture2D,
-	auras_: Array[Aura]
+	auras_: Array[AuraData]
 	) -> void:
 	ship_type = ship_type_
 	name = name_
