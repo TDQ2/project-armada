@@ -5,8 +5,6 @@ func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 		return false
 	
 	var curr_selected_cell := State.run_state.command_zone.get_cell(State.run_state.selected_cz_coords)
-	print(State.run_state.selected_cz_coords)
-	print(curr_selected_cell.ship)
 	if get_index() >= curr_selected_cell.ship.weapon_slots.size():
 		return false
 	

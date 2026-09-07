@@ -18,7 +18,7 @@ func select_cell(coords: Coord) -> void:
 		CommandEvents.cz_cell_selected.emit(command_zone_cell.ship)
 
 func select_flagship() -> void:
-	print("selecting flagship")
+	#print("selecting flagship")
 	var flagship := command_zone.get_flagship()
 	State.run_state.selected_cz_coords = State.run_state.flagship_coords
 	CommandEvents.cz_cell_selected.emit(flagship)

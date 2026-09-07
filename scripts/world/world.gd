@@ -2,12 +2,13 @@ extends Node2D
 
 @onready var projectiles_container := $Projectiles
 @onready var poi_container := $POIs
-@onready var map_ui: MapUI = $CanvasLayer/GameplayUI/VBoxContainer/MapUI
+@onready var map_ui: MapUI = $GameplayCanvas/GameplayUI/VBoxContainer/MapUI
 @onready var armada: Node2D = $Armada
 
 var poi_data_to_world: Dictionary[PoiData, PoiBase]
 
 func _ready() -> void:
+	get_tree().paused = false
 	WorldEvents.player_weapon_fired.connect(_handle_player_weapon_fired)
 	WorldEvents.enemy_weapon_fired.connect(_handle_enemy_weapon_fired)
 	CommandEvents.poi_added.connect(_handle_poi_added)
