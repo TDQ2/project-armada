@@ -3,7 +3,7 @@ extends Node2D
 @export var speed := 50
 @export var max_rotation_speed := 0.003 # radians per frame
 
-var direction := Vector2.UP
+var direction := Vector2.RIGHT
 var target_position: Vector2
 
 var runtime_ship_map: Dictionary[ShipData, ShipBase]
@@ -38,7 +38,7 @@ func _handle_movement(delta: float) -> void:
 		direction = direction.rotated(angle_sign * minf(max_rotation_speed, absf(target_angle))).normalized()
 		var velocity := direction * speed
 		position += velocity * delta
-		rotation = velocity.angle() + PI / 2
+		rotation = velocity.angle()
 		if abs((target_position - global_position).length()) < 3:
 			target_position = Vector2.ZERO
 

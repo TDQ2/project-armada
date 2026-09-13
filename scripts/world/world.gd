@@ -4,6 +4,7 @@ extends Node2D
 @onready var poi_container := $POIs
 @onready var map_ui: MapUI = $GameplayCanvas/GameplayUI/VBoxContainer/MapUI
 @onready var armada: Node2D = $Armada
+@onready var water_tiles: WaterTiles = $WaterTiles
 
 var poi_data_to_world: Dictionary[PoiData, PoiBase]
 
@@ -15,15 +16,16 @@ func _ready() -> void:
 	CommandEvents.poi_cleared.connect(_handle_poi_cleared)
 	#var poi_datas = _create_pois()
 	map_ui.setup(armada)
+	water_tiles.setup(armada)
 	_create_pois()
 	
 
 func _create_pois() -> void:
 	#TODO eventually place random POI generation here
 	var poi_data0 := Data.create_poi(Data.PoiType.TREASURE, Vector2(200, -550))
-	var poi_data1 := Data.create_poi(Data.PoiType.TREASURE, Vector2(-300, -750))
+	var poi_data1 := Data.create_poi(Data.PoiType.TREASURE, Vector2(1300, -750))
 	var poi_data2 := Data.create_poi(Data.PoiType.TREASURE, Vector2(300, 500))
-	var poi_data3 := Data.create_poi(Data.PoiType.TREASURE, Vector2(-300, 500))
+	var poi_data3 := Data.create_poi(Data.PoiType.TREASURE, Vector2(2000, 500))
 	Commands.add_poi(poi_data0)
 	Commands.add_poi(poi_data1)
 	Commands.add_poi(poi_data2)

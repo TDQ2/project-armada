@@ -7,8 +7,12 @@ var ship_data: ShipData
 @onready var hurtbox: HurtboxComponent = $HurtboxComponent
 @onready var weapon_fired_component: WeaponFiredComponent = $WeaponFiredComponent
 @onready var stacked_sprite: StackedSprite = $StackedSprite
+@onready var storm_detector_component: StormDetectorComponent = $StormDetectorComponent
+@onready var storm_tick_timer: Timer = $StormTickTimer
 
 var target_dest: Vector2
+
+const STORM_TICK_DAMAGE := 2
 
 # TODO: consider different types of rotation for each ship to improve look
 #var current_heading: float = Vector2.UP.angle()
@@ -19,7 +23,12 @@ var target_dest: Vector2
 func _ready() -> void:
 	hurtbox.was_hit.connect(_handle_was_hit)
 	weapons_component.weapon_fired.connect(_handle_weapon_fired)
+	storm_detector_component.storm_entered.connect(_handle_storm_entered)
+	storm_detector_component.storm_exited.connect(_handle_storm_exited)
+	storm_tick_timer.timeout.connect(_on_storm_tick_timer_timeout)
+	
 	#stacked_sprite.set_stack_rotation(-PI/2)
+
 
 #func _process(delta: float) -> void:
 	#if target_dest:
@@ -43,4 +52,12 @@ func _handle_weapon_fired(weapon_data: WeaponData) -> void:
 
 func set_target_dest(dest: Vector2) -> void:
 	target_dest = dest
-	
+
+func _handle_storm_entered() -> void:
+	storm_tick_timer.start()
+
+func _handle_storm_exited() -> void:
+	storm_tick_timer.stop()
+
+func _on_storm_tick_timer_timeout() -> void:
+	health_component.take_damage(STORM_TICK_DAMAGE)

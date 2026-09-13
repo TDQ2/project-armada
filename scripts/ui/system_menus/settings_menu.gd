@@ -14,7 +14,8 @@ var sound_effects_bus_index: int
 @onready var music_volume_slider:  HSlider = $VBoxContainer/AudioControlsContainer/GridContainer/MusicVolumeSlider
 @onready var sound_effects_volume_slider: HSlider = $VBoxContainer/AudioControlsContainer/GridContainer/SoundEffectsVolumeSlider
 
-# TODO: read config for volume settings
+@onready var gameplay_ui: GameplayUI
+
 func _ready() -> void:
 	master_bus_index = AudioServer.get_bus_index("Master")
 	music_bus_index = AudioServer.get_bus_index("Music")
@@ -25,13 +26,13 @@ func _ready() -> void:
 	AudioServer.set_bus_volume_db(master_bus_index, linear_to_db(State.config.master_bus_value))
 	AudioServer.set_bus_volume_db(music_bus_index, linear_to_db(State.config.music_bus_value))
 	AudioServer.set_bus_volume_db(sound_effects_bus_index, linear_to_db(State.config.sound_effects_bus_value))
+	gameplay_ui = get_node_or_null("../GameplayUI")
 	
 	if get_parent() is MainMenu:
 		buttons_container.visible = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("settings"):
-		print("settings toggled")
 		toggle_settings_ui()
 
 func toggle_settings_ui() -> void:
@@ -40,8 +41,8 @@ func toggle_settings_ui() -> void:
 		get_tree().paused = true
 	else:
 		hide()
-		get_tree().paused = false
-
+		if gameplay_ui != null and !gameplay_ui.visible:
+			get_tree().paused = false
 
 func _on_master_volume_slider_value_changed(value: float) -> void:
 	if value:

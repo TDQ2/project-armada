@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://brpd35rgylrf0"]
+[gd_scene format=3 uid="uid://brpd35rgylrf0"]
 
 [ext_resource type="PackedScene" uid="uid://dwdc5ep3iatxj" path="res://scenes/player_ships/base/ship_base.tscn" id="1_th87o"]
 [ext_resource type="Texture2D" uid="uid://c8r2vs4che74h" path="res://textures/player_ships/frigate_0_idle_0_stack.png" id="2_g16ln"]
@@ -7,23 +7,23 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_m613j"]
 radius = 11.0
 
-[node name="Frigate" instance=ExtResource("1_th87o")]
+[node name="Frigate" unique_id=1522080167 instance=ExtResource("1_th87o")]
 
-[node name="StackedSprite" parent="." index="0"]
+[node name="StackedSprite" parent="." index="0" unique_id=610616588]
 texture = ExtResource("2_g16ln")
 vframes = 16
-is_rotating_sprites = false
 
-[node name="SmallShipTrailParticles" parent="." index="2" instance=ExtResource("2_ys70g")]
-position = Vector2(0, 12)
+[node name="SmallShipTrailParticles" parent="." index="2" unique_id=618520347 instance=ExtResource("2_ys70g")]
+position = Vector2(-14, 0)
+rotation = 1.5707964
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" parent_id_path=PackedInt32Array(1049055689) index="0" unique_id=577587935]
 shape = SubResource("CircleShape2D_m613j")
 
-[node name="HealthBarComponent" parent="." index="5"]
+[node name="HealthBarComponent" parent="." index="5" unique_id=1163677850]
 position = Vector2(-10, 15)
 
-[node name="WeaponFiredComponent" parent="." index="6"]
+[node name="WeaponFiredComponent" parent="." index="6" unique_id=1718726545]
 position = Vector2(0, -32)
 
 [editable path="HurtboxComponent"]

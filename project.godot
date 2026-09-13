@@ -80,6 +80,7 @@ settings={
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="player_projectiles"
 2d_physics/layer_5="enemy_projectiles"
+2d_physics/layer_6="storm"
 
 [rendering]
 

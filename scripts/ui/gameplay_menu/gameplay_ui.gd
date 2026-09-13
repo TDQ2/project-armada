@@ -1,14 +1,18 @@
 extends PanelContainer
+class_name GameplayUI
 
 @onready var fleet_manager_ui: PanelContainer = $VBoxContainer/FleetManagerUI
 @onready var map_ui: PanelContainer = $VBoxContainer/MapUI
 @onready var top_nav_panel: TopNavPanel = $VBoxContainer/TopNavPanel
+@onready var settings_menu: SettingsMenu = $"../SettingsMenu"
 
 func _ready() -> void:
 	top_nav_panel.fleet_button_pressed.connect(_show_fleet_manager)
 	top_nav_panel.map_button_pressed.connect(_show_map)
 
 func _input(event: InputEvent) -> void:
+	if settings_menu.visible:
+		return
 	if event.is_action_pressed("menu"):
 		_toggle_gameplay_ui()
 	if event.is_action_pressed("map"):

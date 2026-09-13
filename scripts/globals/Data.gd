@@ -67,7 +67,7 @@ func create_ship(ship_type: ShipType) -> ShipData:
 				3, 
 				[create_weapon(WeaponType.STARTER_CANNON), create_weapon(WeaponType.STANDARD_CANNON)], 
 				3, 
-				preload("res://textures/player_ships/flagship_ph.png"),
+				preload("res://textures/ship_icons/flagship_1_icon.png"),
 				preload("res://textures/temp_portraits/flagship_temp_portrait.png"),
 				[])
 				
@@ -80,7 +80,7 @@ func create_ship(ship_type: ShipType) -> ShipData:
 				2, 
 				[create_weapon(WeaponType.INCENDIARY_CANNON)], 
 				2, 
-				preload("res://textures/player_ships/gunship_ph.png"),
+				preload("res://textures/ship_icons/frigate_1_icon.png"),
 				preload("res://textures/temp_portraits/frigate_temp_portrait.png"),
 				[])
 		ShipType.LOOKOUT:
@@ -92,7 +92,7 @@ func create_ship(ship_type: ShipType) -> ShipData:
 				1,
 				[],
 				1,
-				preload("res://textures/player_ships/gunship_ph.png"),
+				preload("res://textures/ship_icons/lookout_1.png"),
 				preload("res://textures/temp_portraits/lookout_temp_portrait.png"),
 				[create_aura(AuraType.LOOKOUT_RANGE)]
 			)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwdc5ep3iatxj"]
+[gd_scene format=3 uid="uid://dwdc5ep3iatxj"]
 
 [ext_resource type="Script" uid="uid://cwsy14iwejb87" path="res://scripts/player/ship_base.gd" id="1_8wcck"]
 [ext_resource type="PackedScene" uid="uid://bkrxiim66o7on" path="res://scenes/components/weapons_component.tscn" id="2_3xxhp"]
@@ -6,23 +6,32 @@
 [ext_resource type="PackedScene" uid="uid://dg8pictpm7ib6" path="res://scenes/components/health_component.tscn" id="5_hit03"]
 [ext_resource type="PackedScene" uid="uid://336plj13jl4k" path="res://scenes/components/health_bar_component.tscn" id="6_utkv4"]
 [ext_resource type="PackedScene" uid="uid://xgfvwyiij1hk" path="res://scenes/components/weapon_fired_component.tscn" id="7_hit03"]
+[ext_resource type="PackedScene" uid="uid://ce3gwlou5bhvu" path="res://scenes/components/storm_detector_component.tscn" id="8_p7wcx"]
 [ext_resource type="PackedScene" uid="uid://ddxgo3kbh4lb" path="res://scenes/tech/stacked_sprite.tscn" id="8_utkv4"]
 
-[node name="ShipBase" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_vqqf1"]
+radius = 8.062258
+
+[node name="ShipBase" type="Node2D" unique_id=2058402751]
 script = ExtResource("1_8wcck")
 
-[node name="StackedSprite" parent="." instance=ExtResource("8_utkv4")]
-is_show_sprites = true
-is_rotating_sprites = null
+[node name="StackedSprite" parent="." unique_id=610616588 instance=ExtResource("8_utkv4")]
 
-[node name="WeaponsComponent" parent="." instance=ExtResource("2_3xxhp")]
+[node name="WeaponsComponent" parent="." unique_id=1482605615 instance=ExtResource("2_3xxhp")]
 
-[node name="HurtboxComponent" parent="." instance=ExtResource("4_71uka")]
+[node name="HurtboxComponent" parent="." unique_id=1049055689 instance=ExtResource("4_71uka")]
 collision_layer = 2
 
-[node name="HealthComponent" parent="." instance=ExtResource("5_hit03")]
+[node name="HealthComponent" parent="." unique_id=1609290796 instance=ExtResource("5_hit03")]
 
-[node name="HealthBarComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_utkv4")]
+[node name="HealthBarComponent" parent="." unique_id=1163677850 node_paths=PackedStringArray("health_component") instance=ExtResource("6_utkv4")]
 health_component = NodePath("../HealthComponent")
 
-[node name="WeaponFiredComponent" parent="." instance=ExtResource("7_hit03")]
+[node name="WeaponFiredComponent" parent="." unique_id=1718726545 instance=ExtResource("7_hit03")]
+
+[node name="StormDetectorComponent" parent="." unique_id=334703955 instance=ExtResource("8_p7wcx")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StormDetectorComponent" unique_id=171984264]
+shape = SubResource("CircleShape2D_vqqf1")
+
+[node name="StormTickTimer" type="Timer" parent="." unique_id=484440249]
