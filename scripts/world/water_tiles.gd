@@ -1,14 +1,6 @@
 extends TileMapLayer
 class_name WaterTiles
 
-class CellTracker:
-	var coord: Vector2i
-	var timer: float
-	
-	func _init(coord_: Vector2i, timer_: float) -> void:
-		coord = coord_
-		timer = timer_
-
 const WATER_TILE_SOURCE := 0
 const STORM_TILE_SOURCE := 1
 const ANIMATION_CHANCE := 0.1
@@ -27,14 +19,13 @@ var _tile_durations: Dictionary[Vector2i, float] = {
 	}
 
 # Keep track of when to change to a different random normal water cell
-#var _next_change_tracker: Array[CellTracker]
 var _cell_update_timers: Dictionary[Vector2i, float] # float is timer duration
 
 var armada: Node2D
 
 ### STORM Management
 var storm_x_index := 0
-const STORM_PROGRESSION_INTERVAL := 1
+const STORM_PROGRESSION_INTERVAL := 3
 var storm_timer := 0.0
 const STORM_Y_UPPER_BOUND := -200
 const STORM_Y_LOWER_BOUND := 200
@@ -42,10 +33,8 @@ const STORM_Y_LOWER_BOUND := 200
 func _ready() -> void:
 	# TODO: populate water programmatically
 	_classify_water_tile_types()
-	#_setup_tile_draws_and_timers()
 
 func setup(armada_: Node2D) -> void:
-	print("water tils are setup")
 	armada = armada_
 	_set_visible_cells()
 
@@ -54,16 +43,8 @@ func _process(delta: float) -> void:
 	if storm_timer >= STORM_PROGRESSION_INTERVAL:
 		storm_timer -= STORM_PROGRESSION_INTERVAL
 		_handle_storm_progression()
-	
 	_handle_cell_timers(delta)
 	_set_visible_cells()
-	
-	#for cell_tracker in _next_change_tracker:
-		#if cell_tracker != null:
-			#cell_tracker.timer -= delta
-			#if cell_tracker.timer <= 0:
-				#var tile_type := _redraw_cell_random(cell_tracker.coord)
-				#cell_tracker.timer = _get_interval_for_tile(tile_type)
 
 func _set_visible_cells() -> void:
 	var curr_visible := get_visible_range()
@@ -106,15 +87,6 @@ func _update_timers(region: Rect2i) -> void:
 				var tile_type := _redraw_cell_random(coord)
 				_cell_update_timers[Vector2i(x, y)] = _get_interval_for_tile(tile_type)
 
-#func _setup_tile_draws_and_timers() -> void:
-	#var region := get_used_rect()
-	#for x in range(region.position.x, region.end.x):
-		#for y in range(region.position.y, region.end.y):
-			#if get_cell_source_id(Vector2i(x, y)) == WATER_TILE_SOURCE:
-				#var coord := Vector2i(x, y)
-				#var tile_type = _redraw_cell_random(coord)
-				#_next_change_tracker.append(CellTracker.new(coord, _get_interval_for_tile(tile_type)))
-
 func _get_interval_for_tile(tile_type: Vector2i) -> float:
 	if tile_type in _tile_durations:
 		return _tile_durations[tile_type]
@@ -134,8 +106,6 @@ func _redraw_cell_random(coord: Vector2i) -> Vector2i: #returns tile type
 		return chosen_cell
 
 func _handle_storm_progression() -> void:
-	#for change_tracker in _next_change_tracker:
-		#if change_tracker.coord.x == storm_x_index:
 	for i in range(STORM_Y_UPPER_BOUND, STORM_Y_LOWER_BOUND+1):
 		set_cell(Vector2i(storm_x_index, i), STORM_TILE_SOURCE, Vector2i(0,0))
 	var cells_to_erase: Array[Vector2i]
@@ -144,9 +114,6 @@ func _handle_storm_progression() -> void:
 			cells_to_erase.append(cell)
 	for cell: Vector2i in cells_to_erase:
 		_cell_update_timers.erase(cell)
-	#for i in range(_next_change_tracker.size()-1, -1, -1):
-		#if _next_change_tracker[i].coord.x == storm_x_index:
-			#_next_change_tracker.remove_at(i)
 	storm_x_index += 1
 
 func get_visible_range() -> Rect2i:

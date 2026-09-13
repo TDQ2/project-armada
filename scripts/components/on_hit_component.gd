@@ -2,7 +2,7 @@ extends Node
 class_name OnHitComponent
 
 @export var damage: float
-@export var status_effects: Array[Data.StatusEffectType]
+@export var status_effects: Array[StatusEffectData]
 var on_hit_data: OnHitData
 
 func _ready() -> void:

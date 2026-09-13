@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://or6lebaqfi6m"]
+[gd_scene format=3 uid="uid://or6lebaqfi6m"]
 
 [ext_resource type="Texture2D" uid="uid://c6v7ybln5kj7f" path="res://icon.svg" id="1_3ymfl"]
 [ext_resource type="Script" uid="uid://beaoyahf714ny" path="res://scripts/ui/fleet_management/ship_details_panel.gd" id="1_wpat0"]
 [ext_resource type="PackedScene" uid="uid://cf177bl6she1u" path="res://scenes/ui/fleet_management/crew_button.tscn" id="2_lnsoe"]
 [ext_resource type="PackedScene" uid="uid://en0estbiy4fn" path="res://scenes/ui/fleet_management/weapon_button.tscn" id="3_hm4yo"]
 
-[node name="ShipDetailsPanel" type="PanelContainer"]
+[node name="ShipDetailsPanel" type="PanelContainer" unique_id=1304977112]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,11 +15,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_wpat0")
 
-[node name="ShipDetailsContainer" type="VBoxContainer" parent="."]
+[node name="ShipDetailsContainer" type="VBoxContainer" parent="." unique_id=1040714666]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Portrait" type="TextureRect" parent="ShipDetailsContainer"]
+[node name="Portrait" type="TextureRect" parent="ShipDetailsContainer" unique_id=1661756504]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -27,73 +27,78 @@ texture = ExtResource("1_3ymfl")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="ShipName" type="Label" parent="ShipDetailsContainer"]
+[node name="ShipName" type="Label" parent="ShipDetailsContainer" unique_id=1214605436]
 layout_mode = 2
 text = "Ship Name"
 horizontal_alignment = 1
 
-[node name="ShipAbilityText" type="Label" parent="ShipDetailsContainer"]
+[node name="ShipAbilityText" type="Label" parent="ShipDetailsContainer" unique_id=2071432286]
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "Default ship ability text"
 horizontal_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="ShipDetailsContainer"]
+[node name="Spacer" type="Control" parent="ShipDetailsContainer" unique_id=1229342741]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="ShipDetailsContainer" unique_id=44240197]
 layout_mode = 2
 size_flags_horizontal = 4
 columns = 2
 
-[node name="CrewLabel" type="Label" parent="ShipDetailsContainer/GridContainer"]
+[node name="CrewLabel" type="Label" parent="ShipDetailsContainer/GridContainer" unique_id=1039100225]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Crew"
 
-[node name="CrewButtons" type="HBoxContainer" parent="ShipDetailsContainer/GridContainer"]
+[node name="CrewButtons" type="HBoxContainer" parent="ShipDetailsContainer/GridContainer" unique_id=1650780406]
 layout_mode = 2
 
-[node name="CrewButton" parent="ShipDetailsContainer/GridContainer/CrewButtons" instance=ExtResource("2_lnsoe")]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-
-[node name="CrewButton2" parent="ShipDetailsContainer/GridContainer/CrewButtons" instance=ExtResource("2_lnsoe")]
+[node name="CrewButton" parent="ShipDetailsContainer/GridContainer/CrewButtons" unique_id=1712170401 instance=ExtResource("2_lnsoe")]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="CrewButton3" parent="ShipDetailsContainer/GridContainer/CrewButtons" instance=ExtResource("2_lnsoe")]
+[node name="CrewButton2" parent="ShipDetailsContainer/GridContainer/CrewButtons" unique_id=188021571 instance=ExtResource("2_lnsoe")]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="CrewButton4" parent="ShipDetailsContainer/GridContainer/CrewButtons" instance=ExtResource("2_lnsoe")]
+[node name="CrewButton3" parent="ShipDetailsContainer/GridContainer/CrewButtons" unique_id=895432652 instance=ExtResource("2_lnsoe")]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="WeaponLabel" type="Label" parent="ShipDetailsContainer/GridContainer"]
+[node name="CrewButton4" parent="ShipDetailsContainer/GridContainer/CrewButtons" unique_id=400827454 instance=ExtResource("2_lnsoe")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="WeaponLabel" type="Label" parent="ShipDetailsContainer/GridContainer" unique_id=684410900]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Weapons"
 
-[node name="WeaponButtons" type="HBoxContainer" parent="ShipDetailsContainer/GridContainer"]
+[node name="WeaponButtons" type="HBoxContainer" parent="ShipDetailsContainer/GridContainer" unique_id=136281247]
 layout_mode = 2
 
-[node name="WeaponButton" parent="ShipDetailsContainer/GridContainer/WeaponButtons" instance=ExtResource("3_hm4yo")]
-layout_mode = 2
-size_flags_horizontal = 5
-size_flags_vertical = 4
-
-[node name="WeaponButton2" parent="ShipDetailsContainer/GridContainer/WeaponButtons" instance=ExtResource("3_hm4yo")]
+[node name="WeaponButton" parent="ShipDetailsContainer/GridContainer/WeaponButtons" unique_id=179593536 instance=ExtResource("3_hm4yo")]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 4
 
-[node name="WeaponButton3" parent="ShipDetailsContainer/GridContainer/WeaponButtons" instance=ExtResource("3_hm4yo")]
+[node name="WeaponButton2" parent="ShipDetailsContainer/GridContainer/WeaponButtons" unique_id=2021472155 instance=ExtResource("3_hm4yo")]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 4
 
-[node name="WeaponButton4" parent="ShipDetailsContainer/GridContainer/WeaponButtons" instance=ExtResource("3_hm4yo")]
+[node name="WeaponButton3" parent="ShipDetailsContainer/GridContainer/WeaponButtons" unique_id=520974516 instance=ExtResource("3_hm4yo")]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
+
+[node name="WeaponButton4" parent="ShipDetailsContainer/GridContainer/WeaponButtons" unique_id=926104950 instance=ExtResource("3_hm4yo")]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 4

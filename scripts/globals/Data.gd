@@ -61,7 +61,8 @@ func create_ship(ship_type: ShipType) -> ShipData:
 		ShipType.FLAGSHIP1:
 			return ShipData.new(
 				ship_type,
-				"Flagship", 
+				"Flagship",
+				"", 
 				true, 
 				[], 
 				3, 
@@ -74,7 +75,8 @@ func create_ship(ship_type: ShipType) -> ShipData:
 		ShipType.FRIGATE:
 			return ShipData.new(
 				ship_type, 
-				"Frigate", 
+				"Frigate",
+				"", 
 				false, 
 				[], 
 				2, 
@@ -87,6 +89,7 @@ func create_ship(ship_type: ShipType) -> ShipData:
 			return ShipData.new(
 				ship_type,
 				"Lookout",
+				"Adjacent ships' weapons gain +2 range",
 				false,
 				[],
 				1,
@@ -98,7 +101,7 @@ func create_ship(ship_type: ShipType) -> ShipData:
 			)
 	
 	assert(false, "Attempted to create a ShipType which was not defined in the ship factory")
-	return ShipData.new(ShipType.UNDEFINED, "Undefined", false, [], 0, [], 0, null, null, [])
+	return ShipData.new(ShipType.UNDEFINED, "Undefined", "", false, [], 0, [], 0, null, null, [])
 
 func create_weapon(weapon_type: WeaponType) -> WeaponData:
 	match weapon_type:
@@ -107,7 +110,7 @@ func create_weapon(weapon_type: WeaponType) -> WeaponData:
 		WeaponType.STANDARD_CANNON:
 			return WeaponData.new(WeaponType.STANDARD_CANNON, PlayerProjectileType.PLAYER_CANNONBALL, 5, 20.0, 5.0, [], "Standard Cannon", preload("res://textures/weapons/cannon_ph.png"))
 		WeaponType.INCENDIARY_CANNON:
-			return WeaponData.new(WeaponType.INCENDIARY_CANNON, PlayerProjectileType.IGNITE_CANNONBALL, 6, 15.0, 2.0, [Data.StatusEffectType.IGNITE], "Incendiary Cannon", preload("res://textures/weapons/incendiary_cannon_ph.png"))
+			return WeaponData.new(WeaponType.INCENDIARY_CANNON, PlayerProjectileType.IGNITE_CANNONBALL, 6, 15.0, 2.0, [create_status_effect(StatusEffectType.IGNITE)], "Incendiary Cannon", preload("res://textures/weapons/incendiary_cannon_ph.png"))
 	
 	assert(false, "Attempted to create a ShipType which was not defined in the weapon factory")
 	return WeaponData.new(WeaponType.UNDEFINED, PlayerProjectileType.UNDEFINED, 0, 0.0, 0.0, [], "", null)
@@ -127,3 +130,11 @@ func create_poi(poi_type: PoiType, position: Vector2 = Vector2(0,0)) -> PoiData:
 	
 	assert(false, "Attempted to create a PoiType which was not defined in the ship factory")
 	return 
+
+func create_status_effect(status_effect_type: StatusEffectType) -> StatusEffectData:
+	match status_effect_type:
+		StatusEffectType.IGNITE:
+			return StatusEffectData.new(status_effect_type, "Ignite", "2% percent health damage per second", 10.0, preload("res://textures/status_effects/ignite_ph.png"))
+	
+	assert(false, "Attempted to create a Status Effect type which was not defined in the aura factory")
+	return
