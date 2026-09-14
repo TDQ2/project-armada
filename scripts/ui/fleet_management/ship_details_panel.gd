@@ -14,7 +14,7 @@ func _ready() -> void:
 	CommandEvents.cz_cell_selected.connect(_update_ship_details)
 
 
-func _update_ship_details(ship_data: ShipData) -> void:
+func _update_ship_details(ship_data: ShipData, _coord: Coord) -> void:
 	#print("updating selected to ship=",str(ship_data.name))
 	portraitRect.texture = ship_data.portrait
 	$ShipDetailsContainer/ShipName.text = ship_data.name

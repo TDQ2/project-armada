@@ -49,3 +49,9 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_DRAG_END:
 		modulate.a = 1
+
+func add_highlight() -> void:
+	modulate = Color.from_rgba8(63, 93, 83, 255)
+
+func remove_highlight() -> void:
+	modulate = Color.WHITE

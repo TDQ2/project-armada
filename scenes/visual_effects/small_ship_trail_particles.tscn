@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dv12kaisiygdn"]
+[gd_scene format=3 uid="uid://dv12kaisiygdn"]
 
 [sub_resource type="Gradient" id="Gradient_jjjox"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0.004672897, 0.21291208, 0.9917582)
 colors = PackedColorArray(0.42305577, 0.64464945, 0.80106854, 1, 0.68831384, 0.7621997, 0.72742987, 1, 1.0084189, 1.1141235, 1.0643802, 1)
 
-[node name="SmallShipTrailParticles" type="CPUParticles2D"]
-z_index = -9
+[node name="SmallShipTrailParticles" type="CPUParticles2D" unique_id=355088149]
+z_index = -10
 amount = 60
 lifetime = 0.3
 emission_shape = 3

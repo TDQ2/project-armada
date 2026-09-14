@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cayivnn1hvh4w"]
+[gd_scene format=3 uid="uid://cayivnn1hvh4w"]
 
 [ext_resource type="Script" uid="uid://bsi0hlmpo4btw" path="res://scripts/ui/fleet_management/command_zone_grid_ui.gd" id="1_2nhcx"]
 [ext_resource type="PackedScene" uid="uid://dm5ini5cunq8g" path="res://scenes/ui/fleet_management/command_zone_grid_button.tscn" id="2_km2tr"]
 
-[node name="CommandZoneGridUI" type="GridContainer"]
+[node name="CommandZoneGridUI" type="GridContainer" unique_id=594704693]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -21,77 +21,77 @@ theme_override_constants/v_separation = 0
 columns = 5
 script = ExtResource("1_2nhcx")
 
-[node name="CommandZoneGridButton" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton" parent="." unique_id=917081219 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton2" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton2" parent="." unique_id=781181676 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton3" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton3" parent="." unique_id=1649081593 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton4" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton4" parent="." unique_id=391722663 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton5" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton5" parent="." unique_id=746770892 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton6" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton6" parent="." unique_id=124660058 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton7" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton7" parent="." unique_id=858835962 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton8" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton8" parent="." unique_id=116412260 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton9" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton9" parent="." unique_id=1015959081 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton10" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton10" parent="." unique_id=217116464 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton11" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton11" parent="." unique_id=2089737263 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton12" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton12" parent="." unique_id=1625833546 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton13" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton13" parent="." unique_id=1573819564 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton14" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton14" parent="." unique_id=42355449 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton15" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton15" parent="." unique_id=1764017522 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton16" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton16" parent="." unique_id=1000717499 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton17" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton17" parent="." unique_id=398960713 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton18" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton18" parent="." unique_id=724277115 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton19" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton19" parent="." unique_id=1177522206 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton20" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton20" parent="." unique_id=1393977240 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton21" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton21" parent="." unique_id=1030207786 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton22" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton22" parent="." unique_id=363158 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton23" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton23" parent="." unique_id=444646979 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton24" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton24" parent="." unique_id=713653578 instance=ExtResource("2_km2tr")]
 layout_mode = 2
 
-[node name="CommandZoneGridButton25" parent="." instance=ExtResource("2_km2tr")]
+[node name="CommandZoneGridButton25" parent="." unique_id=70852300 instance=ExtResource("2_km2tr")]
 layout_mode = 2
