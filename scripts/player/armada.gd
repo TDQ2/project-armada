@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var speed := 50
-@export var max_rotation_speed := 0.003 # radians per frame
+@export var max_rotation_speed := 0.01 # radians per frame
 
 var direction := Vector2.RIGHT
 var target_position: Vector2

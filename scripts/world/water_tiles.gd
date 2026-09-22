@@ -3,6 +3,13 @@ class_name WaterTiles
 
 const WATER_TILE_SOURCE := 0
 const STORM_TILE_SOURCE := 1
+
+# Base water dimensions as tiles (currently 32x32)
+const TOP_LEFT := Vector2i(0, -200)
+const NORMAL_WATER_SIZE := Vector2i(400, 400)
+const STORM_BORDER_SIZE := 50
+
+# Tile randomization consts
 const ANIMATION_CHANCE := 0.1
 const BASE_WATER_TILE_CHANCE := 0.7
 const MIN_DURATION := 3
@@ -33,10 +40,29 @@ const STORM_Y_LOWER_BOUND := 200
 func _ready() -> void:
 	# TODO: populate water programmatically
 	_classify_water_tile_types()
+	_set_base_water_tiles()
+	_set_storm_water_tiles()
+	set_process(false) # prevents processing before armada is set
+
+func _set_base_water_tiles() -> void:
+	for x in range(NORMAL_WATER_SIZE.x):
+		for y in range(NORMAL_WATER_SIZE.y):
+			var coord := TOP_LEFT + Vector2i(x, y)
+			set_cell(coord, 0, Vector2i(0,0)) # set cell to default water tile
+
+func _set_storm_water_tiles() -> void:
+	var top_left_storm := TOP_LEFT + Vector2i(-STORM_BORDER_SIZE, -STORM_BORDER_SIZE)
+	var normal_water_region := Rect2i(TOP_LEFT, NORMAL_WATER_SIZE)
+	for x in range(top_left_storm.x, TOP_LEFT.x + NORMAL_WATER_SIZE.x + STORM_BORDER_SIZE):
+		for y in range(top_left_storm.y, TOP_LEFT.y + NORMAL_WATER_SIZE.y + STORM_BORDER_SIZE):
+			var coord := Vector2i(x, y)
+			if !normal_water_region.has_point(coord):
+				set_cell(coord, 1, Vector2i(0, 0)) # set cell to default storm tile
 
 func setup(armada_: Node2D) -> void:
 	armada = armada_
 	_set_visible_cells()
+	set_process(true) # prevents processing before armada is set
 
 func _process(delta: float) -> void:
 	storm_timer += delta
@@ -78,14 +104,6 @@ func _classify_water_tile_types() -> void:
 			_animated_tiles.append(coord)
 		else:
 			_static_tiles.append(coord)
-
-func _update_timers(region: Rect2i) -> void:
-	for x in range(region.position.x, region.end.x):
-		for y in range(region.position.y, region.end.y):
-			if !_cell_update_timers.has(Vector2i(x, y)):
-				var coord := Vector2i(x, y)
-				var tile_type := _redraw_cell_random(coord)
-				_cell_update_timers[Vector2i(x, y)] = _get_interval_for_tile(tile_type)
 
 func _get_interval_for_tile(tile_type: Vector2i) -> float:
 	if tile_type in _tile_durations:

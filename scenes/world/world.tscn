@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://chgy7aq3jnt0o"]
 
 [ext_resource type="Script" uid="uid://d3wvygjiib3b4" path="res://scripts/world/world.gd" id="1_bq33v"]
-[ext_resource type="PackedScene" uid="uid://d1rrvhm1dajkq" path="res://scenes/world/water_tiles.tscn" id="2_j2gmx"]
+[ext_resource type="PackedScene" uid="uid://r44uvbb8ur23" path="res://scenes/world/water_and_storm.tscn" id="2_bq33v"]
 [ext_resource type="PackedScene" uid="uid://btd3amqgbrh2" path="res://scenes/enemies/children/basic_pirate_ship.tscn" id="4_gb53w"]
 [ext_resource type="PackedScene" uid="uid://bkfrfk61am68w" path="res://scenes/player/armada.tscn" id="5_5qq27"]
 [ext_resource type="Texture2D" uid="uid://nl0atipur1bs" path="res://textures/temp/spike.png" id="6_dlabj"]
@@ -11,7 +11,7 @@
 [node name="World" type="Node2D" unique_id=640897062]
 script = ExtResource("1_bq33v")
 
-[node name="WaterTiles" parent="." unique_id=498639754 instance=ExtResource("2_j2gmx")]
+[node name="WaterAndStorm" parent="." unique_id=2010495007 instance=ExtResource("2_bq33v")]
 
 [node name="Ships" type="Node2D" parent="." unique_id=1742962298]
 

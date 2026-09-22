@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://r44uvbb8ur23"]
+
+[ext_resource type="PackedScene" uid="uid://d1rrvhm1dajkq" path="res://scenes/world/water_tiles.tscn" id="1_1g0cf"]
+[ext_resource type="Script" uid="uid://bhxgdns8840kw" path="res://scripts/world/water_and_storm.gd" id="1_qhdkt"]
+
+[node name="WaterAndStorm" type="Node2D" unique_id=2010495007]
+script = ExtResource("1_qhdkt")
+
+[node name="WaterTiles" parent="." unique_id=498639754 instance=ExtResource("1_1g0cf")]
+
+[node name="StormArea2D" type="Area2D" parent="." unique_id=1232107269]
+collision_layer = 32
+collision_mask = 2

@@ -4,7 +4,8 @@ extends Node2D
 @onready var poi_container := $POIs
 @onready var map_ui: MapUI = $GameplayCanvas/GameplayUI/VBoxContainer/MapUI
 @onready var armada: Node2D = $Armada
-@onready var water_tiles: WaterTiles = $WaterTiles
+@onready var water_and_storm: WaterAndStorm = $WaterAndStorm
+#@onready var water_tiles: WaterTiles = $WaterTiles
 
 var poi_data_to_world: Dictionary[PoiData, PoiBase]
 
@@ -16,7 +17,8 @@ func _ready() -> void:
 	CommandEvents.poi_cleared.connect(_handle_poi_cleared)
 	#var poi_datas = _create_pois()
 	map_ui.setup(armada)
-	water_tiles.setup(armada)
+	#water_tiles.setup(armada)
+	water_and_storm.setup(armada)
 	_create_pois()
 	
 
