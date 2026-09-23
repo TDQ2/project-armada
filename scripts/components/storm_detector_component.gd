@@ -10,9 +10,8 @@ signal storm_exited
 func _ready() -> void:
 	assert(Utils.has_collision_shape(self), str(get_parent()) + " storm detector should have a collision shape")
 
-func _on_body_entered(_body: Node2D) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 	storm_entered.emit()
 
-
-func _on_body_exited(_body: Node2D) -> void:
+func _on_area_exited(_area: Area2D) -> void:
 	storm_exited.emit()

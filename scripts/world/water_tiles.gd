@@ -30,12 +30,9 @@ var _cell_update_timers: Dictionary[Vector2i, float] # float is timer duration
 
 var armada: Node2D
 
-### STORM Management
-var storm_x_index := 0
-const STORM_PROGRESSION_INTERVAL := 3
-var storm_timer := 0.0
-const STORM_Y_UPPER_BOUND := -200
-const STORM_Y_LOWER_BOUND := 200
+### STORM Management provided by parent
+var storm_y_upper_bound
+var storm_y_lower_bound
 
 func _ready() -> void:
 	# TODO: populate water programmatically
@@ -59,16 +56,14 @@ func _set_storm_water_tiles() -> void:
 			if !normal_water_region.has_point(coord):
 				set_cell(coord, 1, Vector2i(0, 0)) # set cell to default storm tile
 
-func setup(armada_: Node2D) -> void:
+func setup(armada_: Node2D, storm_y_upper_bound_: int, storm_y_lower_bound_: int) -> void:
+	storm_y_upper_bound = storm_y_upper_bound_
+	storm_y_lower_bound = storm_y_lower_bound_
 	armada = armada_
 	_set_visible_cells()
 	set_process(true) # prevents processing before armada is set
 
 func _process(delta: float) -> void:
-	storm_timer += delta
-	if storm_timer >= STORM_PROGRESSION_INTERVAL:
-		storm_timer -= STORM_PROGRESSION_INTERVAL
-		_handle_storm_progression()
 	_handle_cell_timers(delta)
 	_set_visible_cells()
 
@@ -123,8 +118,8 @@ func _redraw_cell_random(coord: Vector2i) -> Vector2i: #returns tile type
 		set_cell(coord, WATER_TILE_SOURCE, chosen_cell)
 		return chosen_cell
 
-func _handle_storm_progression() -> void:
-	for i in range(STORM_Y_UPPER_BOUND, STORM_Y_LOWER_BOUND+1):
+func progress_storm_tiles(storm_x_index: int, ) -> void:
+	for i in range(storm_y_upper_bound, storm_y_lower_bound+1):
 		set_cell(Vector2i(storm_x_index, i), STORM_TILE_SOURCE, Vector2i(0,0))
 	var cells_to_erase: Array[Vector2i]
 	for cell: Vector2i in _cell_update_timers:
@@ -132,7 +127,6 @@ func _handle_storm_progression() -> void:
 			cells_to_erase.append(cell)
 	for cell: Vector2i in cells_to_erase:
 		_cell_update_timers.erase(cell)
-	storm_x_index += 1
 
 func get_visible_range() -> Rect2i:
 	# if armada position is 0,0
