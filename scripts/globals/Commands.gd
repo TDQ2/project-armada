@@ -8,6 +8,7 @@ extends Node
 @onready var inventory: Inventory = State.run_state.inventory
 @onready var points_of_interest: PointsOfInterest = State.run_state.points_of_interest
 
+
 # Read Commands
 func select_cell(coord: Coord) -> void:
 	var command_zone_cell := command_zone.get_cell(coord)
@@ -75,4 +76,7 @@ func add_poi(poi_data: PoiData) -> void:
 func clear_poi(poi_data: PoiData) -> void:
 	poi_data.cleared = true #TODO, does this need to interface with RunState instead of direct access here?
 	CommandEvents.emit_poi_cleared(poi_data)
-	
+
+func progress_storm() -> void:
+	CommandEvents.emit_storm_progressed(State.run_state.storm_x_idx)
+	State.run_state.storm_x_idx += 1

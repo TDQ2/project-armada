@@ -54,11 +54,9 @@ func set_target_dest(dest: Vector2) -> void:
 	target_dest = dest
 
 func _handle_storm_entered() -> void:
-	print("storm entered for " + str(ship_data.name))
 	storm_tick_timer.start()
 
 func _handle_storm_exited() -> void:
-	print("storm exited for " + str(ship_data.name))
 	storm_tick_timer.stop()
 
 func _on_storm_tick_timer_timeout() -> void:

@@ -32,6 +32,7 @@ Commands="*res://scripts/globals/Commands.gd"
 CommandEvents="*res://scripts/globals/CommandEvents.gd"
 WorldEvents="*res://scripts/globals/WorldEvents.gd"
 ModifierManager="*res://scripts/globals/ModifierManager.gd"
+Consts="*uid://isqtbr26a05w"
 
 [display]
 

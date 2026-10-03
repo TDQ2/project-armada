@@ -4,11 +4,6 @@ class_name WaterTiles
 const WATER_TILE_SOURCE := 0
 const STORM_TILE_SOURCE := 1
 
-# Base water dimensions as tiles (currently 32x32)
-const TOP_LEFT := Vector2i(0, -200)
-const NORMAL_WATER_SIZE := Vector2i(400, 400)
-const STORM_BORDER_SIZE := 50
-
 # Tile randomization consts
 const ANIMATION_CHANCE := 0.1
 const BASE_WATER_TILE_CHANCE := 0.7
@@ -31,36 +26,39 @@ var _cell_update_timers: Dictionary[Vector2i, float] # float is timer duration
 var armada: Node2D
 
 ### STORM Management provided by parent
-var storm_y_upper_bound
-var storm_y_lower_bound
+const storm_y_upper_bound := Consts.TOP_LEFT.y
+const storm_y_lower_bound := Consts.TOP_LEFT.y + Consts.NORMAL_WATER_SIZE.y
 
 func _ready() -> void:
 	# TODO: populate water programmatically
+	CommandEvents.storm_progressed.connect(_progress_storm_tiles)
 	_classify_water_tile_types()
 	_set_base_water_tiles()
 	_set_storm_water_tiles()
 	set_process(false) # prevents processing before armada is set
 
 func _set_base_water_tiles() -> void:
-	for x in range(NORMAL_WATER_SIZE.x):
-		for y in range(NORMAL_WATER_SIZE.y):
-			var coord := TOP_LEFT + Vector2i(x, y)
+	for x in range(Consts.NORMAL_WATER_SIZE.x):
+		for y in range(Consts.NORMAL_WATER_SIZE.y):
+			var coord := Consts.TOP_LEFT + Vector2i(x, y)
 			set_cell(coord, 0, Vector2i(0,0)) # set cell to default water tile
 
 func _set_storm_water_tiles() -> void:
-	var top_left_storm := TOP_LEFT + Vector2i(-STORM_BORDER_SIZE, -STORM_BORDER_SIZE)
-	var normal_water_region := Rect2i(TOP_LEFT, NORMAL_WATER_SIZE)
-	for x in range(top_left_storm.x, TOP_LEFT.x + NORMAL_WATER_SIZE.x + STORM_BORDER_SIZE):
-		for y in range(top_left_storm.y, TOP_LEFT.y + NORMAL_WATER_SIZE.y + STORM_BORDER_SIZE):
+	var top_left_storm := Consts.TOP_LEFT + Vector2i(-Consts.STORM_BORDER_SIZE, -Consts.STORM_BORDER_SIZE)
+	var normal_water_region := Rect2i(Consts.TOP_LEFT, Consts.NORMAL_WATER_SIZE)
+	for x in range(top_left_storm.x, Consts.TOP_LEFT.x + Consts.NORMAL_WATER_SIZE.x + Consts.STORM_BORDER_SIZE):
+		for y in range(top_left_storm.y, Consts.TOP_LEFT.y + Consts.NORMAL_WATER_SIZE.y + Consts.STORM_BORDER_SIZE):
 			var coord := Vector2i(x, y)
 			if !normal_water_region.has_point(coord):
 				set_cell(coord, 1, Vector2i(0, 0)) # set cell to default storm tile
 
-func setup(armada_: Node2D, storm_y_upper_bound_: int, storm_y_lower_bound_: int) -> void:
-	storm_y_upper_bound = storm_y_upper_bound_
-	storm_y_lower_bound = storm_y_lower_bound_
+func setup(
+	armada_: Node2D
+	) -> void:
 	armada = armada_
+	
 	_set_visible_cells()
+	_progress_storm_tiles(State.run_state.storm_x_idx)
 	set_process(true) # prevents processing before armada is set
 
 func _process(delta: float) -> void:
@@ -118,7 +116,7 @@ func _redraw_cell_random(coord: Vector2i) -> Vector2i: #returns tile type
 		set_cell(coord, WATER_TILE_SOURCE, chosen_cell)
 		return chosen_cell
 
-func progress_storm_tiles(storm_x_index: int, ) -> void:
+func _progress_storm_tiles(storm_x_index: int) -> void:
 	for i in range(storm_y_upper_bound, storm_y_lower_bound+1):
 		set_cell(Vector2i(storm_x_index, i), STORM_TILE_SOURCE, Vector2i(0,0))
 	var cells_to_erase: Array[Vector2i]

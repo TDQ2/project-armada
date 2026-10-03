@@ -9,18 +9,23 @@ extends Node2D
 
 var poi_data_to_world: Dictionary[PoiData, PoiBase]
 
+var storm_timer := 0.0
+
 func _ready() -> void:
 	get_tree().paused = false
 	WorldEvents.player_weapon_fired.connect(_handle_player_weapon_fired)
 	WorldEvents.enemy_weapon_fired.connect(_handle_enemy_weapon_fired)
 	CommandEvents.poi_added.connect(_handle_poi_added)
 	CommandEvents.poi_cleared.connect(_handle_poi_cleared)
-	#var poi_datas = _create_pois()
 	map_ui.setup(armada)
-	#water_tiles.setup(armada)
 	water_and_storm.setup(armada)
 	_create_pois()
-	
+
+func _process(delta: float) -> void:
+	storm_timer += delta
+	if storm_timer >= Consts.STORM_PROGRESSION_INTERVAL:
+		storm_timer -= Consts.STORM_PROGRESSION_INTERVAL
+		Commands.progress_storm()
 
 func _create_pois() -> void:
 	#TODO eventually place random POI generation here
