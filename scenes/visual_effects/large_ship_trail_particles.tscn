@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://byl18wbj3ujrg"]
+[gd_scene format=3 uid="uid://byl18wbj3ujrg"]
 
 [sub_resource type="Curve" id="Curve_yps3e"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -7,7 +7,8 @@ point_count = 3
 [sub_resource type="Gradient" id="Gradient_jjjox"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="LargeShipTrailParticles" type="CPUParticles2D"]
+[node name="LargeShipTrailParticles" type="CPUParticles2D" unique_id=1956997912]
+z_index = -10
 amount = 70
 lifetime = 0.75
 emission_shape = 3

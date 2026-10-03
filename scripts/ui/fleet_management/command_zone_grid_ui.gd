@@ -2,6 +2,7 @@ extends GridContainer
 
 func _ready() -> void:
 	CommandEvents.command_zone_changed.connect(_refresh_grid)
+	CommandEvents.cz_cell_selected.connect(_handle_cz_cell_selected)
 	for child in get_children():
 		var button := child as CommandZoneButton
 		button.pressed.connect(_on_cell_pressed.bind(button))
@@ -12,6 +13,8 @@ func _ready() -> void:
 	Commands.add_ship_to_cz(Coord.new(1, 1), Data.create_ship(Data.ShipType.FRIGATE))
 	Commands.add_ship_to_cz(Coord.new(3, 3), Data.create_ship(Data.ShipType.LOOKOUT))
 	Commands.enable_cz_cell(Coord.new(1, 2))
+	Commands.enable_cz_cell(Coord.new(2, 1))
+	Commands.enable_cz_cell(Coord.new(2, 0))
 	Commands.enable_cz_cell(Coord.new(3, 2))
 	Commands.enable_cz_cell(Coord.new(4, 2))
 	Commands.enable_cz_cell(Coord.new(4, 3))
@@ -49,7 +52,20 @@ func _children_index_to_grid(idx: int) -> Coord:
 	var row := idx / columns
 	var col := idx % columns
 	return Coord.new(row, col)
+
+func _handle_cz_cell_selected(ship: ShipData, coord: Coord) -> void:
+	clear_highlights()
+	for aura in ship.auras:
+		var highlight_targets := Utils.get_aura_coords(aura, coord)
+		add_highlights(highlight_targets)
 	
-	
-	
-	
+
+func add_highlights(coords: Array[Coord]) -> void:
+	for coord in coords:
+		var idx := _grid_to_children_index(coord)
+		var button: CommandZoneButton = get_child(idx)
+		button.add_highlight()
+
+func clear_highlights() -> void:
+	for command_zone_button: CommandZoneButton in get_children():
+		command_zone_button.remove_highlight()

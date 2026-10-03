@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbk7a4a3lswut"]
+[gd_scene format=3 uid="uid://dbk7a4a3lswut"]
 
-[ext_resource type="Script" uid="uid://c4bdq5irf148x" path="res://status_effects_component.gd" id="1_xx0co"]
+[ext_resource type="Script" uid="uid://c4bdq5irf148x" path="res://scripts/components/status_effects_component.gd" id="1_xx0co"]
 
-[node name="StatusEffectsComponent" type="Node2D"]
+[node name="StatusEffectsComponent" type="Node2D" unique_id=1878991322]
 script = ExtResource("1_xx0co")
 
-[node name="StatusesContainer" type="HBoxContainer" parent="."]
+[node name="StatusesContainer" type="HBoxContainer" parent="." unique_id=1746133613]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

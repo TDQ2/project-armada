@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://c8misxshq3ph3"]
+
+[ext_resource type="Script" uid="uid://be1qfm5romu43" path="res://scripts/ui/system_menus/settings_menu.gd" id="1_8kpob"]
+
+[node name="SettingsMenu" type="PanelContainer" unique_id=244764742]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8kpob")
+master_bus_name = "Master"
+music_bus_name = "Music"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=392375424]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=990335020]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=801546310]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="VBoxContainer" unique_id=465389755]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="AudioControlsContainer" type="MarginContainer" parent="VBoxContainer" unique_id=66294442]
+layout_mode = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 150
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/AudioControlsContainer" unique_id=29860827]
+layout_mode = 2
+theme_override_constants/h_separation = 19
+theme_override_constants/v_separation = 12
+columns = 2
+
+[node name="MasterVolumeLabel" type="Label" parent="VBoxContainer/AudioControlsContainer/GridContainer" unique_id=453924693]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="VBoxContainer/AudioControlsContainer/GridContainer" unique_id=1964257052]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="MusicVolumeLabel" type="Label" parent="VBoxContainer/AudioControlsContainer/GridContainer" unique_id=1336555110]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="VBoxContainer/AudioControlsContainer/GridContainer" unique_id=1163539765]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="SoundEffectVolumeLabel" type="Label" parent="VBoxContainer/AudioControlsContainer/GridContainer" unique_id=315393847]
+layout_mode = 2
+text = "Sound Effects Volume"
+
+[node name="SoundEffectsVolumeSlider" type="HSlider" parent="VBoxContainer/AudioControlsContainer/GridContainer" unique_id=1529789830]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=862400216]
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/ButtonsContainer" unique_id=567927878]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="MainMenuContainer" type="MarginContainer" parent="VBoxContainer/ButtonsContainer" unique_id=1969400798]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="MainMenu" type="Button" parent="VBoxContainer/ButtonsContainer/MainMenuContainer" unique_id=1006924680]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Spacer3" type="Control" parent="VBoxContainer/ButtonsContainer" unique_id=119501447]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="QuitContainer" type="MarginContainer" parent="VBoxContainer/ButtonsContainer" unique_id=682651568]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="Quit" type="Button" parent="VBoxContainer/ButtonsContainer/QuitContainer" unique_id=1808979331]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="value_changed" from="VBoxContainer/AudioControlsContainer/GridContainer/MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/AudioControlsContainer/GridContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/AudioControlsContainer/GridContainer/SoundEffectsVolumeSlider" to="." method="_on_sound_effects_volume_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/ButtonsContainer/MainMenuContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonsContainer/QuitContainer/Quit" to="." method="_on_quit_pressed"]

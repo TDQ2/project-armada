@@ -39,6 +39,9 @@ func render_sprites() -> void:
 		next_sprite.vframes = vframes
 		next_sprite.hframes = hframes
 		next_sprite.frame = i * hframes
+		# TODO: make this toggleable for non-ships
+		if i == 0: # set water 
+			next_sprite.z_index = -10
 		next_sprite.position.y = -i * 1
 		add_child(next_sprite)
 

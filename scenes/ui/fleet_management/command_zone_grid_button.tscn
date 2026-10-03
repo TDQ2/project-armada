@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dm5ini5cunq8g"]
+[gd_scene format=3 uid="uid://dm5ini5cunq8g"]
 
 [ext_resource type="StyleBox" uid="uid://dvjby3q356kg6" path="res://scenes/ui/fleet_management/themes/basic_button_normal.tres" id="1_ghdc4"]
 [ext_resource type="StyleBox" uid="uid://dh4atnxlkt3ex" path="res://scenes/ui/fleet_management/themes/basic_button_pressed.tres" id="2_ra72d"]
@@ -6,7 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://dmgva3ah8vdrr" path="res://scenes/ui/fleet_management/themes/basic_button_disabled.tres" id="4_le5kj"]
 [ext_resource type="Script" uid="uid://cjjreky8wbhr5" path="res://scripts/ui/fleet_management/command_zone_grid_button.gd" id="5_ra72d"]
 
-[node name="CommandZoneGridButton" type="Button"]
+[node name="CommandZoneGridButton" type="Button" unique_id=192726906]
 custom_minimum_size = Vector2(28, 28)
 anchors_preset = 8
 anchor_left = 0.5

@@ -3,6 +3,7 @@ class_name ShipData
 
 @export var ship_type: Data.ShipType
 @export var name: String
+@export var ability_text: String
 @export var is_flagship := false
 @export var crew_slots: Array[CrewData]
 @export var weapon_slots: Array[WeaponData]
@@ -12,7 +13,8 @@ class_name ShipData
 
 func _init(
 	ship_type_: Data.ShipType, 
-	name_: String, 
+	name_: String,
+	ability_text_: String,
 	is_flagship_: bool, 
 	crew_slots_: Array[CrewData], 
 	crew_count: int, 
@@ -24,6 +26,7 @@ func _init(
 	) -> void:
 	ship_type = ship_type_
 	name = name_
+	ability_text = ability_text_
 	is_flagship = is_flagship_
 	crew_slots = crew_slots_
 	crew_slots.resize(crew_count)

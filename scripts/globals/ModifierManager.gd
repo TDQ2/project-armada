@@ -39,6 +39,7 @@ func _apply_auras_from_ship(provider_ship: ShipData, coord: Coord) -> void:
 		if !aura.weapon_modifiers.is_empty():
 			_apply_weapon_aura_modifier(targeted_ships, aura.weapon_modifiers)
 
+# TODO: move to using shared util method
 func _get_aura_targeted_ships(aura: AuraData, coord: Coord) -> Array[ShipData]:
 	var targeted_ships: Array[ShipData] = []
 	match aura.shape:

@@ -8,20 +8,23 @@ extends Node
 @onready var inventory: Inventory = State.run_state.inventory
 @onready var points_of_interest: PointsOfInterest = State.run_state.points_of_interest
 
+
 # Read Commands
-func select_cell(coords: Coord) -> void:
-	var command_zone_cell := command_zone.get_cell(coords)
+func select_cell(coord: Coord) -> void:
+	var command_zone_cell := command_zone.get_cell(coord)
 	if !command_zone_cell.ship:
 		return
-	State.run_state.selected_cz_coords = coords
+	State.run_state.selected_cz_coords = coord
 	if command_zone_cell.ship:
-		CommandEvents.cz_cell_selected.emit(command_zone_cell.ship)
+		CommandEvents.emit_cz_cell_selected(command_zone_cell.ship, coord)
+		#CommandEvents.cz_cell_selected.emit(command_zone_cell.ship)
 
 func select_flagship() -> void:
-	print("selecting flagship")
+	#print("selecting flagship")
 	var flagship := command_zone.get_flagship()
 	State.run_state.selected_cz_coords = State.run_state.flagship_coords
-	CommandEvents.cz_cell_selected.emit(flagship)
+	CommandEvents.emit_cz_cell_selected(flagship, State.run_state.flagship_coords)
+	#CommandEvents.cz_cell_selected.emit(flagship)
 
 # Write Commands
 func enable_cz_cell(coord: Coord) -> void:
@@ -44,11 +47,11 @@ func swap_cz_cells(coords1: Coord, coords2: Coord) ->void:
 func add_weapon_to_ship(inv_idx: int, weapon_slot_idx: int) -> void:
 	var weapon_data := inventory.get_item(inv_idx)
 	inventory.set_item(inv_idx, null)
-	var selected_cz_cell = command_zone.get_cell(State.run_state.selected_cz_coords)
+	var selected_cz_cell := command_zone.get_cell(State.run_state.selected_cz_coords)
 	assert(selected_cz_cell.ship, "Attempt to add a weapon to a null ship instance")
 	selected_cz_cell.ship.weapon_slots[weapon_slot_idx] = weapon_data
 	CommandEvents.emit_inventory_changed(inventory)
-	CommandEvents.emit_cz_cell_selected(selected_cz_cell.ship)
+	CommandEvents.emit_cz_cell_selected(selected_cz_cell.ship, State.run_state.selected_cz_coords)
 	CommandEvents.emit_ship_updated(selected_cz_cell.ship)
 
 func add_item_to_inventory_at_idx(idx: int, item_data: ItemData) -> void:
@@ -73,4 +76,7 @@ func add_poi(poi_data: PoiData) -> void:
 func clear_poi(poi_data: PoiData) -> void:
 	poi_data.cleared = true #TODO, does this need to interface with RunState instead of direct access here?
 	CommandEvents.emit_poi_cleared(poi_data)
-	
+
+func progress_storm() -> void:
+	CommandEvents.emit_storm_progressed(State.run_state.storm_x_idx)
+	State.run_state.storm_x_idx += 1

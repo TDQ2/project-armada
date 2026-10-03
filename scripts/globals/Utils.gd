@@ -31,3 +31,31 @@ func compute_modified_stat(base: float, modifiers: Array[StatModifier]) -> float
 	if total < 0:
 		total = 0
 	return total
+
+func get_aura_coords(aura: AuraData, coord: Coord) -> Array[Coord]:
+	match aura.shape:
+		Data.AuraShape.ADJACENT:
+			return _get_adjacent_coords(coord)
+		Data.AuraShape.FRONT_BACK:
+			assert(false, "front-back not implemented")
+			return []
+		Data.AuraShape.SIDE_SIDE:
+			assert(false, "side-side not implemented")
+			return []
+		Data.AuraShape.UNDEFINED:
+			assert(false, "Attempting to apply undefined aura shape")
+			return []
+	assert(false, "Attempting to get coords for unimplemented aura type")
+	return []
+
+func _get_adjacent_coords(aura_coord: Coord) -> Array[Coord]:
+	var adjacent_coords: Array[Coord] = []
+	var potential_coords: Array[Coord]
+	potential_coords.append(Coord.new(aura_coord.row - 1, aura_coord.col))
+	potential_coords.append(Coord.new(aura_coord.row + 1, aura_coord.col))
+	potential_coords.append(Coord.new(aura_coord.row, aura_coord.col - 1))
+	potential_coords.append(Coord.new(aura_coord.row, aura_coord.col + 1))
+	for potenial_coord in potential_coords:
+		if Utils.coord_is_valid(potenial_coord): 
+			adjacent_coords.append(potenial_coord)
+	return adjacent_coords

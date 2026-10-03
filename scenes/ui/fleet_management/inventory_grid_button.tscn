@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdvlvcsh1j3pg"]
+[gd_scene format=3 uid="uid://bdvlvcsh1j3pg"]
 
 [ext_resource type="StyleBox" uid="uid://dvjby3q356kg6" path="res://scenes/ui/fleet_management/themes/basic_button_normal.tres" id="1_c38pt"]
 [ext_resource type="StyleBox" uid="uid://dh4atnxlkt3ex" path="res://scenes/ui/fleet_management/themes/basic_button_pressed.tres" id="2_gckd5"]
@@ -6,7 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://dmgva3ah8vdrr" path="res://scenes/ui/fleet_management/themes/basic_button_disabled.tres" id="4_2l4f5"]
 [ext_resource type="Script" uid="uid://bt78weoy7s5dj" path="res://scripts/ui/fleet_management/inventory_grid_button.gd" id="5_gckd5"]
 
-[node name="InventoryGridButton" type="Button"]
+[node name="InventoryGridButton" type="Button" unique_id=596859501]
 custom_minimum_size = Vector2(28, 28)
 anchors_preset = 8
 anchor_left = 0.5

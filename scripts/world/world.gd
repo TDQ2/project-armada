@@ -2,27 +2,37 @@ extends Node2D
 
 @onready var projectiles_container := $Projectiles
 @onready var poi_container := $POIs
-@onready var map_ui: MapUI = $CanvasLayer/GameplayUI/VBoxContainer/MapUI
+@onready var map_ui: MapUI = $GameplayCanvas/GameplayUI/VBoxContainer/MapUI
 @onready var armada: Node2D = $Armada
+@onready var water_and_storm: WaterAndStorm = $WaterAndStorm
+#@onready var water_tiles: WaterTiles = $WaterTiles
 
 var poi_data_to_world: Dictionary[PoiData, PoiBase]
 
+var storm_timer := 0.0
+
 func _ready() -> void:
+	get_tree().paused = false
 	WorldEvents.player_weapon_fired.connect(_handle_player_weapon_fired)
 	WorldEvents.enemy_weapon_fired.connect(_handle_enemy_weapon_fired)
 	CommandEvents.poi_added.connect(_handle_poi_added)
 	CommandEvents.poi_cleared.connect(_handle_poi_cleared)
-	#var poi_datas = _create_pois()
 	map_ui.setup(armada)
+	water_and_storm.setup(armada)
 	_create_pois()
-	
+
+func _process(delta: float) -> void:
+	storm_timer += delta
+	if storm_timer >= Consts.STORM_PROGRESSION_INTERVAL:
+		storm_timer -= Consts.STORM_PROGRESSION_INTERVAL
+		Commands.progress_storm()
 
 func _create_pois() -> void:
 	#TODO eventually place random POI generation here
 	var poi_data0 := Data.create_poi(Data.PoiType.TREASURE, Vector2(200, -550))
-	var poi_data1 := Data.create_poi(Data.PoiType.TREASURE, Vector2(-300, -750))
+	var poi_data1 := Data.create_poi(Data.PoiType.TREASURE, Vector2(1300, -750))
 	var poi_data2 := Data.create_poi(Data.PoiType.TREASURE, Vector2(300, 500))
-	var poi_data3 := Data.create_poi(Data.PoiType.TREASURE, Vector2(-300, 500))
+	var poi_data3 := Data.create_poi(Data.PoiType.TREASURE, Vector2(2000, 500))
 	Commands.add_poi(poi_data0)
 	Commands.add_poi(poi_data1)
 	Commands.add_poi(poi_data2)

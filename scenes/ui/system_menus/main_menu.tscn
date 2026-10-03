@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://bilf4bhimm84l"]
+
+[ext_resource type="Texture2D" uid="uid://b7qy2f7fwo7ig" path="res://textures/menu/woodblock-blue-waves_16_9.png" id="1_411ec"]
+[ext_resource type="Script" uid="uid://bhgdu22iuue46" path="res://scripts/ui/system_menus/main_menu.gd" id="1_amuyi"]
+[ext_resource type="PackedScene" uid="uid://c8misxshq3ph3" path="res://scenes/ui/system_menus/settings_menu.tscn" id="3_m1d4d"]
+
+[sub_resource type="Theme" id="Theme_vqqf1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_411ec"]
+bg_color = Color(0.6156863, 0.68235296, 0.6509804, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MainMenu" type="Control" unique_id=1738797862]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_amuyi")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=38695513]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_411ec")
+expand_mode = 2
+
+[node name="TextBackground" type="ColorRect" parent="." unique_id=1060141764]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.313
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = 20.0
+grow_vertical = 2
+color = Color(0.09411765, 0.07058824, 0.20392157, 1)
+
+[node name="ButtonsMarginContainer" type="MarginContainer" parent="." unique_id=699100628]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.313
+anchor_bottom = 1.0
+offset_left = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ButtonsMarginContainer" unique_id=1802447901]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="ButtonsMarginContainer/VBoxContainer" unique_id=787418383]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="ButtonsMarginContainer/VBoxContainer" unique_id=19113489]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.8, 0.7019608, 1)
+theme_override_font_sizes/font_size = 21
+text = "Project Armada"
+horizontal_alignment = 1
+
+[node name="NewGame" type="Button" parent="ButtonsMarginContainer/VBoxContainer" unique_id=57185531]
+layout_mode = 2
+theme = SubResource("Theme_vqqf1")
+theme_override_colors/font_color = Color(0.2, 0.14117648, 0.0627451, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_411ec")
+text = "New Game"
+
+[node name="Settings" type="Button" parent="ButtonsMarginContainer/VBoxContainer" unique_id=1444877839]
+layout_mode = 2
+theme = SubResource("Theme_vqqf1")
+theme_override_colors/font_color = Color(0.2, 0.14117648, 0.0627451, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_411ec")
+text = "Settings
+"
+
+[node name="Quit" type="Button" parent="ButtonsMarginContainer/VBoxContainer" unique_id=1926418879]
+layout_mode = 2
+theme = SubResource("Theme_vqqf1")
+theme_override_colors/font_color = Color(0.2, 0.14117648, 0.0627451, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_411ec")
+text = "Quit
+"
+
+[node name="SettingsMenu" parent="." unique_id=244764742 instance=ExtResource("3_m1d4d")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="ButtonsMarginContainer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="ButtonsMarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="ButtonsMarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+
+[editable path="SettingsMenu"]

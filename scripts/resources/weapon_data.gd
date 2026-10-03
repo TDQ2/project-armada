@@ -6,7 +6,7 @@ class_name WeaponData
 @export var fire_range: int
 @export var damage: float
 @export var cooldown_duration: float
-@export var status_effects: Array[Data.StatusEffectType]
+@export var status_effects: Array[StatusEffectData]
 var granted_modifiers: Array[StatModifier]
 
 func _init(
@@ -15,7 +15,7 @@ func _init(
 	fire_range_: int, 
 	damage_: float, 
 	cooldown_duration_: float,
-	status_effects_: Array[Data.StatusEffectType],
+	status_effects_: Array[StatusEffectData],
 	name_: String, 
 	ui_icon_: Texture2D) -> void:
 	weapon_type = weapon_type_

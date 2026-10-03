@@ -2,6 +2,7 @@ extends Button
 class_name InventoryButton
 
 var idx: int
+var weapon_hover_scene := preload("res://scenes/ui/fleet_management/weapon_hover.tscn")
 
 func _ready() -> void:
 	idx = get_index()
@@ -40,3 +41,12 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_DRAG_END:
 		modulate.a = 1
+
+func _make_custom_tooltip(_for_text: String) -> Object:
+	var inventory_cell := State.run_state.inventory.get_item(idx)
+	if inventory_cell != null and inventory_cell is WeaponData:
+		var weapon_data := inventory_cell as WeaponData
+		var weapon_hover: WeaponHover = weapon_hover_scene.instantiate()
+		weapon_hover.setup(weapon_data)
+		return weapon_hover
+	return null

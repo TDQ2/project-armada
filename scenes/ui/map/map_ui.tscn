@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkqf3fl2uhoe0"]
+[gd_scene format=3 uid="uid://dkqf3fl2uhoe0"]
 
 [ext_resource type="Script" uid="uid://d1x1ttbg4da5l" path="res://scripts/ui/map/map_ui.gd" id="1_0u83b"]
-[ext_resource type="Texture2D" uid="uid://i6k3706bamf3" path="res://textures/temp/temp_map_background.png" id="1_xavi5"]
+[ext_resource type="Texture2D" uid="uid://bt1x8tgy602cg" path="res://textures/temp/temp_map_v2.png" id="2_0u83b"]
 [ext_resource type="Texture2D" uid="uid://b73fw0hll0bqp" path="res://textures/icons/ship_map_icon.png" id="2_s82v8"]
+[ext_resource type="Texture2D" uid="uid://rfgxsmdveni5" path="res://textures/temp/temp_storm_map_v2.png" id="3_idcp2"]
 [ext_resource type="Texture2D" uid="uid://dkxlgjum3hsca" path="res://textures/weapons/cannonball_ph.png" id="5_idcp2"]
 
-[node name="MapUI" type="PanelContainer"]
+[node name="MapUI" type="PanelContainer" unique_id=1948236337]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,26 +14,29 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0u83b")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1691031858]
 layout_mode = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=734783476]
 handle_input_locally = false
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
-[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(-5, 32)
+[node name="Background" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1438430906]
+texture = ExtResource("2_0u83b")
+offset = Vector2(700, 0)
 
-[node name="Background" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(-3, -2)
-texture = ExtResource("1_xavi5")
+[node name="Storm" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=116652637]
+texture = ExtResource("3_idcp2")
+offset = Vector2(-900, 0)
 
-[node name="Icons" type="Node2D" parent="SubViewportContainer/SubViewport"]
+[node name="Icons" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=720720953]
 
-[node name="PlayerIcon" type="Sprite2D" parent="SubViewportContainer/SubViewport/Icons"]
+[node name="PlayerIcon" type="Sprite2D" parent="SubViewportContainer/SubViewport/Icons" unique_id=1354950461]
 texture = ExtResource("2_s82v8")
 
-[node name="tempCenter" type="Sprite2D" parent="SubViewportContainer/SubViewport/Icons"]
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport/Icons/PlayerIcon" unique_id=1489315646]
+
+[node name="tempCenter" type="Sprite2D" parent="SubViewportContainer/SubViewport/Icons" unique_id=498506292]
 texture = ExtResource("5_idcp2")
