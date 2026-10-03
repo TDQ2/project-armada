@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var speed := 50
-@export var max_rotation_speed := 0.01 # radians per frame
+@export var max_rotation_speed := 0.01  # radians per frame
 
 var direction := Vector2.RIGHT
 var target_position: Vector2
@@ -10,12 +10,14 @@ var runtime_ship_map: Dictionary[ShipData, ShipBase]
 
 @onready var click_target: ClickTarget = $ClickTarget
 
+
 func _ready() -> void:
 	CommandEvents.ship_added.connect(_handle_ship_added)
 	CommandEvents.command_zone_changed.connect(_handle_command_zone_update)
 	_populate_ships()
 	CommandEvents.ship_updated.connect(_handle_ship_update)
 	click_target.position_targeted.connect(_handle_position_targeted)
+
 
 # Safety measure for on ready if ships have not been populated before handle update
 func _populate_ships() -> void:
@@ -28,34 +30,43 @@ func _populate_ships() -> void:
 				var new_pos := _calculate_ship_position(coord, State.run_state.flagship_coords)
 				_add_ship(cell.ship, new_pos)
 
+
 func _physics_process(delta: float) -> void:
 	_handle_movement(delta)
+
 
 func _handle_movement(delta: float) -> void:
 	if target_position:
 		var target_angle := direction.angle_to(target_position - global_position)
 		var angle_sign: int = 1 if target_angle > 0 else -1
-		direction = direction.rotated(angle_sign * minf(max_rotation_speed, absf(target_angle))).normalized()
+		direction = (
+			direction
+			.rotated(angle_sign * minf(max_rotation_speed, absf(target_angle)))
+			.normalized()
+		)
 		var velocity := direction * speed
 		position += velocity * delta
 		rotation = velocity.angle()
 		if abs((target_position - global_position).length()) < 3:
 			target_position = Vector2.ZERO
 
+
 func _handle_position_targeted(pos: Vector2) -> void:
 	target_position = pos
 	for ship: ShipBase in $Ships.get_children():
 		ship.set_target_dest(pos)
 
+
 func _handle_ship_added(coord: Coord, ship: ShipData) -> void:
 	var new_pos := _calculate_ship_position(coord, State.run_state.flagship_coords)
 	_add_ship(ship, new_pos)
+
 
 func _handle_command_zone_update(command_zone: CommandZone) -> void:
 	var current_ships: Dictionary[ShipData, ShipBase] = {}
 	for world_ship: ShipBase in $Ships.get_children():
 		current_ships[world_ship.ship_data] = world_ship
-	
+
 	var updated_positions: Dictionary[ShipData, Coord] = {}
 	for row in command_zone.grid.size():
 		for col in command_zone.grid[row].size():
@@ -63,20 +74,30 @@ func _handle_command_zone_update(command_zone: CommandZone) -> void:
 			var cell := command_zone.get_cell(coords)
 			if cell.ship:
 				updated_positions[cell.ship] = coords
-	
+
 	for ship_data: ShipData in updated_positions.keys():
-		var new_pos := _calculate_ship_position(updated_positions[ship_data], State.run_state.flagship_coords)
-		assert(ship_data in current_ships, "Attempting to change position for ship that armada is unaware of")
+		var new_pos := _calculate_ship_position(
+			updated_positions[ship_data],
+			State.run_state.flagship_coords,
+		)
+		assert(
+			ship_data in current_ships,
+			"Attempting to change position for ship that armada is unaware of",
+		)
 		current_ships[ship_data].position = new_pos
-	
+
 	# TODO: handle removing a ship
 
 
 func _calculate_ship_position(ship_coords: Coord, flagship_coords: Coord) -> Vector2:
-	 # (x, y) = col, row
-	var coords_vector := Vector2(ship_coords.col - flagship_coords.col, ship_coords.row - flagship_coords.row)
+	# (x, y) = col, row
+	var coords_vector := Vector2(
+		ship_coords.col - flagship_coords.col,
+		ship_coords.row - flagship_coords.row,
+	)
 	var armada_local_vector := coords_vector * Data.SHIP_SPACING
 	return armada_local_vector
+
 
 func _add_ship(ship_data: ShipData, pos: Vector2) -> void:
 	var new_ship_scene := Data.world_ships[ship_data.ship_type]

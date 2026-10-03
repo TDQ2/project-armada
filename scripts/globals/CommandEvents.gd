@@ -11,26 +11,34 @@ signal poi_added(poi_data: PoiData)
 signal poi_cleared(poi_data: PoiData)
 signal storm_progressed(storm_x_idx: int)
 
+
 func emit_cz_cell_selected(ship: ShipData, coord: Coord) -> void:
 	cz_cell_selected.emit(ship, coord)
+
 
 func emit_command_zone_changed(command_zone: CommandZone) -> void:
 	command_zone_changed.emit(command_zone)
 
+
 func emit_ship_added(coord: Coord, ship: ShipData) -> void:
 	ship_added.emit(coord, ship)
+
 
 func emit_inventory_changed(inventory: Inventory) -> void:
 	inventory_changed.emit(inventory)
 
+
 func emit_ship_updated(ship_data: ShipData) -> void:
 	ship_updated.emit(ship_data)
+
 
 func emit_poi_added(poi_data: PoiData) -> void:
 	poi_added.emit(poi_data)
 
+
 func emit_poi_cleared(poi_data: PoiData) -> void:
 	poi_cleared.emit(poi_data)
+
 
 func emit_storm_progressed(storm_x_idx: int) -> void:
 	storm_progressed.emit(storm_x_idx)

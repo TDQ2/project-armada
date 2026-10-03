@@ -1,29 +1,30 @@
 extends PanelContainer
 
-var crew_buttons:Array[Button]
-var weapon_buttons:Array[Button]
+var crew_buttons: Array[Button]
+var weapon_buttons: Array[Button]
 
-@onready var portraitRect: TextureRect = $ShipDetailsContainer/Portrait
-@onready var shipAbilityText: Label = $ShipDetailsContainer/ShipAbilityText
+@onready var _portrait_rect: TextureRect = $ShipDetailsContainer/Portrait
+@onready var _ship_ability_text: Label = $ShipDetailsContainer/ShipAbilityText
+
 
 func _ready() -> void:
 	crew_buttons.assign($ShipDetailsContainer/GridContainer/CrewButtons.get_children())
 	weapon_buttons.assign($ShipDetailsContainer/GridContainer/WeaponButtons.get_children())
-	
+
 	#signals
 	CommandEvents.cz_cell_selected.connect(_update_ship_details)
 
 
 func _update_ship_details(ship_data: ShipData, _coord: Coord) -> void:
 	#print("updating selected to ship=",str(ship_data.name))
-	portraitRect.texture = ship_data.portrait
+	_portrait_rect.texture = ship_data.portrait
 	$ShipDetailsContainer/ShipName.text = ship_data.name
 	if ship_data.ability_text != "":
-		shipAbilityText.text = ship_data.ability_text
-		shipAbilityText.show()
+		_ship_ability_text.text = ship_data.ability_text
+		_ship_ability_text.show()
 	else:
-		shipAbilityText.text = ""
-		shipAbilityText.hide()
+		_ship_ability_text.text = ""
+		_ship_ability_text.hide()
 	for i in range(crew_buttons.size()):
 		crew_buttons[i].disabled = i >= ship_data.crew_slots.size()
 	for i in range(weapon_buttons.size()):

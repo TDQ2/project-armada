@@ -1,10 +1,13 @@
-extends Control
 class_name MainMenu
+extends Control
 
-@onready var settingsMenu: SettingsMenu = $SettingsMenu
+
+@onready var settings_menu: SettingsMenu = $SettingsMenu
+
 
 func _ready() -> void:
 	get_tree().paused = false
+
 
 func _on_new_game_pressed() -> void:
 	# show loading screen
@@ -15,7 +18,8 @@ func _on_new_game_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
-	settingsMenu.toggle_settings_ui()
+	settings_menu.toggle_settings_ui()
+
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
