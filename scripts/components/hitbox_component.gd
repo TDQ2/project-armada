@@ -1,21 +1,30 @@
-extends Area2D
 class_name HitBoxComponent
+extends Area2D
 
-@export var free_on_hit := false # TODO: may need to refactor to signal later
+
+@export var free_on_hit := false  # TODO: may need to refactor to signal later
 
 var on_hit_data: OnHitData
 
+
 func _ready() -> void:
-	assert(Utils.has_collision_shape(self), str(get_parent()) + " hitbox should have collision mask")
+	assert(
+		Utils.has_collision_shape(self), str(get_parent()) + " hitbox should have collision mask"
+	)
 	assert(collision_mask != 0, str(get_parent()) + " hitbox should have collision mask")
 	assert(collision_layer == 0, str(get_parent()) + " hitbox should not have collision layers")
+
 
 func setup(on_hit: OnHitData) -> void:
 	on_hit_data = on_hit
 
+
 func _on_area_entered(area: Area2D) -> void:
 	assert(area is HurtboxComponent, "Hitbox collided with non-hurtbox" + area.name)
-	assert(on_hit_data != null, "On hit component was not assigned to hitbox component, check projectile setup")
+	assert(
+		on_hit_data != null,
+		"On hit component was not assigned to hitbox component, check projectile setup"
+	)
 	var hurtbox := area as HurtboxComponent
 	hurtbox.emit_was_hit(on_hit_data)
 	if free_on_hit:

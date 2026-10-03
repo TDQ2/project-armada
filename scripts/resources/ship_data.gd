@@ -1,5 +1,6 @@
-extends Resource
 class_name ShipData
+extends Resource
+
 
 @export var ship_type: Data.ShipType
 @export var name: String
@@ -11,19 +12,20 @@ class_name ShipData
 @export var portrait: Texture2D
 @export var auras: Array[AuraData]
 
+
 func _init(
-	ship_type_: Data.ShipType, 
+	ship_type_: Data.ShipType,
 	name_: String,
 	ability_text_: String,
-	is_flagship_: bool, 
-	crew_slots_: Array[CrewData], 
-	crew_count: int, 
-	weapon_slots_: Array[WeaponData], 
-	weapon_count: int, 
+	is_flagship_: bool,
+	crew_slots_: Array[CrewData],
+	crew_count: int,
+	weapon_slots_: Array[WeaponData],
+	weapon_count: int,
 	ui_icon_: Texture2D,
 	portrait_: Texture2D,
 	auras_: Array[AuraData]
-	) -> void:
+) -> void:
 	ship_type = ship_type_
 	name = name_
 	ability_text = ability_text_

@@ -1,11 +1,13 @@
-extends Resource
 class_name CommandZone
+extends Resource
 
-@export var grid: Array[Array] # of CommandZoneCell
+
+@export var grid: Array[Array]  # of CommandZoneCell
 var num_rows := 5
 var num_cols := 5
 
 var selected_cell_pos: Vector2i
+
 
 func _init() -> void:
 	for i in range(num_rows):
@@ -14,31 +16,36 @@ func _init() -> void:
 			row.append(CommandZoneCell.new())
 		grid.append(row)
 
+
 func get_cell(coords: Coord) -> CommandZoneCell:
 	return grid[coords.row][coords.col] as CommandZoneCell
 
+
 func set_cell(coords: Coord, cell_data: CommandZoneCell) -> void:
 	grid[coords.row][coords.col] = cell_data
+
 
 func set_cell_ship_data(coords: Coord, ship_data: ShipData) -> void:
 	var cell = grid[coords.row][coords.col] as CommandZoneCell
 	cell.disabled = false
 	cell.ship = ship_data
 
+
 func enable_cell(coords: Coord) -> void:
 	var cell = grid[coords.row][coords.col] as CommandZoneCell
 	cell.disabled = false
+
 
 func disable_cell(coords: Coord) -> void:
 	var cell = grid[coords.row][coords.col] as CommandZoneCell
 	cell.disabled = true
 
+
 func get_flagship() -> ShipData:
 	for i in range(num_rows):
 		for j in range(num_cols):
-			var commandZoneCell := grid[i][j] as CommandZoneCell
-			if commandZoneCell.ship != null and commandZoneCell.ship.is_flagship:
-				return commandZoneCell.ship
+			var commandzone_cell := grid[i][j] as CommandZoneCell
+			if commandzone_cell.ship != null and commandzone_cell.ship.is_flagship:
+				return commandzone_cell.ship
 	assert(false, "get_flagship failed to find flagship")
 	return
-	

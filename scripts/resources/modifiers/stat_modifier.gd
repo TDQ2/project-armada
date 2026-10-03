@@ -1,14 +1,14 @@
-extends Resource
 class_name StatModifier
+extends Resource
+
 
 var attribute: Data.StatAttribute
 var operation: Data.ModifierOperation
 var amount: float
 
+
 func _init(
-	attribute_: Data.StatAttribute,
-	operation_: Data.ModifierOperation,
-	amount_: float
+	attribute_: Data.StatAttribute, operation_: Data.ModifierOperation, amount_: float
 ) -> void:
 	attribute = attribute_
 	operation = operation_

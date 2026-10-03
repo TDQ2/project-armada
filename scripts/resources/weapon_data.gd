@@ -1,5 +1,6 @@
-extends ItemData
 class_name WeaponData
+extends ItemData
+
 
 @export var weapon_type: Data.WeaponType
 @export var player_projectile_type: Data.PlayerProjectileType
@@ -9,15 +10,17 @@ class_name WeaponData
 @export var status_effects: Array[StatusEffectData]
 var granted_modifiers: Array[StatModifier]
 
+
 func _init(
-	weapon_type_: Data.WeaponType, 
-	player_projectile_type_: Data.PlayerProjectileType, 
-	fire_range_: int, 
-	damage_: float, 
+	weapon_type_: Data.WeaponType,
+	player_projectile_type_: Data.PlayerProjectileType,
+	fire_range_: int,
+	damage_: float,
 	cooldown_duration_: float,
 	status_effects_: Array[StatusEffectData],
-	name_: String, 
-	ui_icon_: Texture2D) -> void:
+	name_: String,
+	ui_icon_: Texture2D
+) -> void:
 	weapon_type = weapon_type_
 	player_projectile_type = player_projectile_type_
 	fire_range = fire_range_
@@ -26,5 +29,3 @@ func _init(
 	status_effects = status_effects_
 	name = name_
 	ui_icon = ui_icon_
-	
-	

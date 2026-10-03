@@ -1,5 +1,6 @@
-extends Resource
 class_name PoiData
+extends Resource
+
 
 @export var position: Vector2
 @export var type: Data.PoiType
@@ -10,16 +11,16 @@ class_name PoiData
 
 
 func _init(
-	position_: Vector2, 
+	position_: Vector2,
 	type_: Data.PoiType,
 	ships_: Array[ShipData],
 	crew_: Array[CrewData],
 	weapons_: Array[WeaponData],
-	cleared_: bool = false) -> void:
+	cleared_: bool = false
+) -> void:
 	position = position_
 	type = type_
 	ships = ships_
 	weapons = weapons_
 	crew = crew_
 	cleared = cleared_
-	

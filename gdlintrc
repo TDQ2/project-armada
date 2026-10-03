@@ -1,0 +1,4 @@
+function-argument-name: "_?[a-z][a-z0-9]*(_[a-z0-9]+)*_?"
+disable:
+  - function-arguments-number
+  - max-line-length

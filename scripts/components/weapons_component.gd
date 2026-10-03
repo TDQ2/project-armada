@@ -1,9 +1,11 @@
-extends Node2D
 class_name WeaponsComponent
+extends Node2D
+
 
 signal weapon_fired(weapon_data: WeaponData)
 
 var runtime_weapons: Dictionary[WeaponData, WeaponBase]
+
 
 func sync(weapons: Array[WeaponData]) -> void:
 	for weapon: WeaponData in weapons:
@@ -14,6 +16,7 @@ func sync(weapons: Array[WeaponData]) -> void:
 		else:
 			var runtime_weapon := runtime_weapons[weapon]
 			runtime_weapon.refresh()
+
 
 func _add_weapon(weapon_data: WeaponData) -> void:
 	#print("adding weapon data with type " + str(weapon_data.weapon_type))
@@ -26,6 +29,7 @@ func _add_weapon(weapon_data: WeaponData) -> void:
 	add_child(new_weapon)
 	new_weapon.set_weapon_data(weapon_data)
 	runtime_weapons[weapon_data] = new_weapon
+
 
 func emit_weapon_fired(weapon_data: WeaponData) -> void:
 	weapon_fired.emit(weapon_data)

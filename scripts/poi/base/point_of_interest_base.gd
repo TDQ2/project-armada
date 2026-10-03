@@ -1,20 +1,23 @@
-extends Node2D
 class_name PoiBase
+extends Node2D
 
-var poi_data: PoiData
-var isPlayerNear: bool = false
 
-@onready var poiUi: CanvasLayer = $PoiUi
-@onready var collisionArea: Area2D = $CollisionArea
+var _poi_data: PoiData
+
+@onready var _poi_ui: CanvasLayer = $PoiUi
+@onready var _collision_area: Area2D = $CollisionArea
+
 
 func _ready() -> void:
-	poiUi.hide()
-	collisionArea.area_entered.connect(_show_ui)
+	_poi_ui.hide()
+	_collision_area.area_entered.connect(_show_ui)
+
 
 func setup(poi_data_: PoiData):
-	poi_data = poi_data_
-	position = poi_data.position
+	_poi_data = poi_data_
+	position = _poi_data.position
+
 
 func _show_ui(_area: Area2D) -> void:
 	get_tree().paused = true
-	poiUi.show()
+	_poi_ui.show()

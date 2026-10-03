@@ -1,6 +1,7 @@
 @tool
-extends Sprite2D
 class_name StackedSprite
+extends Sprite2D
+
 
 # Used to tool to see in editor. show_sprites needs to be on render in game
 @export var is_show_sprites: bool = false:
@@ -17,18 +18,21 @@ class_name StackedSprite
 
 @export var curr_hframe := 0
 
+
 func _ready() -> void:
 	if is_show_sprites:
 		render_sprites()
+
 
 func _process(delta: float) -> void:
 	global_rotation = 0.0
 	if is_rotating_sprites:
 		rotate_stack(delta)
 	if direction_provider:
-		var direction:Vector2 = direction_provider.direction
+		var direction: Vector2 = direction_provider.direction
 		set_stack_rotation(direction.angle())
 	#change_frame(curr_hframe)
+
 
 func render_sprites() -> void:
 	clear_sprites()
@@ -40,23 +44,27 @@ func render_sprites() -> void:
 		next_sprite.hframes = hframes
 		next_sprite.frame = i * hframes
 		# TODO: make this toggleable for non-ships
-		if i == 0: # set water 
+		if i == 0:  # set water
 			next_sprite.z_index = -10
 		next_sprite.position.y = -i * 1
 		add_child(next_sprite)
+
 
 func clear_sprites() -> void:
 	#print("clearing")
 	for sprite in get_children():
 		sprite.queue_free()
 
+
 func rotate_stack(amount: float) -> void:
 	for child: Sprite2D in get_children():
 		child.rotation += amount
 
+
 func set_stack_rotation(rotation_: float) -> void:
 	for child: Sprite2D in get_children():
 		child.rotation = rotation_
+
 
 # TO rename, this is animation
 func change_frame(target_frame: int) -> void:

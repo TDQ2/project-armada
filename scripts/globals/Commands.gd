@@ -19,6 +19,7 @@ func select_cell(coord: Coord) -> void:
 		CommandEvents.emit_cz_cell_selected(command_zone_cell.ship, coord)
 		#CommandEvents.cz_cell_selected.emit(command_zone_cell.ship)
 
+
 func select_flagship() -> void:
 	#print("selecting flagship")
 	var flagship := command_zone.get_flagship()
@@ -26,10 +27,12 @@ func select_flagship() -> void:
 	CommandEvents.emit_cz_cell_selected(flagship, State.run_state.flagship_coords)
 	#CommandEvents.cz_cell_selected.emit(flagship)
 
+
 # Write Commands
 func enable_cz_cell(coord: Coord) -> void:
 	command_zone.enable_cell(coord)
 	CommandEvents.emit_command_zone_changed(command_zone)
+
 
 func add_ship_to_cz(coord: Coord, ship: ShipData) -> void:
 	# TODO: add validations
@@ -37,12 +40,14 @@ func add_ship_to_cz(coord: Coord, ship: ShipData) -> void:
 	CommandEvents.emit_ship_added(coord, ship)
 	CommandEvents.emit_command_zone_changed(command_zone)
 
-func swap_cz_cells(coords1: Coord, coords2: Coord) ->void:
+
+func swap_cz_cells(coords1: Coord, coords2: Coord) -> void:
 	var cell1 = command_zone.get_cell(coords1)
 	var cell2 = command_zone.get_cell(coords2)
 	command_zone.set_cell(coords1, cell2)
 	command_zone.set_cell(coords2, cell1)
 	CommandEvents.emit_command_zone_changed(command_zone)
+
 
 func add_weapon_to_ship(inv_idx: int, weapon_slot_idx: int) -> void:
 	var weapon_data := inventory.get_item(inv_idx)
@@ -54,13 +59,16 @@ func add_weapon_to_ship(inv_idx: int, weapon_slot_idx: int) -> void:
 	CommandEvents.emit_cz_cell_selected(selected_cz_cell.ship, State.run_state.selected_cz_coords)
 	CommandEvents.emit_ship_updated(selected_cz_cell.ship)
 
+
 func add_item_to_inventory_at_idx(idx: int, item_data: ItemData) -> void:
 	inventory.set_item(idx, item_data)
 	CommandEvents.emit_inventory_changed(inventory)
 
+
 func add_item_to_inventory(item_data: ItemData) -> void:
 	inventory.add_item(item_data)
 	CommandEvents.emit_inventory_changed(inventory)
+
 
 func swap_inventory_cells(idx1: int, idx2: int) -> void:
 	var item1 = inventory.get_item(idx1)
@@ -69,13 +77,17 @@ func swap_inventory_cells(idx1: int, idx2: int) -> void:
 	inventory.set_item(idx2, item1)
 	CommandEvents.emit_inventory_changed(inventory)
 
+
 func add_poi(poi_data: PoiData) -> void:
 	points_of_interest.add_poi(poi_data)
 	CommandEvents.emit_poi_added(poi_data)
 
+
 func clear_poi(poi_data: PoiData) -> void:
-	poi_data.cleared = true #TODO, does this need to interface with RunState instead of direct access here?
+	#TODO, does this need to interface with RunState instead of direct access here?
+	poi_data.cleared = true
 	CommandEvents.emit_poi_cleared(poi_data)
+
 
 func progress_storm() -> void:
 	CommandEvents.emit_storm_progressed(State.run_state.storm_x_idx)

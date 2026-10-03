@@ -2,14 +2,17 @@ extends Node
 
 @onready var command_zone: CommandZone = State.run_state.command_zone
 
+
 func _ready() -> void:
 	CommandEvents.command_zone_changed.connect(_handle_command_zone_changed)
+
 
 func _handle_command_zone_changed(command_zone_: CommandZone) -> void:
 	command_zone = command_zone_
 	_clear_modifiers()
 	_apply_all_auras()
 	_emit_ship_updates()
+
 
 func _clear_modifiers() -> void:
 	for i in command_zone.grid.size():
@@ -20,10 +23,12 @@ func _clear_modifiers() -> void:
 				_clear_weapon_modifiers(cell.ship)
 				# TODO: implement clearning ship and crew modifiers when available
 
+
 func _clear_weapon_modifiers(ship: ShipData) -> void:
 	for weapon_data: WeaponData in ship.weapon_slots:
 		if weapon_data != null:
 			weapon_data.granted_modifiers = []
+
 
 func _apply_all_auras() -> void:
 	for i in command_zone.grid.size():
@@ -33,11 +38,13 @@ func _apply_all_auras() -> void:
 			if cell.ship != null and !cell.ship.auras.is_empty():
 				_apply_auras_from_ship(cell.ship, coord)
 
+
 func _apply_auras_from_ship(provider_ship: ShipData, coord: Coord) -> void:
 	for aura: AuraData in provider_ship.auras:
 		var targeted_ships: Array[ShipData] = _get_aura_targeted_ships(aura, coord)
 		if !aura.weapon_modifiers.is_empty():
 			_apply_weapon_aura_modifier(targeted_ships, aura.weapon_modifiers)
+
 
 # TODO: move to using shared util method
 func _get_aura_targeted_ships(aura: AuraData, coord: Coord) -> Array[ShipData]:
@@ -53,6 +60,7 @@ func _get_aura_targeted_ships(aura: AuraData, coord: Coord) -> Array[ShipData]:
 			assert(false, "Attempting to apply undefined aura shape")
 	return targeted_ships
 
+
 func _get_adjacent_ships(aura_coord: Coord) -> Array[ShipData]:
 	var adjacent_ships: Array[ShipData] = []
 	var potential_coords: Array[Coord]
@@ -61,7 +69,7 @@ func _get_adjacent_ships(aura_coord: Coord) -> Array[ShipData]:
 	potential_coords.append(Coord.new(aura_coord.row, aura_coord.col - 1))
 	potential_coords.append(Coord.new(aura_coord.row, aura_coord.col + 1))
 	for potenial_coord in potential_coords:
-		if Utils.coord_is_valid(potenial_coord): 
+		if Utils.coord_is_valid(potenial_coord):
 			# Maybe this coord check isn't needed because a ship wouldn't be
 			# retrieved anyway
 			var cell := command_zone.get_cell(potenial_coord)
@@ -69,13 +77,15 @@ func _get_adjacent_ships(aura_coord: Coord) -> Array[ShipData]:
 				adjacent_ships.append(cell.ship)
 	return adjacent_ships
 
+
 func _apply_weapon_aura_modifier(
-	targeted_ships: Array[ShipData], 
-	weapon_modifiers: Array[StatModifier]) -> void:
-		for ship in targeted_ships:
-			for weapon_data: WeaponData in ship.weapon_slots:
-				if weapon_data != null:
-					weapon_data.granted_modifiers.append_array(weapon_modifiers.duplicate(true))
+	targeted_ships: Array[ShipData], weapon_modifiers: Array[StatModifier]
+) -> void:
+	for ship in targeted_ships:
+		for weapon_data: WeaponData in ship.weapon_slots:
+			if weapon_data != null:
+				weapon_data.granted_modifiers.append_array(weapon_modifiers.duplicate(true))
+
 
 func _emit_ship_updates() -> void:
 	for i in command_zone.grid.size():

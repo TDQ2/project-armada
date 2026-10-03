@@ -3,6 +3,7 @@ extends Node
 var run_state: RunState
 var config: Config
 
+
 func _ready() -> void:
 	run_state = RunState.new()
 	run_state.command_zone = CommandZone.new()

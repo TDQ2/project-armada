@@ -1,15 +1,16 @@
 extends Node2D
 
+var _poi_data_to_world: Dictionary[PoiData, PoiBase]
+var _storm_timer := 0.0
+
+
 @onready var projectiles_container := $Projectiles
 @onready var poi_container := $POIs
 @onready var map_ui: MapUI = $GameplayCanvas/GameplayUI/VBoxContainer/MapUI
 @onready var armada: Node2D = $Armada
 @onready var water_and_storm: WaterAndStorm = $WaterAndStorm
-#@onready var water_tiles: WaterTiles = $WaterTiles
 
-var poi_data_to_world: Dictionary[PoiData, PoiBase]
 
-var storm_timer := 0.0
 
 func _ready() -> void:
 	get_tree().paused = false
@@ -21,11 +22,13 @@ func _ready() -> void:
 	water_and_storm.setup(armada)
 	_create_pois()
 
+
 func _process(delta: float) -> void:
-	storm_timer += delta
-	if storm_timer >= Consts.STORM_PROGRESSION_INTERVAL:
-		storm_timer -= Consts.STORM_PROGRESSION_INTERVAL
+	_storm_timer += delta
+	if _storm_timer >= Consts.STORM_PROGRESSION_INTERVAL:
+		_storm_timer -= Consts.STORM_PROGRESSION_INTERVAL
 		Commands.progress_storm()
+
 
 func _create_pois() -> void:
 	#TODO eventually place random POI generation here
@@ -38,19 +41,32 @@ func _create_pois() -> void:
 	Commands.add_poi(poi_data2)
 	Commands.add_poi(poi_data3)
 
-func _handle_player_weapon_fired(player_projectile_type: Data.PlayerProjectileType, pos: Vector2, direction: Vector2, on_hit: OnHitData) -> void:
+
+func _handle_player_weapon_fired(
+	player_projectile_type: Data.PlayerProjectileType,
+	pos: Vector2,
+	direction: Vector2,
+	on_hit: OnHitData
+) -> void:
 	#print("player_weapon_fired in world")
 	var projectile_scene := Data.world_player_projectiles[player_projectile_type]
-	var projectile:PlayerProjectileBase = projectile_scene.instantiate()
+	var projectile: PlayerProjectileBase = projectile_scene.instantiate()
 	projectiles_container.add_child(projectile)
 	projectile.setup(pos, direction, on_hit)
 
-func _handle_enemy_weapon_fired(player_projectile_type: Data.EnemyProjectileType, pos: Vector2, direction: Vector2, on_hit: OnHitData) -> void:
+
+func _handle_enemy_weapon_fired(
+	player_projectile_type: Data.EnemyProjectileType,
+	pos: Vector2,
+	direction: Vector2,
+	on_hit: OnHitData
+) -> void:
 	#print("player_weapon_fired in world")
 	var projectile_scene := Data.world_enemy_projectiles[player_projectile_type]
-	var projectile:EnemyProjectileBase = projectile_scene.instantiate()
+	var projectile: EnemyProjectileBase = projectile_scene.instantiate()
 	projectiles_container.add_child(projectile)
 	projectile.setup(pos, direction, on_hit)
+
 
 func _handle_poi_added(poi_data: PoiData) -> void:
 	#print("poi added to world")
@@ -60,10 +76,11 @@ func _handle_poi_added(poi_data: PoiData) -> void:
 	var poi: PoiBase = poi_scene.instantiate()
 	poi_container.add_child(poi)
 	poi.setup(poi_data)
-	poi_data_to_world[poi_data] = poi
+	_poi_data_to_world[poi_data] = poi
+
 
 func _handle_poi_cleared(poi_data: PoiData) -> void:
 	print("poi cleared from 	world")
-	var world_poi = poi_data_to_world[poi_data]
-	poi_data_to_world.erase(poi_data)
+	var world_poi = _poi_data_to_world[poi_data]
+	_poi_data_to_world.erase(poi_data)
 	world_poi.queue_free()
